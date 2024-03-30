@@ -10,15 +10,23 @@ public class PlayerComponent : MonoBehaviour
     private PlayerInputs input = null;
 
     private float moveValue;
-    private float jumpValue;
 
     [HideInInspector]
     public bool isGrounded = true;
     [HideInInspector]
     public bool canJump = true;
 
+    float vel;
 
-    Rigidbody2D rb; // player's rigid body
+    float gravity;
+    float mass;
+    float torque;
+    float orientSpeed;
+    Transform planet;
+    GRAVITY g;
+
+
+    Rigidbody rb; // player's rigid body
 
     [Header("set the speed:")]
     public float playerSpeed;
@@ -29,7 +37,12 @@ public class PlayerComponent : MonoBehaviour
     private void Awake()
     {
         input = new PlayerInputs();
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
+        g = GetComponent<GRAVITY>();
+        gravity = g.GRAVITATIONALPULL;
+        mass = g.MASS;
+        orientSpeed = g.OrientSpeed;
+        planet = g.PLANET;
     }
 
     private void OnEnable()
@@ -38,7 +51,6 @@ public class PlayerComponent : MonoBehaviour
         input.Player.Movement.performed += OnHorizontal;
         input.Player.Movement.canceled += OnHorizontalCancelled;
         input.Player.Jump.started += OnJump;
-        input.Player.Jump.canceled += OnNotJumping;
     }
 
 
@@ -48,7 +60,6 @@ public class PlayerComponent : MonoBehaviour
         input.Player.Movement.performed -= OnHorizontal;
         input.Player.Movement.canceled -= OnHorizontalCancelled;
         input.Player.Jump.started -= OnJump;
-        input.Player.Jump.canceled -= OnNotJumping;
         input.Disable();
     }
 
@@ -64,10 +75,32 @@ public class PlayerComponent : MonoBehaviour
     {
         //Debug.Log(moveValue);
 
-        Vector2 Vel = Vector3.zero;
-        Vel.x = moveValue * playerSpeed * Time.fixedDeltaTime;
+        vel =  moveValue * playerSpeed * Time.fixedDeltaTime;
 
-        rb.AddForce(Vel, ForceMode2D.Impulse);
+        rb.AddForce(transform.right*vel, ForceMode.VelocityChange);
+        //rb.velocity = vel;
+
+        CalculateGravity();
+    }
+
+    void CalculateGravity()
+    {
+        // Gravity is a harness. I have harnessed the harness
+
+        Vector3 diff =transform.position - planet.position;
+        rb.AddForce(gravity * mass * diff.normalized);
+        Orient(-diff);
+
+    }
+
+    void Orient(Vector3 down)
+    {
+        Quaternion orientationDir =Quaternion.FromToRotation(transform.up,down.normalized) * transform.rotation;
+        Vector3 rotEuler = orientationDir.eulerAngles;
+        rotEuler.x = 0;
+        rotEuler.y = 0;
+        orientationDir = Quaternion.Euler(rotEuler);
+        transform.rotation = Quaternion.Slerp(transform.rotation, orientationDir, Time.deltaTime * orientSpeed);
     }
 
     private void OnHorizontal(InputAction.CallbackContext value)
@@ -82,21 +115,15 @@ public class PlayerComponent : MonoBehaviour
 
     void OnJump(InputAction.CallbackContext value)
     {
-        //if (isGrounded)
-        //{
+        if (isGrounded)
+        {
+            rb.AddForce(jumpForce * Time.fixedDeltaTime * transform.up, ForceMode.Impulse);
 
-        rb.AddForce(jumpForce * Time.fixedDeltaTime * Vector2.up, ForceMode2D.Impulse);
-
-        isGrounded = false;
-        //}
+            isGrounded = false;
+        }
     }
 
-    private void OnNotJumping(InputAction.CallbackContext context)
-    {
-        jumpValue = 0f;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 7)
         {
