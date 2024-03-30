@@ -34,6 +34,8 @@ public class PlayerComponent : MonoBehaviour
     [Header("set jump hight:")]
     public float jumpForce;
 
+    [SerializeField] public LayerMask JumpMask;
+
     private void Awake()
     {
         input = new PlayerInputs();
@@ -69,6 +71,12 @@ public class PlayerComponent : MonoBehaviour
             canJump = true;
         else
             canJump = false;
+
+        //if (RaycastToGround())
+        //    isGrounded = true;
+        
+        //else
+        //    isGrounded = false;
     }
 
     private void FixedUpdate()
@@ -77,7 +85,7 @@ public class PlayerComponent : MonoBehaviour
 
         vel =  moveValue * playerSpeed * Time.fixedDeltaTime;
 
-        rb.AddForce(transform.right*vel, ForceMode.VelocityChange);
+        rb.AddForce(transform.right*vel, ForceMode.Impulse);
         //rb.velocity = vel;
 
         CalculateGravity();
@@ -118,7 +126,7 @@ public class PlayerComponent : MonoBehaviour
         if (isGrounded)
         {
             rb.AddForce(jumpForce * Time.fixedDeltaTime * transform.up, ForceMode.Impulse);
-
+            Debug.Log("aaaaaa");
             isGrounded = false;
         }
     }
@@ -134,5 +142,19 @@ public class PlayerComponent : MonoBehaviour
     void Onlanded()
     {
         isGrounded = true;
+    }
+
+    bool RaycastToGround()
+    {
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, -transform.up, out hit, 10f, JumpMask))
+        {
+            Debug.Log("CAXXO PALLE");
+            return true;
+        }
+        
+        return false;
     }
 }
