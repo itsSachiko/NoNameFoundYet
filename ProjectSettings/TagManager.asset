@@ -11,11 +11,11 @@ TagManager:
   - 
   - Water
   - UI
+  - Player
+  - Map
+  - Enemy
   - 
-  - 
-  - 
-  - 
-  - 
+  - ignoreDmg
   - 
   - 
   - 

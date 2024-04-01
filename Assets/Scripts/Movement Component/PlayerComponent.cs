@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,42 +7,179 @@ using UnityEngine.InputSystem;
 
 public class PlayerComponent : MonoBehaviour
 {
-    private PlayerInputs input= null;
-    private float moveValue;
+    [Header("Animation Setting:")]
+    [SerializeField ,Tooltip("write the name of the jump animation")] 
+    string animJump = "Jump";
+    [SerializeField, Tooltip("write the name of the Dash animation")] 
+    string animDash = "Dash";
+    [SerializeField, Tooltip("write the name of the Walk animation")] 
+    string animWalk = "Walk";    
+    [SerializeField, Tooltip("write the name of the Idle animation")] 
+    string animIdle = "Idle";
 
-    [SerializeField] public float playerSpeed;
+    string currentAnim = "";
+
+
+    Animator anim;
+    private PlayerInputs input = null;
+
+    private Vector2 moveValue;
+
+    [HideInInspector]
+    public bool isGrounded = true;
+    [HideInInspector]
+    public bool canJump = true;
+
+
+    Rigidbody rb; // player's rigid body
+
+    [Header("set the speed:")]
+    public float playerSpeed;
+
+    [Header("set jump hight:")]
+    public float jumpForce;
+
+    [Header("Dash values:")]
+    public float dashSpeed = 0.1f;
+    public float dashDuration = 0.5f;
+    public float dashCooldown = 1f;
+    bool isDashing = false;
+    bool canDash = true;
 
     private void Awake()
     {
         input = new PlayerInputs();
+        rb = GetComponent<Rigidbody>();
+        TryGetComponent(out anim);
     }
 
     private void OnEnable()
     {
         input.Enable();
-        input.Player.Movement.performed += OnMovementPerformed;
-        input.Player.Movement.performed += OnMovementCancelled;
+        input.Player.Movement.performed += OnHorizontal;
+        input.Player.Movement.canceled += OnHorizontalCancelled;
+        input.Player.Jump.started += OnJump;
+        input.Player.Dash.started += OnDash;
     }
-
     private void OnDisable()
     {
+        input.Player.Movement.performed -= OnHorizontal;
+        input.Player.Movement.canceled -= OnHorizontalCancelled;
+        input.Player.Jump.started -= OnJump;
+        input.Player.Dash.started -= OnDash;
         input.Disable();
-        input.Player.Movement.performed -= OnMovementPerformed;
-        input.Player.Movement.performed -= OnMovementCancelled;
+    }
+
+    private void Update()
+    {
+        if (isDashing) return;
+
+        if (input.Player.Jump.WasPressedThisFrame())
+            canJump = true;
+        else
+            canJump = false;
+
+        if(moveValue == Vector2.zero)
+        {
+            ChangeAnimation(animIdle);
+        }
     }
 
     private void FixedUpdate()
     {
-        Debug.Log(moveValue);
+        if (isDashing) return;
+        rb.velocity = playerSpeed * Time.fixedDeltaTime * moveValue.normalized;
+    }
+    private void OnHorizontal(InputAction.CallbackContext value)
+    {
+        moveValue = value.ReadValue<Vector2>();
+        if (moveValue.x >0)
+        {
+            Quaternion rot = transform.rotation;
+            rot= Quaternion.AngleAxis(180,Vector3.up);
+            transform.rotation = rot;
+        }
+        else if(moveValue.x < 0)
+        {
+            Quaternion rot = transform.rotation;
+            rot = Quaternion.AngleAxis(180, -Vector3.up);
+            transform.rotation = rot;
+        }
+
+        ChangeAnimation(animWalk);
     }
 
-    private void OnMovementPerformed(InputAction.CallbackContext value)
+    private void OnHorizontalCancelled(InputAction.CallbackContext value)
     {
-        moveValue = value.ReadValue<float>();
+        moveValue = Vector2.zero;
     }
 
-    private void OnMovementCancelled(InputAction.CallbackContext value)
+    void OnJump(InputAction.CallbackContext value)
     {
-        moveValue = 0;
+
+        if (isGrounded)
+        {
+            Vector3 Oldpos = transform.position;
+            Vector3 pos = Oldpos;
+            pos.z = -10;
+            transform.position = pos;
+        }
+
+        ChangeAnimation(animJump);
+    }
+
+    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 7)
+        {
+            Onlanded();
+        }
+    }
+
+    void Onlanded()
+    {
+        isGrounded = true;
+    }
+
+    #region Dash functions:
+    void OnDash(InputAction.CallbackContext value)
+    {
+        if (canDash == false || rb.velocity == Vector3.zero) return;
+
+        Debug.Log(":1>");
+        gameObject.layer = 10;
+
+        ChangeAnimation(animDash);
+        StartCoroutine(Dashing());
+
+
+    }
+
+    IEnumerator Dashing()
+    {
+        isDashing = true;
+        canDash = false;
+        rb.velocity = moveValue.normalized * dashSpeed;
+        yield return new WaitForSeconds(dashDuration);
+        isDashing = false;
+        gameObject.layer = 6;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
+    #endregion
+
+
+    void ChangeAnimation(string animation)
+    {
+        if (!anim)
+            return;
+
+        if (currentAnim != animation)
+        {
+            currentAnim = animation;
+            anim.CrossFade(animation,0.2f);
+        }
     }
 }
