@@ -7,23 +7,28 @@ using UnityEngine.InputSystem;
 
 public class PlayerComponent : MonoBehaviour
 {
+    [Header("Animation Setting:")]
+    [SerializeField ,Tooltip("write the name of the jump animation")] 
+    string animJump = "Jump";
+    [SerializeField, Tooltip("write the name of the Dash animation")] 
+    string animDash = "Dash";
+    [SerializeField, Tooltip("write the name of the Walk animation")] 
+    string animWalk = "Walk";    
+    [SerializeField, Tooltip("write the name of the Idle animation")] 
+    string animIdle = "Idle";
+
+    string currentAnim = "";
+
+
+    Animator anim;
     private PlayerInputs input = null;
 
-    private float moveValue;
+    private Vector2 moveValue;
 
     [HideInInspector]
     public bool isGrounded = true;
     [HideInInspector]
     public bool canJump = true;
-
-    float vel;
-
-    float gravity;
-    float mass;
-    float torque;
-    float orientSpeed;
-    Transform planet;
-    GRAVITY g;
 
 
     Rigidbody rb; // player's rigid body
@@ -34,17 +39,18 @@ public class PlayerComponent : MonoBehaviour
     [Header("set jump hight:")]
     public float jumpForce;
 
-    [SerializeField] public LayerMask JumpMask;
+    [Header("Dash values:")]
+    public float dashSpeed = 0.1f;
+    public float dashDuration = 0.5f;
+    public float dashCooldown = 1f;
+    bool isDashing = false;
+    bool canDash = true;
 
     private void Awake()
     {
         input = new PlayerInputs();
         rb = GetComponent<Rigidbody>();
-        g = GetComponent<GRAVITY>();
-        gravity = g.GRAVITATIONALPULL;
-        mass = g.MASS;
-        orientSpeed = g.OrientSpeed;
-        planet = g.PLANET;
+        TryGetComponent(out anim);
     }
 
     private void OnEnable()
@@ -53,83 +59,76 @@ public class PlayerComponent : MonoBehaviour
         input.Player.Movement.performed += OnHorizontal;
         input.Player.Movement.canceled += OnHorizontalCancelled;
         input.Player.Jump.started += OnJump;
+        input.Player.Dash.started += OnDash;
     }
-
-
-
     private void OnDisable()
     {
         input.Player.Movement.performed -= OnHorizontal;
         input.Player.Movement.canceled -= OnHorizontalCancelled;
         input.Player.Jump.started -= OnJump;
+        input.Player.Dash.started -= OnDash;
         input.Disable();
     }
 
     private void Update()
     {
+        if (isDashing) return;
+
         if (input.Player.Jump.WasPressedThisFrame())
             canJump = true;
         else
             canJump = false;
 
-        //if (RaycastToGround())
-        //    isGrounded = true;
-        
-        //else
-        //    isGrounded = false;
+        if(moveValue == Vector2.zero)
+        {
+            ChangeAnimation(animIdle);
+        }
     }
 
     private void FixedUpdate()
     {
-        //Debug.Log(moveValue);
-
-        vel =  moveValue * playerSpeed * Time.fixedDeltaTime;
-
-        rb.AddForce(transform.right*vel, ForceMode.Impulse);
-        //rb.velocity = vel;
-
-        CalculateGravity();
+        if (isDashing) return;
+        rb.velocity = playerSpeed * Time.fixedDeltaTime * moveValue.normalized;
     }
-
-    void CalculateGravity()
-    {
-        // Gravity is a harness. I have harnessed the harness
-
-        Vector3 diff =transform.position - planet.position;
-        rb.AddForce(gravity * mass * diff.normalized);
-        Orient(-diff);
-
-    }
-
-    void Orient(Vector3 down)
-    {
-        Quaternion orientationDir =Quaternion.FromToRotation(transform.up,down.normalized) * transform.rotation;
-        Vector3 rotEuler = orientationDir.eulerAngles;
-        rotEuler.x = 0;
-        rotEuler.y = 0;
-        orientationDir = Quaternion.Euler(rotEuler);
-        transform.rotation = Quaternion.Slerp(transform.rotation, orientationDir, Time.deltaTime * orientSpeed);
-    }
-
     private void OnHorizontal(InputAction.CallbackContext value)
     {
-        moveValue = value.ReadValue<float>();
+        moveValue = value.ReadValue<Vector2>();
+        if (moveValue.x >0)
+        {
+            Quaternion rot = transform.rotation;
+            rot= Quaternion.AngleAxis(180,Vector3.up);
+            transform.rotation = rot;
+        }
+        else if(moveValue.x < 0)
+        {
+            Quaternion rot = transform.rotation;
+            rot = Quaternion.AngleAxis(180, -Vector3.up);
+            transform.rotation = rot;
+        }
+
+        ChangeAnimation(animWalk);
     }
 
     private void OnHorizontalCancelled(InputAction.CallbackContext value)
     {
-        moveValue = 0;
+        moveValue = Vector2.zero;
     }
 
     void OnJump(InputAction.CallbackContext value)
     {
+
         if (isGrounded)
         {
-            rb.AddForce(jumpForce * Time.fixedDeltaTime * transform.up, ForceMode.Impulse);
-            Debug.Log("aaaaaa");
-            isGrounded = false;
+            Vector3 Oldpos = transform.position;
+            Vector3 pos = Oldpos;
+            pos.z = -10;
+            transform.position = pos;
         }
+
+        ChangeAnimation(animJump);
     }
+
+    
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -144,17 +143,43 @@ public class PlayerComponent : MonoBehaviour
         isGrounded = true;
     }
 
-    bool RaycastToGround()
+    #region Dash functions:
+    void OnDash(InputAction.CallbackContext value)
     {
+        if (canDash == false || rb.velocity == Vector3.zero) return;
 
-        RaycastHit hit;
+        Debug.Log(":1>");
+        gameObject.layer = 10;
 
-        if (Physics.Raycast(transform.position, -transform.up, out hit, 10f, JumpMask))
+        ChangeAnimation(animDash);
+        StartCoroutine(Dashing());
+
+
+    }
+
+    IEnumerator Dashing()
+    {
+        isDashing = true;
+        canDash = false;
+        rb.velocity = moveValue.normalized * dashSpeed;
+        yield return new WaitForSeconds(dashDuration);
+        isDashing = false;
+        gameObject.layer = 6;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
+    #endregion
+
+
+    void ChangeAnimation(string animation)
+    {
+        if (!anim)
+            return;
+
+        if (currentAnim != animation)
         {
-            Debug.Log("CAXXO PALLE");
-            return true;
+            currentAnim = animation;
+            anim.CrossFade(animation,0.2f);
         }
-        
-        return false;
     }
 }
