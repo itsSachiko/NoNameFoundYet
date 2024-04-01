@@ -42,6 +42,7 @@ public class PlayerComponent : MonoBehaviour
     [Header("Dash values:")]
     public float dashSpeed = 0.1f;
     public float dashDuration = 0.5f;
+
     public float dashCooldown = 1f;
     bool isDashing = false;
     bool canDash = true;
@@ -93,18 +94,18 @@ public class PlayerComponent : MonoBehaviour
     private void OnHorizontal(InputAction.CallbackContext value)
     {
         moveValue = value.ReadValue<Vector2>();
-        if (moveValue.x >0)
-        {
-            Quaternion rot = transform.rotation;
-            rot= Quaternion.AngleAxis(180,Vector3.up);
-            transform.rotation = rot;
-        }
-        else if(moveValue.x < 0)
-        {
-            Quaternion rot = transform.rotation;
-            rot = Quaternion.AngleAxis(180, -Vector3.up);
-            transform.rotation = rot;
-        }
+        //if (moveValue.x > 0)
+        //{
+        //    Quaternion rot = transform.rotation;
+        //    rot= Quaternion.AngleAxis(180,Vector3.up);
+        //    transform.rotation = rot;
+        //}
+        //else if(moveValue.x < 0)
+        //{
+        //    Quaternion rot = transform.rotation;
+        //    rot = Quaternion.AngleAxis(180, -Vector3.up);
+        //    transform.rotation = rot;
+        //}
 
         ChangeAnimation(animWalk);
     }
