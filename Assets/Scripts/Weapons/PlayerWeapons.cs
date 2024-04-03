@@ -39,7 +39,7 @@ public class PlayerWeapons : MonoBehaviour
             rangeWeapon.Shoot(transform);
             StartCoroutine(RangeCoolodwn(rangeWeapon.realoadTime));
         }
-        else if (input.Player.MeleeButton.WasPerformedThisFrame() && canSwing)
+        else if (input.Player.Meleebutton.WasPerformedThisFrame() && canSwing)
         {
             meleeWeapon.Swing(transform);
             StartCoroutine(MeleeCooldown(meleeWeapon.realoadTime));
