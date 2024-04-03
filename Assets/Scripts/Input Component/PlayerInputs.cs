@@ -53,6 +53,33 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ranged Button"",
+                    ""type"": ""Button"",
+                    ""id"": ""79289b6a-f041-4664-a005-ba53fdfcabc6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Melee button"",
+                    ""type"": ""Button"",
+                    ""id"": ""c7cba422-77b7-4214-95e5-580ea2c41f3e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause Button"",
+                    ""type"": ""Button"",
+                    ""id"": ""79003379-b54a-4f1b-9f61-fdd77764ca2f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +159,39 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f0b078f-f605-4ea6-9344-9a9eba32ce28"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ranged Button"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de16e952-ab45-4101-9557-ddba76fd1eaa"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Melee button"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54331ec1-c32c-4f78-b113-d7d4505a8356"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause Button"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +203,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_RangedButton = m_Player.FindAction("Ranged Button", throwIfNotFound: true);
+        m_Player_Meleebutton = m_Player.FindAction("Melee button", throwIfNotFound: true);
+        m_Player_PauseButton = m_Player.FindAction("Pause Button", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +270,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_RangedButton;
+    private readonly InputAction m_Player_Meleebutton;
+    private readonly InputAction m_Player_PauseButton;
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
@@ -214,6 +280,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @RangedButton => m_Wrapper.m_Player_RangedButton;
+        public InputAction @Meleebutton => m_Wrapper.m_Player_Meleebutton;
+        public InputAction @PauseButton => m_Wrapper.m_Player_PauseButton;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -232,6 +301,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @RangedButton.started += instance.OnRangedButton;
+            @RangedButton.performed += instance.OnRangedButton;
+            @RangedButton.canceled += instance.OnRangedButton;
+            @Meleebutton.started += instance.OnMeleebutton;
+            @Meleebutton.performed += instance.OnMeleebutton;
+            @Meleebutton.canceled += instance.OnMeleebutton;
+            @PauseButton.started += instance.OnPauseButton;
+            @PauseButton.performed += instance.OnPauseButton;
+            @PauseButton.canceled += instance.OnPauseButton;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -245,6 +323,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @RangedButton.started -= instance.OnRangedButton;
+            @RangedButton.performed -= instance.OnRangedButton;
+            @RangedButton.canceled -= instance.OnRangedButton;
+            @Meleebutton.started -= instance.OnMeleebutton;
+            @Meleebutton.performed -= instance.OnMeleebutton;
+            @Meleebutton.canceled -= instance.OnMeleebutton;
+            @PauseButton.started -= instance.OnPauseButton;
+            @PauseButton.performed -= instance.OnPauseButton;
+            @PauseButton.canceled -= instance.OnPauseButton;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -267,5 +354,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnRangedButton(InputAction.CallbackContext context);
+        void OnMeleebutton(InputAction.CallbackContext context);
+        void OnPauseButton(InputAction.CallbackContext context);
     }
 }
