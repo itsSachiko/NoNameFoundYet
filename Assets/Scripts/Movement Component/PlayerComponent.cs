@@ -91,6 +91,7 @@ public class PlayerComponent : MonoBehaviour
         if (isDashing) return;
         rb.velocity = playerSpeed * Time.fixedDeltaTime * moveValue.normalized;
     }
+
     private void OnHorizontal(InputAction.CallbackContext value)
     {
         moveValue = value.ReadValue<Vector2>();
@@ -154,8 +155,6 @@ public class PlayerComponent : MonoBehaviour
 
         ChangeAnimation(animDash);
         StartCoroutine(Dashing());
-
-
     }
 
     IEnumerator Dashing()
