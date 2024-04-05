@@ -16,6 +16,8 @@ public class Spawner : MonoBehaviour
     [HideInInspector] public List<GameObject> melee = new List<GameObject>();
     [HideInInspector] public List<GameObject> mine = new List<GameObject>();
 
+    Transform latestEnemy;
+
     private void Awake()
     {
         foreach (Wave wave in waves)
@@ -26,6 +28,8 @@ public class Spawner : MonoBehaviour
             }
         }
     }
+
+    
 
     //private void Update()
     //{
@@ -63,10 +67,25 @@ public class Spawner : MonoBehaviour
 
             else
             {
-                Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity);
+                latestEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity, spawner[ran]);
+                
             }
 
             //Transform spawnedEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity);
         }
+    }
+
+    public void AddRanged(GameObject enemyRanged)
+    {
+        ranged.Add(enemyRanged);
+    }
+    public void AddMelee(GameObject enemyMelee)
+    {
+        melee.Add(enemyMelee);
+    }
+
+    public void AddMine(GameObject enemyMine)
+    {
+        mine.Add(enemyMine);
     }
 }
