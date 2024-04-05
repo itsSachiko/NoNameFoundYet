@@ -129,9 +129,6 @@ public class PlayerComponent : MonoBehaviour
 
         ChangeAnimation(animJump);
     }
-
-    
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 7)

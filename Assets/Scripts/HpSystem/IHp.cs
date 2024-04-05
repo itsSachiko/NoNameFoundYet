@@ -8,4 +8,5 @@ public interface IHp
 
     public void TakeDmg(float damage);
     public void HpUp(float Heal);
+    public void Death();
 }

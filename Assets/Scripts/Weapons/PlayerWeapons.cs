@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class PlayerWeapons : MonoBehaviour
 {
@@ -20,30 +21,24 @@ public class PlayerWeapons : MonoBehaviour
         input = new PlayerInputs();
     }
 
-    //private void OnEnable()
-    //{
-    //    input.Player.RangedButton.performed += OnShoot;
-    //    input.Player.RangedButton.canceled += OnShootEnd;
-    //}
-
-    //private void OnDisable()
-    //{
-    //    input.Player.RangedButton.performed -= OnShoot;
-    //    input.Player.RangedButton.canceled -= OnShootEnd;
-    //}
-
-    private void Update()
+    private void OnEnable()
     {
-        if (input.Player.RangedButton.WasPerformedThisFrame() && canShoot)
-        {
-            rangeWeapon.Shoot(transform);
-            StartCoroutine(RangeCoolodwn(rangeWeapon.realoadTime));
-        }
-        else if (input.Player.Meleebutton.WasPerformedThisFrame() && canSwing)
-        {
-            meleeWeapon.Swing(transform);
-            StartCoroutine(MeleeCooldown(meleeWeapon.realoadTime));
-        }
+        input.Enable();
+        input.Player.RangedButton.performed += OnShoot;
+        input.Player.RangedButton.canceled += OnShootEnd;
+
+        input.Player.Meleebutton.performed += OnSwing;
+        input.Player.Meleebutton.canceled += OnSwingEnd;
+    }
+
+    private void OnDisable()
+    {
+        input.Player.RangedButton.performed -= OnShoot;
+        input.Player.RangedButton.canceled -= OnShootEnd;
+
+        input.Player.Meleebutton.performed -= OnSwing;
+        input.Player.Meleebutton.canceled -= OnSwingEnd;
+        input.Disable();
     }
 
     private IEnumerator RangeCoolodwn(float seconds)
@@ -52,37 +47,78 @@ public class PlayerWeapons : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         canShoot = true;
     }
+
     private IEnumerator MeleeCooldown(float seconds)
     {
         canSwing = false;
         yield return new WaitForSeconds(seconds);
         canSwing = true;
     }
+
     private void OnShoot(InputAction.CallbackContext context)
     {
         if (canShoot != true)
             return;
-        rangeWeapon.Shoot(transform);
+
+        rangeWeapon.onRecharge += Recharge;
+        rangeWeapon.Attack(transform,this);
         StartCoroutine(RangeCoolodwn(rangeWeapon.realoadTime));
     }
 
     private void OnShootEnd(InputAction.CallbackContext context)
     {
-
+        rangeWeapon.onRecharge -= Recharge;
     }
 
     private void OnSwing(InputAction.CallbackContext context)
     {
-        sword.gameObject.SetActive(true);
         if (canSwing != true)
             return;
-
-        meleeWeapon.Swing(transform);
+        //meleeWeapon.onRecharge += Recharge;
+        sword.gameObject.SetActive(true);
+        meleeWeapon.Attack(transform,this);
         StartCoroutine(MeleeCooldown(meleeWeapon.realoadTime));
     }
 
     private void OnSwingEnd(InputAction.CallbackContext context)
     {
         sword.gameObject.SetActive(false);
+        //meleeWeapon.onRecharge -= Recharge;
+    }
+
+    void Recharge(Bars bar)
+    {
+        if(bar.recharge != null)
+        {
+            StopRecharge(bar);
+            
+            StartCoroutine(bar.recharge);
+        }
+        else
+        {
+            bar.recharge = WaitForRecharge(bar);
+            StartCoroutine(bar.recharge);
+        }
+    }
+
+    public IEnumerator WaitForRecharge(Bars bar)
+    {
+        //Debug.LogAssertion("heeeeeelp help me");
+       
+        yield return new WaitForSeconds(bar.waitAfterUse);
+
+        while (bar.actualBar < bar.fullBar)
+        {
+            bar.actualBar += bar.rateRechargePerSeconds * Time.deltaTime;
+            yield return null;
+        }
+        bar.actualBar = bar.fullBar;
+
+        //Debug.LogAssertion("Thank you stranger");
+    }
+
+    void StopRecharge(Bars bar)
+    {
+        StopCoroutine(bar.recharge);
     }
 }

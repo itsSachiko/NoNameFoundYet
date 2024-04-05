@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Pillow", menuName = "Weapons/Ranged")]
+[CreateAssetMenu(fileName = "Bubbles", menuName = "Weapons/Ranged")]
 public class Ranged : Weapons
 {
     [Header("Ranged Settings:")]
@@ -14,15 +15,43 @@ public class Ranged : Weapons
     public float rangeExplosion;
     public float damageExplosion;
 
-    [Header("Hitscan")]
-    public bool isHitscan;
-    [Tooltip("if left at 0 the ray will be infinite")]
-    public float rangeHitscan;
+    public event Recharge onRecharge;
+    public event Recharge stopRecharge;
+
+
+    public override void Attack(Transform point, MonoBehaviour x)
+    {
+        //Debug.Log(name + " hello everybody", point);
+
+        //Debug.LogWarning("sugma");
+        foreach (BarUsage barUsage in allUsedBars)
+        {
+            barUsage.Use();
+            
+            if (barUsage.bar.actualBar <= 0)
+            {
+                //Debug.LogWarning("DICK");
+                barUsage.NoAmmo();
+                return;
+            }
+            //barUsage.StartRecharge(x);
+            onRecharge(barUsage.bar);
+        }
+
+        Shoot(point);
+    }
 
     public void Shoot(Transform from)
     {
-        GameObject x = Instantiate(projectile.gameObject,from.position,from.rotation);
+        
+        //Debug.Log(name + " owo ", from);
+        GameObject x = Instantiate(projectile.gameObject, from.position, from.rotation);
         x.TryGetComponent(out Bullet bullet);
+        BulletStats(bullet);
+    }
+
+    public void BulletStats(Bullet bullet)
+    {
         bullet.iexplode = IsExplosive;
         bullet.expRange = rangeExplosion;
         bullet.expDamage = damageExplosion;
