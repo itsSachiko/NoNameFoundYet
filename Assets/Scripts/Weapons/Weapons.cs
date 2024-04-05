@@ -19,16 +19,20 @@ public class Weapons : ScriptableObject
     [Header("Aesthetic")]
     public Image weaponImg;
 
-    public virtual void Attack(Transform point)
+    public delegate void Recharge(Bars bar);
+
+    public virtual void Attack(Transform point, MonoBehaviour x)
     {
-        foreach (BarUsage barUsage in allUsedBars)
-        {
-            barUsage.Use();
-            if (barUsage.bar.actualBar <= 0)
-            {
-                barUsage.bar.actualBar += barUsage.usagePerShot;
-                return;
-            }
-        }
+        //Debug.LogWarning("sugma");
+        //foreach (BarUsage barUsage in allUsedBars)
+        //{
+        //    barUsage.Use();
+        //    if (barUsage.bar.actualBar <= 0)
+        //    { 
+        //        Debug.LogWarning("DICK");
+        //        barUsage.NoAmmo();
+        //        return;
+        //    }
+        //}
     }
 }

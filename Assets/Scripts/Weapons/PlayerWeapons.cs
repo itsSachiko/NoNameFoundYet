@@ -3,14 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class PlayerWeapons : MonoBehaviour
 {
     public Ranged rangeWeapon;
     public Melee meleeWeapon;
     PlayerInputs input;
-
-    public Bars allTheBars;
 
     public Transform sword;
 
@@ -24,6 +23,7 @@ public class PlayerWeapons : MonoBehaviour
 
     private void OnEnable()
     {
+        input.Enable();
         input.Player.RangedButton.performed += OnShoot;
         input.Player.RangedButton.canceled += OnShootEnd;
 
@@ -38,6 +38,7 @@ public class PlayerWeapons : MonoBehaviour
 
         input.Player.Meleebutton.performed -= OnSwing;
         input.Player.Meleebutton.canceled -= OnSwingEnd;
+        input.Disable();
     }
 
     private IEnumerator RangeCoolodwn(float seconds)
@@ -58,27 +59,66 @@ public class PlayerWeapons : MonoBehaviour
     {
         if (canShoot != true)
             return;
-        rangeWeapon.Attack(transform);
+
+        rangeWeapon.onRecharge += Recharge;
+        rangeWeapon.Attack(transform,this);
         StartCoroutine(RangeCoolodwn(rangeWeapon.realoadTime));
     }
 
     private void OnShootEnd(InputAction.CallbackContext context)
     {
-
+        rangeWeapon.onRecharge -= Recharge;
     }
 
     private void OnSwing(InputAction.CallbackContext context)
     {
         if (canSwing != true)
             return;
-
+        //meleeWeapon.onRecharge += Recharge;
         sword.gameObject.SetActive(true);
-        meleeWeapon.Attack(transform);
+        meleeWeapon.Attack(transform,this);
         StartCoroutine(MeleeCooldown(meleeWeapon.realoadTime));
     }
 
     private void OnSwingEnd(InputAction.CallbackContext context)
     {
         sword.gameObject.SetActive(false);
+        //meleeWeapon.onRecharge -= Recharge;
+    }
+
+    void Recharge(Bars bar)
+    {
+        if(bar.recharge != null)
+        {
+            StopRecharge(bar);
+            
+            StartCoroutine(bar.recharge);
+        }
+        else
+        {
+            bar.recharge = WaitForRecharge(bar);
+            StartCoroutine(bar.recharge);
+        }
+    }
+
+    public IEnumerator WaitForRecharge(Bars bar)
+    {
+        //Debug.LogAssertion("heeeeeelp help me");
+       
+        yield return new WaitForSeconds(bar.waitAfterUse);
+
+        while (bar.actualBar < bar.fullBar)
+        {
+            bar.actualBar += bar.rateRechargePerSeconds * Time.deltaTime;
+            yield return null;
+        }
+        bar.actualBar = bar.fullBar;
+
+        //Debug.LogAssertion("Thank you stranger");
+    }
+
+    void StopRecharge(Bars bar)
+    {
+        StopCoroutine(bar.recharge);
     }
 }

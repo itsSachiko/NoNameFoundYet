@@ -12,17 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41f457fe30463e4d962ba6535188183, type: 3}
   m_Name: Bubblegun
   m_EditorClassIdentifier: 
-  magicUsage: 0
-  staminaUsage: 1
-  hpUsage: 0
-  realoadTime: 1
+  allUsedBars:
+  - bar: {fileID: 11400000, guid: e5a246323456c4441bb566b33acc4be5, type: 2}
+    usagePerShot: 1
+    isOvertime: 0
+  - bar: {fileID: 11400000, guid: 3c34e3142a70f144b9022d04f873d43b, type: 2}
+    usagePerShot: 2
+    isOvertime: 0
+  realoadTime: 0.1
   damage: 1
   numberOfAttacks: 1
-  isHold: 0
-  projectile: {fileID: 0}
-  projectileSpeed: 0
+  weaponImg: {fileID: 0}
+  projectile: {fileID: 8897966881179262346, guid: 287cf1c3039fc714697a0c6b731b7185, type: 3}
+  projectileSpeed: 150
   IsExplosive: 0
   rangeExplosion: 0
   damageExplosion: 0
-  isHitscan: 0
-  rangeHitscan: 0

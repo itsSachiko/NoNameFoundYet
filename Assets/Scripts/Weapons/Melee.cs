@@ -32,13 +32,13 @@ public class Melee : Weapons
     public int numberOfSpiins = 1;
 
 
-    public override void Attack(Transform point)
+    public override void Attack(Transform point, MonoBehaviour x)
     {
-        base.Attack(point);
-        Swing(point);
+        base.Attack(point,x);
+        Swing(point,x);
     }
 
-    public void Swing(Transform sword)
+    public void Swing(Transform sword, MonoBehaviour x)
     {
         //sword.gameObject.SetActive(true);
 
@@ -49,6 +49,8 @@ public class Melee : Weapons
         Vector3 swordScale = sword.transform.localScale;
         swordScale.x *= rangeOfLine;
         sword.transform.localScale = swordScale;
+
+        swordStats.dmg = damage;
 
         if (isCone)
         {
@@ -66,9 +68,9 @@ public class Melee : Weapons
         {
             spriteRenderer.sprite = circleAttackImg;
 
-            foreach ( Collider x in Physics.OverlapSphere(sword.root.position, range))
+            foreach ( Collider collider in Physics.OverlapSphere(sword.root.position, range))
             {
-                if (x.TryGetComponent(out IHp hp))
+                if (collider.TryGetComponent(out IHp hp))
                 {
                     hp.TakeDmg(damage);
                 }

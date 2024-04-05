@@ -11,28 +11,14 @@ public class Bars : ScriptableObject
     [Tooltip("the secods to wait after you use the bar")]
     public float waitAfterUse = 1;
     [HideInInspector] public float actualBar;
-    [HideInInspector] public bool canRecharge;
+    [HideInInspector] public bool canRecharge = true;
+    [HideInInspector] public IEnumerator recharge;
 
-    private void Awake()
+    private void OnEnable()
     {
         actualBar = fullBar;
-    }
-
-    public IEnumerator WaitForRecharge()
-    {
-        canRecharge = false;
-        yield return new WaitForSeconds(waitAfterUse);
         canRecharge = true;
-        while(actualBar < fullBar)
-        {
-            actualBar += rateRechargePerSeconds * Time.deltaTime;
-            yield return null;
-        }
     }
-
-
-
-    
 
     //public bool UsageCheck(float amount)
     //{
