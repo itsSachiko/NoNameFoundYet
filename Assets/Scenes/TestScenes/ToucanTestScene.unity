@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 120612110}
   - component: {fileID: 120612109}
   - component: {fileID: 120612113}
+  - component: {fileID: 120612114}
   m_Layer: 6
   m_Name: Player Test
   m_TagString: Untagged
@@ -229,6 +230,21 @@ MonoBehaviour:
   dashSpeed: 0.1
   dashDuration: 0.5
   dashCooldown: 1
+--- !u!114 &120612114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120612108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9b4eeeffd196fa49ba11327c010dc71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeWeapon: {fileID: 0}
+  meleeWeapon: {fileID: 0}
+  sword: {fileID: 0}
 --- !u!1 &157674503
 GameObject:
   m_ObjectHideFlags: 0

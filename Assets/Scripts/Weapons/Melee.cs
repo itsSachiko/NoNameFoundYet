@@ -6,6 +6,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Pillow", menuName = "Weapons/Melee")]
 public class Melee : Weapons
 {
+    [Header("Aesthetic: ")]
+    public Sprite lineAttackImg;
+    public Sprite coneAttackImg;
+    public Sprite circleAttackImg;
+
     [Header("for All:")]
     public float range = 10f;
 
@@ -21,33 +26,47 @@ public class Melee : Weapons
     public bool isCone;
     public float angleOfAttack = 45;
 
-    [Header("Melee 360: ")]
+    [Header("Melee Circle: ")]
     [Tooltip("if the is the one that rotates")]
-    public bool is360;
+    public bool isCircle;
     public int numberOfSpiins = 1;
-        
+
+
+    public override void Attack(Transform point)
+    {
+        base.Attack(point);
+        Swing(point);
+    }
+
     public void Swing(Transform sword)
     {
-        sword.gameObject.SetActive(true);
+        //sword.gameObject.SetActive(true);
+
+        sword.TryGetComponent(out SpriteRenderer spriteRenderer);
+        sword.TryGetComponent(out SwordComponent swordStats);
+
+
+        Vector3 swordScale = sword.transform.localScale;
+        swordScale.x *= rangeOfLine;
+        sword.transform.localScale = swordScale;
+
         if (isCone)
         {
+            spriteRenderer.sprite = coneAttackImg; 
             sword.rotation = Quaternion.AngleAxis(angleOfAttack, Vector3.forward);
-            sword.gameObject.SetActive(false);
         }
 
         if (IsLine)
         {
-            Vector3 swordScale = sword.transform.localScale;
-            swordScale.x *= rangeOfLine;
-            sword.transform.localScale = swordScale;
+            spriteRenderer.sprite = lineAttackImg;
             //sword.GetComponent<MonoBehaviour>().StartCoroutine(LineAttack(sword));
         }
 
-        if (is360)
+        if (isCircle)
         {
-            //codice gay :3 come me
+            spriteRenderer.sprite = circleAttackImg;
 
-            foreach( Collider x in Physics.OverlapSphere(sword.root.position, range))
+            foreach ( Collider x in Physics.OverlapSphere(sword.root.position, range))
             {
                 if (x.TryGetComponent(out IHp hp))
                 {
@@ -57,18 +76,18 @@ public class Melee : Weapons
         }
     }
 
-    IEnumerator LineAttack(Transform sword)
-    {
-        Vector3 pos = sword.position;
-        Vector3 endPos = sword.position + sword.parent.right * rangeOfLine;
-        Vector3 lerpPos;
-        while (Vector3.Distance(pos, endPos) < 0.1f)
-        {
-            lerpPos = Vector3.Lerp(pos, endPos, Time.deltaTime);
-            sword.position = lerpPos;
-            yield return null;
-        }
-        sword.gameObject.SetActive(false);
+    //IEnumerator LineAttack(Transform sword)
+    //{
+    //    Vector3 pos = sword.position;
+    //    Vector3 endPos = sword.position + sword.parent.right * rangeOfLine;
+    //    Vector3 lerpPos;
+    //    while (Vector3.Distance(pos, endPos) < 0.1f)
+    //    {
+    //        lerpPos = Vector3.Lerp(pos, endPos, Time.deltaTime);
+    //        sword.position = lerpPos;
+    //        yield return null;
+    //    }
+    //    sword.gameObject.SetActive(false);
 
-    }
+    //}
 }

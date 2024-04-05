@@ -10,6 +10,8 @@ public class PlayerWeapons : MonoBehaviour
     public Melee meleeWeapon;
     PlayerInputs input;
 
+    public Bars allTheBars;
+
     public Transform sword;
 
     bool canShoot = true;
@@ -20,30 +22,22 @@ public class PlayerWeapons : MonoBehaviour
         input = new PlayerInputs();
     }
 
-    //private void OnEnable()
-    //{
-    //    input.Player.RangedButton.performed += OnShoot;
-    //    input.Player.RangedButton.canceled += OnShootEnd;
-    //}
-
-    //private void OnDisable()
-    //{
-    //    input.Player.RangedButton.performed -= OnShoot;
-    //    input.Player.RangedButton.canceled -= OnShootEnd;
-    //}
-
-    private void Update()
+    private void OnEnable()
     {
-        if (input.Player.RangedButton.WasPerformedThisFrame() && canShoot)
-        {
-            rangeWeapon.Shoot(transform);
-            StartCoroutine(RangeCoolodwn(rangeWeapon.realoadTime));
-        }
-        else if (input.Player.Meleebutton.WasPerformedThisFrame() && canSwing)
-        {
-            meleeWeapon.Swing(transform);
-            StartCoroutine(MeleeCooldown(meleeWeapon.realoadTime));
-        }
+        input.Player.RangedButton.performed += OnShoot;
+        input.Player.RangedButton.canceled += OnShootEnd;
+
+        input.Player.Meleebutton.performed += OnSwing;
+        input.Player.Meleebutton.canceled += OnSwingEnd;
+    }
+
+    private void OnDisable()
+    {
+        input.Player.RangedButton.performed -= OnShoot;
+        input.Player.RangedButton.canceled -= OnShootEnd;
+
+        input.Player.Meleebutton.performed -= OnSwing;
+        input.Player.Meleebutton.canceled -= OnSwingEnd;
     }
 
     private IEnumerator RangeCoolodwn(float seconds)
@@ -52,17 +46,19 @@ public class PlayerWeapons : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         canShoot = true;
     }
+
     private IEnumerator MeleeCooldown(float seconds)
     {
         canSwing = false;
         yield return new WaitForSeconds(seconds);
         canSwing = true;
     }
+
     private void OnShoot(InputAction.CallbackContext context)
     {
         if (canShoot != true)
             return;
-        rangeWeapon.Shoot(transform);
+        rangeWeapon.Attack(transform);
         StartCoroutine(RangeCoolodwn(rangeWeapon.realoadTime));
     }
 
@@ -73,11 +69,11 @@ public class PlayerWeapons : MonoBehaviour
 
     private void OnSwing(InputAction.CallbackContext context)
     {
-        sword.gameObject.SetActive(true);
         if (canSwing != true)
             return;
 
-        meleeWeapon.Swing(transform);
+        sword.gameObject.SetActive(true);
+        meleeWeapon.Attack(transform);
         StartCoroutine(MeleeCooldown(meleeWeapon.realoadTime));
     }
 
