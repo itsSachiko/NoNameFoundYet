@@ -15,7 +15,7 @@ public class Bildboarding : MonoBehaviour
     private void Update()
     {
 
-        dir = Cam.transform.position - transform.position;
+        dir = Cam.transform.position - transform.root.position;
         transform.rotation = Quaternion.LookRotation(dir);
 
     }
