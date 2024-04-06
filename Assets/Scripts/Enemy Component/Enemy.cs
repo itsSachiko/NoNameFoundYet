@@ -8,4 +8,5 @@ public class Enemy
     public Transform enemyPrefab;
 
     public int numberToSpawn = 1;
+
 }

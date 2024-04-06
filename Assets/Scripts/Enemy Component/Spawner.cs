@@ -16,6 +16,8 @@ public class Spawner : MonoBehaviour
     [HideInInspector] public List<GameObject> melee = new List<GameObject>();
     [HideInInspector] public List<GameObject> mine = new List<GameObject>();
 
+    [SerializeField] Transform playerPrefab;
+
     Transform latestEnemy;
 
     private void Awake()
@@ -27,10 +29,10 @@ public class Spawner : MonoBehaviour
                 SpawnEnemy(enemy);
             }
         }
+
+        waveCounter = 0;
+
     }
-
-    
-
     //private void Update()
     //{
     //    if (isChoosingWeapon)
@@ -45,36 +47,50 @@ public class Spawner : MonoBehaviour
 
         for (int i = 0; i < enemy.numberToSpawn; i++)
         {
-             
             
-            if (enemy.enemyPrefab.CompareTag("Ranged") && ranged.Count > 0)
-            {
-                ranged[0].SetActive(true);
-                ranged.RemoveAt(0);
-            }
-
-            else if (enemy.enemyPrefab.CompareTag("Melee") && melee.Count > 0)
-            {
-                melee[0].SetActive(true);
-                melee.RemoveAt(0);
-            }
-
-            else if (enemy.enemyPrefab.CompareTag("Mine") && mine.Count > 0)
-            {
-                mine[0].SetActive(true);
-                mine.RemoveAt(0);
-            }
-
-            else
-            {
-                latestEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity, spawner[ran]);
-                
-            }
+            latestEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity, spawner[ran]);
+            latestEnemy.gameObject.SetActive(false);
 
             //Transform spawnedEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity);
         }
     }
 
+    void EnemyReactivation(GameObject x)
+    {
+        int ran = Random.Range(0, spawner.Length);
+        x.transform.position = spawner[ran].position;
+        x.SetActive(false);
+       
+    }
+
+    IEnumerator Wave(Wave wave)
+    {
+
+        foreach (Enemy y in wave.enemies)
+        {
+            if (y.enemyPrefab.CompareTag("Ranged"))
+            {
+                ranged[0].SetActive(true);
+                ranged.RemoveAt(0);
+            }
+
+            else if (y.enemyPrefab.CompareTag("Melee"))
+            {
+                ranged[0].SetActive(true);
+                ranged.RemoveAt(0);
+            }
+
+            else if (y.enemyPrefab.CompareTag("Melee"))
+            {
+                ranged[0].SetActive(true);
+                ranged.RemoveAt(0);
+            }
+
+            yield return new WaitForSeconds(wave.waitNextSpawn);
+        }
+
+        yield return null;
+    }
     public void AddRanged(GameObject enemyRanged)
     {
         ranged.Add(enemyRanged);

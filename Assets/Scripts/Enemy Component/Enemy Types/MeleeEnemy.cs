@@ -9,6 +9,11 @@ public class MeleeEnemy : MonoBehaviour, IHp
     public void TakeDmg(float damage)
     {
         HP -= damage;
+
+        if (HP <= 0)
+        {
+            Death();
+        }
     }
 
     public void HpUp(float Heal)
@@ -20,5 +25,7 @@ public class MeleeEnemy : MonoBehaviour, IHp
     {
         transform.parent.TryGetComponent<Spawner>(out var parent);
         parent.AddMelee(gameObject);
+        transform.position = Vector3.zero;
+        gameObject.SetActive(false);
     }
 }
