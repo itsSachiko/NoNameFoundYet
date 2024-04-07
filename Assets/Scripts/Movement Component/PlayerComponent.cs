@@ -9,8 +9,7 @@ public class PlayerComponent : MonoBehaviour
 {
     [Header("Animation Setting:")]
     [SerializeField ,Tooltip("write the name of the jump animation")] 
-    string animJump = "Jump";
-    [SerializeField, Tooltip("write the name of the Dash animation")] 
+
     string animDash = "Dash";
     [SerializeField, Tooltip("write the name of the Walk animation")] 
     string animWalk = "Walk";    
@@ -35,9 +34,6 @@ public class PlayerComponent : MonoBehaviour
 
     [Header("set the speed:")]
     public float playerSpeed;
-
-    [Header("set jump hight:")]
-    public float jumpForce;
 
     [Header("Dash values:")]
     public float dashSpeed = 0.1f;
@@ -126,21 +122,11 @@ public class PlayerComponent : MonoBehaviour
             pos.z = -10;
             transform.position = pos;
         }
+    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //}
 
-        ChangeAnimation(animJump);
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.layer == 7)
-        {
-            Onlanded();
-        }
-    }
-
-    void Onlanded()
-    {
-        isGrounded = true;
-    }
 
     #region Dash functions:
     void OnDash(InputAction.CallbackContext value)

@@ -12,18 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9327eb472754e24daa3fba5b3ed608e, type: 3}
   m_Name: Pillow
   m_EditorClassIdentifier: 
-  magicUsage: 0.1
-  staminaUsage: 0.1
-  hpUsage: 0.1
+  allUsedBars: []
   realoadTime: 1
   damage: 1
   numberOfAttacks: 1
-  isHold: 0
+  weaponImg: {fileID: 0}
+  lineAttackImg: {fileID: 0}
+  coneAttackImg: {fileID: 0}
+  circleAttackImg: {fileID: 0}
   range: 10
+  swingSpeed: 1
+  thickness: 1
   IsLine: 0
   durationOfAttack: 1
   rangeOfLine: 10
-  isCone: 0
+  isCone: 1
   angleOfAttack: 45
-  is360: 0
+  isCircle: 0
   numberOfSpiins: 1

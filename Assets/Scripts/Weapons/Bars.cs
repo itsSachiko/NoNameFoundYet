@@ -18,6 +18,7 @@ public class Bars : ScriptableObject
     {
         actualBar = fullBar;
         canRecharge = true;
+        recharge = null;
     }
 
     //public bool UsageCheck(float amount)

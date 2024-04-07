@@ -16,10 +16,9 @@ public class Ranged : Weapons
     public float damageExplosion;
 
     public event Recharge onRecharge;
-    public event Recharge stopRecharge;
 
 
-    public override void Attack(Transform point, MonoBehaviour x)
+    public override void Attack(Transform point)
     {
         //Debug.Log(name + " hello everybody", point);
 
@@ -27,7 +26,7 @@ public class Ranged : Weapons
         foreach (BarUsage barUsage in allUsedBars)
         {
             barUsage.Use();
-            
+
             if (barUsage.bar.actualBar <= 0)
             {
                 //Debug.LogWarning("DICK");
@@ -43,7 +42,6 @@ public class Ranged : Weapons
 
     public void Shoot(Transform from)
     {
-        
         //Debug.Log(name + " owo ", from);
         GameObject x = Instantiate(projectile.gameObject, from.position, from.rotation);
         x.TryGetComponent(out Bullet bullet);
@@ -57,5 +55,10 @@ public class Ranged : Weapons
         bullet.expDamage = damageExplosion;
         bullet.dmg = damage;
         bullet.speed = projectileSpeed;
+    }
+
+    public void StopRecharge(BarUsage bar)
+    {
+        bar.bar.recharge = null;
     }
 }

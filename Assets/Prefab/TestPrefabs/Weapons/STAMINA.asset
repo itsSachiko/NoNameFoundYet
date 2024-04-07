@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullBar: 100
   rateRechargePerSeconds: 1
-  waitAfterUse: 1
-  actualBar: 64
-  canRecharge: 0
+  waitAfterUse: 3
+  actualBar: 95
+  canRecharge: 1

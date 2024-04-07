@@ -13,6 +13,11 @@ public class Melee : Weapons
 
     [Header("for All:")]
     public float range = 10f;
+    [Tooltip("for Line = time it stays there\n"+
+        "for Cone = how fast it goes from one end to the other\n" + 
+        "for circle = how fast it rotates\n")]
+    public float swingSpeed = 1;
+    public float thickness = 1;
 
     [Header("Melee Line settings: ")]
     [Tooltip("if the attack is only horizontal twoards the pointer")]
@@ -30,45 +35,70 @@ public class Melee : Weapons
     [Tooltip("if the is the one that rotates")]
     public bool isCircle;
     public int numberOfSpiins = 1;
+    
 
+    public event Recharge onRecharge;
 
-    public override void Attack(Transform point, MonoBehaviour x)
+    public delegate void ActivateAttack(float speed);
+    public event ActivateAttack onLineAtk;
+    public event ActivateAttack onConeAtk;
+    public event ActivateAttack onCircleAtk;
+
+    
+
+    public override void Attack(Transform point)
     {
-        base.Attack(point,x);
-        Swing(point,x);
+        foreach (BarUsage barUsage in allUsedBars)
+        {
+            barUsage.Use();
+
+            if (barUsage.bar.actualBar <= 0)
+            {
+                //Debug.LogWarning("DICK");
+                barUsage.NoAmmo();
+                return;
+            }
+            //barUsage.StartRecharge(x);
+            onRecharge(barUsage.bar);
+        }
+        Swing(point);
     }
 
-    public void Swing(Transform sword, MonoBehaviour x)
+    public void Swing(Transform sword)
     {
-        //sword.gameObject.SetActive(true);
-
-        sword.TryGetComponent(out SpriteRenderer spriteRenderer);
+        sword.gameObject.SetActive(true);
+        Transform image = sword.GetChild(0);
+        image.TryGetComponent(out SpriteRenderer spriteRenderer);
         sword.TryGetComponent(out SwordComponent swordStats);
 
 
         Vector3 swordScale = sword.transform.localScale;
-        swordScale.x *= rangeOfLine;
+        swordScale.x = rangeOfLine;
         sword.transform.localScale = swordScale;
 
         swordStats.dmg = damage;
 
         if (isCone)
         {
-            spriteRenderer.sprite = coneAttackImg; 
-            sword.rotation = Quaternion.AngleAxis(angleOfAttack, Vector3.forward);
+            //spriteRenderer.sprite = coneAttackImg;
+            //sword.rotation = Quaternion.AngleAxis(angleOfAttack, Vector3.forward);
+            onLineAtk(swingSpeed);
         }
 
         if (IsLine)
         {
             spriteRenderer.sprite = lineAttackImg;
-            //sword.GetComponent<MonoBehaviour>().StartCoroutine(LineAttack(sword));
+            onConeAtk(swingSpeed);
+            
         }
 
         if (isCircle)
         {
             spriteRenderer.sprite = circleAttackImg;
 
-            foreach ( Collider collider in Physics.OverlapSphere(sword.root.position, range))
+            onCircleAtk(swingSpeed);
+
+            foreach (Collider collider in Physics.OverlapSphere(sword.root.position, range))
             {
                 if (collider.TryGetComponent(out IHp hp))
                 {
@@ -77,19 +107,4 @@ public class Melee : Weapons
             }
         }
     }
-
-    //IEnumerator LineAttack(Transform sword)
-    //{
-    //    Vector3 pos = sword.position;
-    //    Vector3 endPos = sword.position + sword.parent.right * rangeOfLine;
-    //    Vector3 lerpPos;
-    //    while (Vector3.Distance(pos, endPos) < 0.1f)
-    //    {
-    //        lerpPos = Vector3.Lerp(pos, endPos, Time.deltaTime);
-    //        sword.position = lerpPos;
-    //        yield return null;
-    //    }
-    //    sword.gameObject.SetActive(false);
-
-    //}
 }

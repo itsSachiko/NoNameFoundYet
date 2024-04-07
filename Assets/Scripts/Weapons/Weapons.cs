@@ -21,7 +21,8 @@ public class Weapons : ScriptableObject
 
     public delegate void Recharge(Bars bar);
 
-    public virtual void Attack(Transform point, MonoBehaviour x)
+
+    public virtual void Attack(Transform point)
     {
         //Debug.LogWarning("sugma");
         //foreach (BarUsage barUsage in allUsedBars)

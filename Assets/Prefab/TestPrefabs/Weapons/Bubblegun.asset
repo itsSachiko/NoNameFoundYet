@@ -19,7 +19,7 @@ MonoBehaviour:
   - bar: {fileID: 11400000, guid: 3c34e3142a70f144b9022d04f873d43b, type: 2}
     usagePerShot: 2
     isOvertime: 0
-  realoadTime: 0.1
+  realoadTime: 0.3
   damage: 1
   numberOfAttacks: 1
   weaponImg: {fileID: 0}
