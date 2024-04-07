@@ -1374,6 +1374,10 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 863556598313031581, guid: faa3c6a201c9ca6449561d3408077a79, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2522323757115384699, guid: faa3c6a201c9ca6449561d3408077a79, type: 3}
       propertyPath: m_Name
       value: Player Test
