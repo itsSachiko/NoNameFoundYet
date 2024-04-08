@@ -46,15 +46,11 @@ public class PlayerWeapons : MonoBehaviour
         input.Disable();
     }
 
-
-
-
     private void Update()
     {
 
 
     }
-
 
     private IEnumerator RangeCoolodwn(float seconds)
     {
@@ -83,7 +79,6 @@ public class PlayerWeapons : MonoBehaviour
     private void OnShootEnd(InputAction.CallbackContext context)
     {
         rangeWeapon.onRecharge -= Recharge;
-
     }
 
     private void OnSwing(InputAction.CallbackContext context)
@@ -112,7 +107,6 @@ public class PlayerWeapons : MonoBehaviour
                 hp.TakeDmg(meleeWeapon.damage);
             }
         }
-
     }
 
     void RotateToMouse(Transform toRotate, out Vector3 dir)
