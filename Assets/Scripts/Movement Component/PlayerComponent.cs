@@ -55,14 +55,12 @@ public class PlayerComponent : MonoBehaviour
         input.Enable();
         input.Player.Movement.performed += OnHorizontal;
         input.Player.Movement.canceled += OnHorizontalCancelled;
-        input.Player.Jump.started += OnJump;
         input.Player.Dash.started += OnDash;
     }
     private void OnDisable()
     {
         input.Player.Movement.performed -= OnHorizontal;
-        input.Player.Movement.canceled -= OnHorizontalCancelled;
-        input.Player.Jump.started -= OnJump;
+        input.Player.Movement.canceled -= OnHorizontalCancelled; 
         input.Player.Dash.started -= OnDash;
         input.Disable();
     }
@@ -112,17 +110,7 @@ public class PlayerComponent : MonoBehaviour
         moveValue = Vector2.zero;
     }
 
-    void OnJump(InputAction.CallbackContext value)
-    {
-
-        if (isGrounded)
-        {
-            Vector3 Oldpos = transform.position;
-            Vector3 pos = Oldpos;
-            pos.z = -10;
-            transform.position = pos;
-        }
-    }
+    
     //private void OnCollisionEnter(Collision collision)
     //{
     //}

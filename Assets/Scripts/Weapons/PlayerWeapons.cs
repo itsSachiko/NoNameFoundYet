@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
+
 
 public class PlayerWeapons : MonoBehaviour
 {
@@ -44,12 +42,6 @@ public class PlayerWeapons : MonoBehaviour
         input.Player.Meleebutton.performed -= OnSwing;
         input.Player.Meleebutton.canceled -= OnSwingEnd;
         input.Disable();
-    }
-
-    private void Update()
-    {
-
-
     }
 
     private IEnumerator RangeCoolodwn(float seconds)
@@ -183,22 +175,17 @@ public class PlayerWeapons : MonoBehaviour
 
     public IEnumerator WaitForRecharge(Bars bar)
     {
-        //Debug.LogAssertion("heeeeeelp help me");
-        Debug.Log("sucamajor");
         yield return new WaitForSeconds(bar.waitAfterUse);
-        Debug.Log("T^T");
+        
         while (bar.actualBar < bar.fullBar)
         {
-            Debug.Log("HAHAHAHAHAHA");
+            
             bar.actualBar += bar.rateRechargePerSeconds * Time.deltaTime;
             yield return null;
         }
 
         bar.actualBar = bar.fullBar;
         bar.recharge = null;
-        Debug.Log(bar.actualBar);
-
-        //Debug.LogAssertion("Thank you stranger");
     }
 
     void StopRecharge(Bars bar)

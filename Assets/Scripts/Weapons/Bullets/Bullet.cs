@@ -21,11 +21,13 @@ public class Bullet : MonoBehaviour
     public void GiveBullet()
     {
         parent.bulletPool.GetBullet(transform);
+
     }
 
     private void Start()
     {
         dir = Camera.main.ScreenToViewportPoint(Input.mousePosition) - transform.position;
+        dir.z = 0;
     }
 
     private void FixedUpdate()
@@ -46,7 +48,8 @@ public class Bullet : MonoBehaviour
                 if (x.TryGetComponent(out hp))
                 {
                     hp.TakeDmg(expDamage);
-                } //IO VADO A CAGARE :3
+                } 
+                //IO VADO A CAGARE :3
             }
         }
 
