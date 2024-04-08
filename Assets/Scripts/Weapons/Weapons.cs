@@ -24,16 +24,5 @@ public class Weapons : ScriptableObject
 
     public virtual void Attack(Transform point)
     {
-        //Debug.LogWarning("sugma");
-        //foreach (BarUsage barUsage in allUsedBars)
-        //{
-        //    barUsage.Use();
-        //    if (barUsage.bar.actualBar <= 0)
-        //    { 
-        //        Debug.LogWarning("DICK");
-        //        barUsage.NoAmmo();
-        //        return;
-        //    }
-        //}
     }
 }

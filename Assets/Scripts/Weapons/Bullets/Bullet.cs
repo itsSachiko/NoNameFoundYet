@@ -10,8 +10,28 @@ public class Bullet : MonoBehaviour
     [HideInInspector] public bool iexplode;
     [HideInInspector] public float expRange;
     [HideInInspector] public float expDamage;
+    [HideInInspector] public Ranged parent;
     [SerializeField] LayerMask notHitbyExplosion;
+
     IHp hp;
+
+    Vector3 dir;
+    Rigidbody rb;
+
+    public void GiveBullet()
+    {
+        parent.bulletPool.GetBullet(transform);
+    }
+
+    private void Start()
+    {
+        dir = Camera.main.ScreenToViewportPoint(Input.mousePosition) - transform.position;
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = speed * Time.fixedDeltaTime * dir;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -29,5 +49,6 @@ public class Bullet : MonoBehaviour
                 } //IO VADO A CAGARE :3
             }
         }
+
     }
 }
