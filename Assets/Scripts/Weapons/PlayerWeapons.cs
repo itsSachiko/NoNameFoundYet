@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.PlayerSettings;
 
 
 public class PlayerWeapons : MonoBehaviour
@@ -10,6 +11,7 @@ public class PlayerWeapons : MonoBehaviour
     PlayerInputs input;
 
     public Transform sword;
+    public Transform Gun;
 
     bool canShoot = true;
     bool canSwing = true;
@@ -62,10 +64,21 @@ public class PlayerWeapons : MonoBehaviour
     {
         if (canShoot != true)
             return;
-
+        MoveGun();
         rangeWeapon.onRecharge += Recharge;
         rangeWeapon.Attack(transform);
         StartCoroutine(RangeCoolodwn(rangeWeapon.realoadTime));
+    }
+
+    void MoveGun()
+    {
+        Vector3 pos = Gun.position;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 dir = mousePos - pos;
+        dir = dir.normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        Gun.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     private void OnShootEnd(InputAction.CallbackContext context)
@@ -94,7 +107,7 @@ public class PlayerWeapons : MonoBehaviour
         RaycastHit[] hits = Physics.SphereCastAll(sword.position, meleeWeapon.thickness, dir, meleeWeapon.range);
         foreach (RaycastHit hitted in hits)
         {
-            if(hitted.transform.TryGetComponent(out IHp hp))
+            if (hitted.transform.TryGetComponent(out IHp hp))
             {
                 hp.TakeDmg(meleeWeapon.damage);
             }
@@ -114,7 +127,7 @@ public class PlayerWeapons : MonoBehaviour
 
     void ConeAtk(float speed)
     {
-        RotateToMouse(sword,out Vector3 dir);
+        RotateToMouse(sword, out Vector3 dir);
         StartCoroutine(Swing(speed));
     }
 
@@ -176,10 +189,10 @@ public class PlayerWeapons : MonoBehaviour
     public IEnumerator WaitForRecharge(Bars bar)
     {
         yield return new WaitForSeconds(bar.waitAfterUse);
-        
+
         while (bar.actualBar < bar.fullBar)
         {
-            
+
             bar.actualBar += bar.rateRechargePerSeconds * Time.deltaTime;
             yield return null;
         }
