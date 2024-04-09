@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class BulletsPuller : MonoBehaviour
 {
-    Transform bulletToSpawn;
-    BulletPool bullets;
+    Transform bulletSpawn;
+    public BulletPool bullets;
 
     private void Start()
     {
         for (int i = 0; i <= bullets.howManyToSpawn; i++)
         {
-            Transform bulletToSpawn = Instantiate(bullets.bullet, transform.position, Quaternion.identity);
-            bullets.Bullets.Add(bulletToSpawn);
-            bulletToSpawn.gameObject.SetActive(false);
-
+            bulletSpawn = Instantiate(bullets.bullet, transform.position, Quaternion.identity);
+            bullets.Bullets.Add(bulletSpawn);
+            bulletSpawn.gameObject.SetActive(false);
         }
     }
 
