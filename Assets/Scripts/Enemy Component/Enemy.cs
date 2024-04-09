@@ -9,4 +9,6 @@ public class Enemy
 
     public int numberToSpawn = 1;
 
+    public EnemyPull enemyPull;
+
 }
