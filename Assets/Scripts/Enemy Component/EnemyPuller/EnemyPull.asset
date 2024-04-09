@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f4793511ff18e498ca68906fa24b1e, type: 3}
   m_Name: EnemyPull
   m_EditorClassIdentifier: 
-  enemyID: 0
+  enemyID: 1
   pulledEnemies: []
-  enemyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 1911364892351645171, guid: 48060f95bcc73f245bfc31efa821eeba, type: 3}

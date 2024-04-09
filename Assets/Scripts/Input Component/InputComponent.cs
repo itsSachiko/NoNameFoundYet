@@ -1,5 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
 using UnityEngine.InputSystem;
+using System;
 
 public class InputComponent : MonoBehaviour
 {
