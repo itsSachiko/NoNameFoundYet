@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
@@ -12,11 +15,13 @@ public class Spawner : MonoBehaviour
 
     [HideInInspector] public bool isChoosingWeapon;
 
-    [HideInInspector] public List<GameObject> ranged = new List<GameObject>();
-    [HideInInspector] public List<GameObject> melee = new List<GameObject>();
-    [HideInInspector] public List<GameObject> mine = new List<GameObject>();
+    [SerializeField] Transform playerPrefab;
 
     Transform latestEnemy;
+
+    int ran;
+
+    public static Action onLastWave;
 
     private void Awake()
     {
@@ -24,13 +29,14 @@ public class Spawner : MonoBehaviour
         {
             foreach (Enemy enemy in wave.enemies)
             {
+
                 SpawnEnemy(enemy);
             }
         }
+
+        waveCounter = 0;
+
     }
-
-    
-
     //private void Update()
     //{
     //    if (isChoosingWeapon)
@@ -41,51 +47,65 @@ public class Spawner : MonoBehaviour
 
     void SpawnEnemy(Enemy enemy)
     {
-        int ran = Random.Range(0, spawner.Length);
 
         for (int i = 0; i < enemy.numberToSpawn; i++)
         {
-             
-            
-            if (enemy.enemyPrefab.CompareTag("Ranged") && ranged.Count > 0)
-            {
-                ranged[0].SetActive(true);
-                ranged.RemoveAt(0);
-            }
 
-            else if (enemy.enemyPrefab.CompareTag("Melee") && melee.Count > 0)
-            {
-                melee[0].SetActive(true);
-                melee.RemoveAt(0);
-            }
-
-            else if (enemy.enemyPrefab.CompareTag("Mine") && mine.Count > 0)
-            {
-                mine[0].SetActive(true);
-                mine.RemoveAt(0);
-            }
-
-            else
-            {
-                latestEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity, spawner[ran]);
-                
-            }
+            latestEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity, spawner[ran]);
+            latestEnemy.gameObject.SetActive(false);
+            EnemyVariableSet(latestEnemy, enemy);
 
             //Transform spawnedEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity);
         }
     }
-
-    public void AddRanged(GameObject enemyRanged)
+    void GetEnemy(EnemyPull enemyPull)
     {
-        ranged.Add(enemyRanged);
-    }
-    public void AddMelee(GameObject enemyMelee)
-    {
-        melee.Add(enemyMelee);
+        ran = Random.Range(0, spawner.Length);
+        enemyPull.pulledEnemies[0].position = spawner[ran].position;
+        enemyPull.pulledEnemies[0].gameObject.SetActive(true);
     }
 
-    public void AddMine(GameObject enemyMine)
+    IEnumerator Wave(Wave currentWave)
     {
-        mine.Add(enemyMine);
+        waveCounter++;
+        foreach (Enemy enemy in currentWave.enemies)
+        {
+            GetEnemy(enemy.enemyPull);
+            yield return new WaitForSeconds(currentWave.waitNextSpawn);
+        }
+        if (currentWave.isLast)
+        {
+            onLastWave?.Invoke();
+            while (isChoosingWeapon)
+            {
+                yield return null;
+            }
+
+        }
+        yield return new WaitForSeconds(currentWave.waitNextWave);
+        
+        if (waveCounter < waves.Length)
+        {
+
+        }
+    }
+    void EnemyReactivation(GameObject x)
+    {
+        int ran = Random.Range(0, spawner.Length);
+        x.transform.position = spawner[ran].position;
+        x.SetActive(false);
+
+    }
+
+    void EnemyVariableSet(Transform enemy, Enemy stats)
+    {
+        latestEnemy.TryGetComponent(out StateManager state);
+        state.enemyPull = stats.enemyPull;
+    }
+
+    void OnWin()
+    {
+        StopAllCoroutines();
+        SceneManager.LoadScene(0);
     }
 }
