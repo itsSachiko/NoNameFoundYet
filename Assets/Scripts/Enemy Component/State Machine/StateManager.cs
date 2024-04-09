@@ -76,4 +76,9 @@ public class StateManager : MonoBehaviour, IHp
     {
         Debug.Log("uwudeath");
     }
+
+    void IHp.Death()
+    {
+        throw new System.NotImplementedException();
+    }
 }
