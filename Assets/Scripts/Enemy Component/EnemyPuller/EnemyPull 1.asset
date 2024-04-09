@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyID: 0
   pulledEnemies: []
-  enemyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 4567676349108581418, guid: baeb1ed14fcffd84b8bded5e0704ac26, type: 3}

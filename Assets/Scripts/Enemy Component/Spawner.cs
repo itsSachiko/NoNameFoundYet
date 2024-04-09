@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -15,11 +16,13 @@ public class Spawner : MonoBehaviour
 
     [HideInInspector] public bool isChoosingWeapon;
 
-    [SerializeField] Transform playerPrefab;
-
     Transform latestEnemy;
 
+    [SerializeField] Transform player;
+
     int ran;
+
+    int numberOfEnemiesActive = 0;
 
     public static Action onLastWave;
 
@@ -40,27 +43,39 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Wave(waves[waveCounter]));   
+        StartCoroutine(Wave(waves[waveCounter]));
     }
 
     void SpawnEnemy(Enemy enemy)
     {
 
-        for (int i = 0; i < enemy.numberToSpawn; i++)
+        for (int i = 0; i <= enemy.numberToSpawn; i++)
         {
-
+            ran = Random.Range(0, spawner.Length);
+            
             latestEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity, spawner[ran]);
-            latestEnemy.gameObject.SetActive(false);
+            enemy.enemyPull.pulledEnemies.Add(latestEnemy);
+            Debug.Log(latestEnemy.name);
             EnemyVariableSet(latestEnemy, enemy);
-
+            enemy.enemyPull.OnEnemyDeath += EnemyDied;
+            latestEnemy.gameObject.SetActive(false);
             //Transform spawnedEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity);
         }
     }
+
+    private void EnemyDied()
+    {
+        numberOfEnemiesActive--;
+    }
+
     void GetEnemy(EnemyPull enemyPull)
     {
+
         ran = Random.Range(0, spawner.Length);
         enemyPull.pulledEnemies[0].position = spawner[ran].position;
         enemyPull.pulledEnemies[0].gameObject.SetActive(true);
+        numberOfEnemiesActive++;
+        enemyPull.pulledEnemies.RemoveAt(0);
     }
 
     IEnumerator Wave(Wave currentWave)
@@ -68,11 +83,20 @@ public class Spawner : MonoBehaviour
         waveCounter++;
         foreach (Enemy enemy in currentWave.enemies)
         {
-            GetEnemy(enemy.enemyPull);
-            yield return new WaitForSeconds(currentWave.waitNextSpawn);
+            for (int i = 0; i <= enemy.numberToSpawn; i++)
+            {
+                GetEnemy(enemy.enemyPull);
+                yield return new WaitForSeconds(currentWave.waitNextSpawn);
+
+            }
         }
         if (currentWave.isLast)
         {
+            while (numberOfEnemiesActive > 0)
+            {
+                yield return null;
+            }
+
             onLastWave?.Invoke();
             while (isChoosingWeapon)
             {
@@ -81,7 +105,7 @@ public class Spawner : MonoBehaviour
 
         }
         yield return new WaitForSeconds(currentWave.waitNextWave);
-        
+
         if (waveCounter < waves.Length)
         {
             StartCoroutine(Wave(waves[waveCounter]));
@@ -97,6 +121,7 @@ public class Spawner : MonoBehaviour
     {
         latestEnemy.TryGetComponent(out StateManager state);
         state.enemyPull = stats.enemyPull;
+        state.playerPrefab = player;
 
     }
 
