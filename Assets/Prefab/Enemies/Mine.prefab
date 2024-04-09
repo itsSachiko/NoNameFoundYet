@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4567676349108581418}
   - component: {fileID: 8845995041002396475}
+  - component: {fileID: 5627383269121002724}
+  - component: {fileID: -2921820411120603322}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Mine
@@ -84,3 +86,48 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5627383269121002724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6696680316009053183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da74675b6a39859438fa7ed67808227d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  AttackDistance: 0
+  playerPrefab: {fileID: 0}
+  dir: {x: 0, y: 0, z: 0}
+  rb: {fileID: 0}
+  enemyPull: {fileID: 0}
+--- !u!54 &-2921820411120603322
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6696680316009053183}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

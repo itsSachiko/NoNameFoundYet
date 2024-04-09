@@ -13,7 +13,7 @@ public class StateManager : MonoBehaviour, IHp
 
 
     [Header("Player Prefab")]
-    [SerializeField] public Transform playerPrefab;
+    [HideInInspector] public Transform playerPrefab;
 
     //[Header("Bullet Prefab")]
     //[SerializeField] public Transform bulletPrefab;
@@ -74,7 +74,8 @@ public class StateManager : MonoBehaviour, IHp
 
     void Death()
     {
-
+        enemyPull.pulledEnemies.Add(transform);
+        enemyPull.OnEnemyDeath?.Invoke();
         gameObject.SetActive(false);
 
     }

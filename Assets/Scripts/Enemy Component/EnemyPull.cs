@@ -11,7 +11,10 @@ public class EnemyPull : ScriptableObject
 
     public Transform enemyPrefab;
 
-    public Action<Transform> getEnemy;
+    public Action OnEnemyDeath;
 
-    public Action<Transform> setEnemy;
+    private void OnEnable()
+    {
+        pulledEnemies = new List<Transform>();
+    }
 }
