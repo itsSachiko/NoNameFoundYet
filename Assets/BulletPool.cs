@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ public class BulletPool : ScriptableObject
     public Transform bullet;
     public int howManyToSpawn;
 
-    List<Transform> bullets;
+    List<Transform> bullets = new();
     public List<Transform> Bullets { get { return bullets; } set { bullets = value; } }
 
     private void OnDisable()

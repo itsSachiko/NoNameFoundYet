@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Bubbles", menuName = "Weapons/Ranged")]
@@ -39,7 +35,7 @@ public class Ranged : Weapons
     {
         //Debug.Log(name + " owo ", from);
 
-        Transform chosenBullet = null;
+        Transform chosenBullet;
 
         if (bulletPool.Bullets.Count > 0)
         {
@@ -53,10 +49,10 @@ public class Ranged : Weapons
             chosenBullet = Instantiate(bulletPool.bullet, from.position, Quaternion.identity);
         }
         chosenBullet.TryGetComponent(out Bullet bullet);
-        BulletStats(bullet);
+        BulletStats(bullet,from);
     }
 
-    public void BulletStats(Bullet bullet)
+    public void BulletStats(Bullet bullet, Transform from)
     {
         bullet.parent = this;
         bullet.iexplode = IsExplosive;
@@ -64,12 +60,12 @@ public class Ranged : Weapons
         bullet.expDamage = damageExplosion;
         bullet.dmg = damage;
         bullet.speed = projectileSpeed;
+        bullet.gunPoint = from;
+        //bullet.dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - bullet.transform.position;
     }
 
     public void StopRecharge(BarUsage bar)
     {
         bar.bar.recharge = null;
     }
-
-
 }
