@@ -74,8 +74,6 @@ public class StateManager : MonoBehaviour, IHp
 
     void Death()
     {
-
-        gameObject.SetActive(false);
-
+        Debug.Log("uwudeath");
     }
 }
