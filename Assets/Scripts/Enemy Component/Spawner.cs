@@ -37,13 +37,11 @@ public class Spawner : MonoBehaviour
         waveCounter = 0;
 
     }
-    //private void Update()
-    //{
-    //    if (isChoosingWeapon)
-    //    {
-    //        return;
-    //    }
-    //}
+
+    private void Start()
+    {
+        StartCoroutine(Wave(waves[waveCounter]));   
+    }
 
     void SpawnEnemy(Enemy enemy)
     {
@@ -86,24 +84,23 @@ public class Spawner : MonoBehaviour
         
         if (waveCounter < waves.Length)
         {
-
+            StartCoroutine(Wave(waves[waveCounter]));
         }
-    }
-    void EnemyReactivation(GameObject x)
-    {
-        int ran = Random.Range(0, spawner.Length);
-        x.transform.position = spawner[ran].position;
-        x.SetActive(false);
 
+        else
+        {
+            OnWin();
+        }
     }
 
     void EnemyVariableSet(Transform enemy, Enemy stats)
     {
         latestEnemy.TryGetComponent(out StateManager state);
         state.enemyPull = stats.enemyPull;
+
     }
 
-    void OnWin()
+    public void OnWin()
     {
         StopAllCoroutines();
         SceneManager.LoadScene(0);
