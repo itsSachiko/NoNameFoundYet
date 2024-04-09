@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1911364892351645171}
   - component: {fileID: 6042408838067280853}
+  - component: {fileID: 7449047186645803903}
+  - component: {fileID: -1669552950734451860}
   m_Layer: 0
   m_Name: Melee
   m_TagString: Melee
@@ -84,3 +86,48 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7449047186645803903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7616655020156471444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da74675b6a39859438fa7ed67808227d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 500
+  AttackDistance: 3
+  playerPrefab: {fileID: 0}
+  dir: {x: 0, y: 0, z: 0}
+  rb: {fileID: 0}
+  enemyPull: {fileID: 0}
+--- !u!54 &-1669552950734451860
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7616655020156471444}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
