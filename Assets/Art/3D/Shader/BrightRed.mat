@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pink
+  m_Name: BrightRed
   m_Shader: {fileID: -6465566751694194690, guid: 94e2957af8c971b46852cd054ea035f8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -47,9 +47,9 @@ Material:
     - _QueueOffset: 0
     - _Shades: 0.49
     m_Colors:
-    - _Color: {r: 0.9960785, g: 0.5764706, b: 0.8078432, a: 1}
+    - _Color: {r: 1, g: 0.06809349, b: 0, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &8498048252118250659
+--- !u!114 &2646505742914006724
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
