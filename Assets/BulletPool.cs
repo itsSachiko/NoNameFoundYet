@@ -14,7 +14,7 @@ public class BulletPool : ScriptableObject
     private void OnDisable()
     {
         bullets.Clear();
-        bullets = new();
+        bullets = new List<Transform>();
     }
 
     public void GetBullet(Transform newBullet)
