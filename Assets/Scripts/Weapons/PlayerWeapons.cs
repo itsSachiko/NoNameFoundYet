@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 using static UnityEditor.PlayerSettings;
 
 
@@ -18,7 +20,7 @@ public class PlayerWeapons : MonoBehaviour
 
     Vector3 mousePos;
     Camera mainCam;
-
+    [SerializeField] private LayerMask enemyLayerMask;
 
     private void Awake()
     {
@@ -91,21 +93,35 @@ public class PlayerWeapons : MonoBehaviour
         if (canSwing != true)
             return;
         meleeWeapon.onRecharge += Recharge;
-        meleeWeapon.onLineAtk += LineAtk;
-        meleeWeapon.onConeAtk += ConeAtk;
-        meleeWeapon.onCircleAtk += CircleAtk;
+
+        if (meleeWeapon.onLineAtk == null)
+            meleeWeapon.onLineAtk += LineAtk;
+
+        if (meleeWeapon.onConeAtk == null)
+            meleeWeapon.onConeAtk += ConeAtk;
+
+        if (meleeWeapon.onCircleAtk == null)
+            meleeWeapon.onCircleAtk += CircleAtk;
+
         //sword.gameObject.SetActive(true);
-        meleeWeapon.Attack(transform);
+        meleeWeapon.Attack(sword);
         StartCoroutine(MeleeCooldown(meleeWeapon.realoadTime));
     }
 
     void LineAtk(float timer)
     {
         RotateToMouse(sword, out Vector3 dir);
+        dir.z = 0;
 
+        Vector3 halfSize = new Vector3(meleeWeapon.range / 2, meleeWeapon.thickness / 2, 0);
+
+        sword.position = Gun.position + dir.normalized * (meleeWeapon.range / 2);
+        sword.localScale = halfSize;
+        Collider[] colliders = Physics.OverlapBox(sword.position, halfSize);
+        Image image = sword.GetComponent<Image>();
+        image.sprite = meleeWeapon.lineAttackImg;
         sword.gameObject.SetActive(true);
-        RaycastHit[] hits = Physics.SphereCastAll(sword.position, meleeWeapon.thickness, dir, meleeWeapon.range);
-        foreach (RaycastHit hitted in hits)
+        foreach (Collider hitted in colliders)
         {
             if (hitted.transform.TryGetComponent(out IHp hp))
             {
@@ -128,41 +144,89 @@ public class PlayerWeapons : MonoBehaviour
     void ConeAtk(float speed)
     {
         RotateToMouse(sword, out Vector3 dir);
-        StartCoroutine(Swing(speed));
-    }
 
-    IEnumerator Swing(float duration)
-    {
-        sword.gameObject.SetActive(true);
-        float timer = 0;
+        Vector3 halfSize = new Vector3(meleeWeapon.range / 2, meleeWeapon.thickness / 2, 0);
 
-        float angle = meleeWeapon.angleOfAttack;
-        if (meleeWeapon.isCircle)
-            angle = 360f;
-        mousePos = mainCam.ScreenToViewportPoint(UnityEngine.Input.mousePosition);
-
-        Vector3 dir = mousePos - transform.position;
-        dir = dir.normalized;
-
-        float zRot = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.localRotation = Quaternion.Euler(Vector3.forward * zRot);
-        Quaternion startRot = transform.localRotation;
-        Quaternion endRot = Quaternion.AngleAxis(angle, sword.forward) * sword.localRotation;
-        while (timer < duration)
+        sword.position = Gun.position + dir.normalized * halfSize.x;
+        sword.localScale = halfSize;
+        Collider[] colliders = Physics.OverlapSphere(transform.position, halfSize.x, enemyLayerMask);
+        foreach (Collider collider in colliders)
         {
-            transform.localRotation = Quaternion.Slerp(startRot, endRot, timer / duration);
-            timer += Time.deltaTime;
-            yield return null;
+            if (InsideCone(collider.transform))
+                if (collider.transform.TryGetComponent(out IHp hp))
+                {
+                    hp.TakeDmg(meleeWeapon.damage);
+                }
         }
-        transform.localRotation = endRot;
-        sword.gameObject.SetActive(false);
-        transform.localRotation = startRot;
+
+
+        bool InsideCone(Transform enemy)
+        {
+            Vector3 dirToEnemy = enemy.position - transform.position;
+            dirToEnemy = dirToEnemy.normalized;
+
+            if (Vector3.Angle(transform.forward, dirToEnemy) < meleeWeapon.angleOfAttack / 2)
+            {
+                float dist = Vector3.Distance(transform.position, enemy.position);
+                if (dist > meleeWeapon.range)
+                {
+                    return false;
+                }
+                else
+                    return true;
+            }
+            else
+                return false;
+        }
+
+        //StartCoroutine(Swing(speed));
     }
+
+    //IEnumerator Swing(float duration)
+    //{
+    //    sword.gameObject.SetActive(true);
+    //    float timer = 0;
+
+    //    float angle = meleeWeapon.angleOfAttack;
+    //    if (meleeWeapon.isCircle)
+    //        angle = 360f;
+    //    mousePos = mainCam.ScreenToViewportPoint(UnityEngine.Input.mousePosition);
+
+    //    Vector3 dir = mousePos - transform.position;
+    //    dir = dir.normalized;
+
+    //    float zRot = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+    //    transform.localRotation = Quaternion.Euler(Vector3.forward * zRot);
+    //    Quaternion startRot = transform.localRotation;
+    //    Quaternion endRot = Quaternion.AngleAxis(angle, sword.forward) * sword.localRotation;
+    //    while (timer < duration)
+    //    {
+    //        transform.localRotation = Quaternion.Slerp(startRot, endRot, timer / duration);
+    //        timer += Time.deltaTime;
+    //        yield return null;
+    //    }
+    //    transform.localRotation = endRot;
+    //    sword.gameObject.SetActive(false);
+    //    transform.localRotation = startRot;
+    //}
 
     void CircleAtk(float speed)
     {
-
+        Collider[] colliders = Physics.OverlapSphere(transform.position, meleeWeapon.range / 2, enemyLayerMask);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.transform.TryGetComponent(out IHp hp))
+            {
+                hp.TakeDmg(meleeWeapon.damage);
+            }
+        }
     }
+
+    void SwingAttackEnd()
+    {
+        sword.gameObject.SetActive(false);
+    }
+
 
     private void OnSwingEnd(InputAction.CallbackContext context)
     {
@@ -174,7 +238,7 @@ public class PlayerWeapons : MonoBehaviour
     {
         if (bar.recharge != null)
         {
-            Debug.Log("save me donald trump");
+            Debug.Log("save me donald trump SAVE ME");
             StopRecharge(bar);
             bar.recharge = WaitForRecharge(bar);
             StartCoroutine(bar.recharge);
