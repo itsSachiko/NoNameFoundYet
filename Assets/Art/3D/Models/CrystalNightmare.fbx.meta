@@ -1,38 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Art/3D/Models/roccette_export_unity.fbx.meta
-guid: 2b21831cc455bf24684afec96fc7771f
-========
-guid: c55631424579e6c4baee544bc7ce9a48
->>>>>>>> origin/3D/Shader:Assets/Art/3D/Models/ArchDream.fbx.meta
+guid: caf75c0a28e78f14b921b6dc60779465
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: azzurro
-    second: {fileID: 2100000, guid: 4ec5fa0079920e8458ec582ba3c9c49a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: giallo
-    second: {fileID: 2100000, guid: 9cd34ecdb476cf0419177725085b8d27, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: grigio
-    second: {fileID: 2100000, guid: e1d288d7d562f9748ae607b55b54ae6b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: melma
-    second: {fileID: 2100000, guid: 96df99fad8a57ea4abe48ae963187000, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: rosa
-    second: {fileID: 2100000, guid: 8154568aebd78d64984ee3e16e73a715, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
