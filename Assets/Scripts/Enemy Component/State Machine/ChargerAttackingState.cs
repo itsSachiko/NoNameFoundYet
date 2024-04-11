@@ -12,7 +12,22 @@ public class ChargerAttackingState : EnemyBaseState
     public override void UpdateState(StateManager enemy)
     {
         float distanceFromTarget;
-        enemy.rb.velocity = Vector3.zero;
+
+        if (!enemy.isDashing)
+        {
+            enemy.dir = enemy.playerPrefab.position - enemy.transform.position;
+
+            float angle = Mathf.Atan2(enemy.dir.y, enemy.dir.x) * Mathf.Rad2Deg;
+            enemy.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            enemy.rb.velocity = (enemy.dir.normalized * enemy.dashSpeed * Time.deltaTime);
+        }
+        else
+        {
+           
+            enemy.rb.velocity = Vector3.zero;
+        }
+
 
         distanceFromTarget = Vector3.Distance(enemy.transform.position, enemy.playerPrefab.position);
 

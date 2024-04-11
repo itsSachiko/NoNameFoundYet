@@ -21,6 +21,16 @@ public class MineAttackingState : EnemyBaseState
             OnExit(enemy);
         }
 
+        if (distanceFromTarget < enemy.mineTriggered)
+        {
+            //animazione e fa danno
+        }
+
+        else
+        {
+            //animazione per farlo andare sotto
+        } 
+
     }
 
     public override void OnExit(StateManager enemy)
