@@ -16,6 +16,8 @@ public class MeleeAttackingState : EnemyBaseState
 
         distanceFromTarget = Vector3.Distance(enemy.transform.position, enemy.playerPrefab.position);
 
+        enemy.StartCoroutine(enemy.MeleeCooldown(enemy.myWeapon.realoadTime));
+
         if (distanceFromTarget > enemy.AttackDistance)
         {
             OnExit(enemy);
@@ -26,5 +28,10 @@ public class MeleeAttackingState : EnemyBaseState
     public override void OnExit(StateManager enemy)
     {
         enemy.ChangeState(new ChasingState());
+    }
+
+    public override void OnCollision(StateManager enemy)
+    {
+
     }
 }

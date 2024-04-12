@@ -8,7 +8,4 @@ public class GameManager : MonoBehaviour
     public UnityEvent play;
     public UnityEvent options;
     public UnityEvent credits;
-
-    public UnityEvent gameOver;
-    public UnityEvent win;
 }
