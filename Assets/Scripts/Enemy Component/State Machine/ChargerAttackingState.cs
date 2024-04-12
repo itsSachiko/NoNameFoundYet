@@ -81,8 +81,11 @@ public class ChargerAttackingState : EnemyBaseState
         enemy.ChangeState(new ChasingState());
     }
 
-    public override void OnCollision(StateManager enemy)
+    public override void OnCollision(StateManager enemy, Collider collider)
     {
-
+        if (collider.TryGetComponent(out IHp hp))
+        {
+            hp.TakeDmg(enemy.damage);
+        }
     }
 }
