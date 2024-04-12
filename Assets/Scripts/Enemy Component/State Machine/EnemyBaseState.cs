@@ -10,5 +10,5 @@ public abstract class EnemyBaseState
 
     public abstract void OnExit(StateManager enemy);
 
-    public abstract void OnCollision(StateManager enemy);
+    public abstract void OnCollision(StateManager enemy, Collider collider);
 }

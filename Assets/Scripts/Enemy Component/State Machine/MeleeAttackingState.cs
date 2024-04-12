@@ -30,7 +30,7 @@ public class MeleeAttackingState : EnemyBaseState
         enemy.ChangeState(new ChasingState());
     }
 
-    public override void OnCollision(StateManager enemy)
+    public override void OnCollision(StateManager enemy, Collider collider)
     {
 
     }
