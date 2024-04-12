@@ -110,7 +110,7 @@ public class PlayerWeapons : MonoBehaviour
 
     void LineAtk(float timer)
     {
-        DirectionToSword(sword, out Vector3 dir);
+        Vector3 dir = sword.forward;
         dir.z = 0;
 
         Vector3 halfSize = new Vector3(meleeWeapon.range / 2, meleeWeapon.thickness / 2, 0);
@@ -140,7 +140,7 @@ public class PlayerWeapons : MonoBehaviour
 
     void ConeAtk(float speed)
     {
-        DirectionToSword(sword, out Vector3 dir);
+        Vector3 dir = sword.forward;
 
         Vector3 halfSize = new Vector3(meleeWeapon.range / 2, meleeWeapon.thickness / 2, 0);
 
