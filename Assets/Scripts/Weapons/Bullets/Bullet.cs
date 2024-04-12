@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -11,12 +8,20 @@ public class Bullet : MonoBehaviour
     [HideInInspector] public float expRange;
     [HideInInspector] public float expDamage;
     [HideInInspector] public Ranged parent;
+    [HideInInspector] public Transform gunPoint;
     [SerializeField] LayerMask notHitbyExplosion;
+    [SerializeField] InputComponent mouse;
 
     IHp hp;
 
-    Vector3 dir;
+    public Vector3 dir;
     Rigidbody rb;
+
+    private void OnEnable()
+    {
+        if (gunPoint)
+            dir = gunPoint.forward;
+    }
 
     public void GiveBullet()
     {
@@ -26,13 +31,12 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        dir = Camera.main.ScreenToViewportPoint(Input.mousePosition) - transform.position;
-        dir.z = 0;
+        rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = speed * Time.fixedDeltaTime * dir;
+        rb.velocity = speed * Time.fixedDeltaTime * dir.normalized;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,7 +52,7 @@ public class Bullet : MonoBehaviour
                 if (x.TryGetComponent(out hp))
                 {
                     hp.TakeDmg(expDamage);
-                } 
+                }
                 //IO VADO A CAGARE :3
             }
         }

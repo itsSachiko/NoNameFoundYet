@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Pillow", menuName = "Weapons/Melee")]
@@ -13,8 +11,8 @@ public class Melee : Weapons
 
     [Header("for All:")]
     public float range = 10f;
-    [Tooltip("for Line = time it stays there\n"+
-        "for Cone = how fast it goes from one end to the other\n" + 
+    [Tooltip("for Line = time it stays there\n" +
+        "for Cone = how fast it goes from one end to the other\n" +
         "for circle = how fast it rotates\n")]
     public float swingSpeed = 1;
     public float thickness = 1;
@@ -35,16 +33,16 @@ public class Melee : Weapons
     [Tooltip("if the is the one that rotates")]
     public bool isCircle;
     public int numberOfSpiins = 1;
-    
+
 
     public event Recharge onRecharge;
 
     public delegate void ActivateAttack(float speed);
-    public event ActivateAttack onLineAtk;
-    public event ActivateAttack onConeAtk;
-    public event ActivateAttack onCircleAtk;
+    public Action<float> onLineAtk;
+    public Action<float> onConeAtk;
+    public Action<float> onCircleAtk;
 
-    
+
 
     public override void Attack(Transform point)
     {
@@ -66,45 +64,22 @@ public class Melee : Weapons
 
     public void Swing(Transform sword)
     {
-        sword.gameObject.SetActive(true);
-        Transform image = sword.GetChild(0);
-        image.TryGetComponent(out SpriteRenderer spriteRenderer);
-        sword.TryGetComponent(out SwordComponent swordStats);
-
-
-        Vector3 swordScale = sword.transform.localScale;
-        swordScale.x = rangeOfLine;
-        sword.transform.localScale = swordScale;
-
-        swordStats.dmg = damage;
 
         if (isCone)
         {
-            //spriteRenderer.sprite = coneAttackImg;
-            //sword.rotation = Quaternion.AngleAxis(angleOfAttack, Vector3.forward);
-            onLineAtk(swingSpeed);
+            onConeAtk(swingSpeed);
+
         }
 
         if (IsLine)
         {
-            spriteRenderer.sprite = lineAttackImg;
-            onConeAtk(swingSpeed);
-            
+            onLineAtk(swingSpeed);
+
         }
 
         if (isCircle)
         {
-            spriteRenderer.sprite = circleAttackImg;
-
             onCircleAtk(swingSpeed);
-
-            foreach (Collider collider in Physics.OverlapSphere(sword.root.position, range))
-            {
-                if (collider.TryGetComponent(out IHp hp))
-                {
-                    hp.TakeDmg(damage);
-                }
-            }
         }
     }
 }
