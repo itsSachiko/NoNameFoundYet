@@ -9,4 +9,6 @@ public abstract class EnemyBaseState
     public abstract void UpdateState(StateManager enemy);
 
     public abstract void OnExit(StateManager enemy);
+
+    public abstract void OnCollision(StateManager enemy);
 }

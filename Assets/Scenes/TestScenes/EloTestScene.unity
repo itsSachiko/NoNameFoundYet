@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 171223269}
   m_Layer: 0
   m_Name: 9-Sliced
-  m_TagString: Mine
+  m_TagString: Charger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -579,14 +579,15 @@ MonoBehaviour:
   dir: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
   enemyPull: {fileID: 0}
-  AttackDistance: 4.7
-  rangedWeapon: {fileID: 0}
-  meleeWeapon: {fileID: 0}
-  myWeapon: {fileID: 0}
-  dashSpeed: 331
-  isDashing: 0
-  mineTriggered: 1
-  radiusExplosion: 1.18
+  AttackDistance: 2
+  myWeapon: {fileID: 11400000, guid: b898d145abe6e1646b58db2f02d29d65, type: 2}
+  dashSpeed: 20
+  dashDuration: 0.25
+  dashCooldown: 2
+  timer: 0
+  isDashing: 1
+  dashDelay: 0.5
+  waitTimeExplosion: 0
 --- !u!212 &171223267
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -648,7 +649,7 @@ Transform:
   m_GameObject: {fileID: 171223265}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.72, y: 4.58, z: -9.932118}
+  m_LocalPosition: {x: 6.77, y: 4.2, z: -9.932118}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

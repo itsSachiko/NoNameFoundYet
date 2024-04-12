@@ -29,5 +29,10 @@ public class AttackingState : EnemyBaseState
     {
         enemy.ChangeState(new ChasingState());
     }
+
+    public override void OnCollision(StateManager enemy)
+    {
+
+    }
 }
 

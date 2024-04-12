@@ -20,19 +20,22 @@ public class StateManager : MonoBehaviour, IHp
 
     [Header("Ranged and Melee")]
     [SerializeField, Range(1, 15)] public float AttackDistance;
-    [SerializeField] public Ranged rangedWeapon;
-    [SerializeField] public Melee meleeWeapon;
     [SerializeField] public Weapons myWeapon;
     bool canShoot = true;
     bool canAttackMelee = true;
 
     [Header("Charger")]
     [SerializeField, Range(1, 500)] public float dashSpeed = 10f;
-    public bool isDashing;
+    [SerializeField] public float dashDuration;
+    [SerializeField] public float dashCooldown;
+    [SerializeField] public float timer;
+    [HideInInspector] public bool isDashing = true;
+    [SerializeField] public float dashDelay;
 
     [Header("Mine")]
-    [SerializeField, Range(1, 15)] public float mineTriggered;
-    [SerializeField, Range(0, 5)] public float radiusExplosion;
+    [SerializeField] public float waitTimeExplosion;
+
+
 
 
     public float HP { get; set; }
@@ -47,8 +50,6 @@ public class StateManager : MonoBehaviour, IHp
         currentState = new ChasingState();
         currentState.EnterState(this);
         rb = GetComponent<Rigidbody>();
-
-
     }
 
     void Update()
@@ -65,11 +66,9 @@ public class StateManager : MonoBehaviour, IHp
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, AttackDistance);
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, mineTriggered);
-
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, radiusExplosion);
+        Melee myMelee = (Melee)myWeapon;
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, myMelee.range);
     }
 #endif
     public void TakeDmg(float damage)
@@ -127,16 +126,4 @@ public class StateManager : MonoBehaviour, IHp
         }
 
     }
-
-    public void Dash(Vector3 dashDirection)
-    {
-        
-        isDashing = true;
-
-       
-        rb.velocity = dashDirection.normalized * dashSpeed;
-    }
-
-
-
 }
