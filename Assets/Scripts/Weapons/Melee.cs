@@ -67,12 +67,13 @@ public class Melee : Weapons
 
         if (isCone)
         {
-            onLineAtk(swingSpeed);
+            onConeAtk(swingSpeed);
+
         }
 
         if (IsLine)
         {
-            onConeAtk(swingSpeed);
+            onLineAtk(swingSpeed);
 
         }
 

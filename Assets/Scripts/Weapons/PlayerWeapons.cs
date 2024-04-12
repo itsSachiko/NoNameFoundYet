@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
+
 
 
 public class PlayerWeapons : MonoBehaviour
@@ -12,7 +12,7 @@ public class PlayerWeapons : MonoBehaviour
     public Melee meleeWeapon;
     PlayerInputs input;
 
-    public Transform sword;
+    public RectTransform sword;
     public Transform Gun;
 
     bool canShoot = true;
@@ -35,7 +35,7 @@ public class PlayerWeapons : MonoBehaviour
         input.Player.RangedButton.canceled += OnShootEnd;
 
         input.Player.Meleebutton.performed += OnSwing;
-        input.Player.Meleebutton.canceled += OnSwingEnd;
+        input.Player.Meleebutton.canceled += OnSwingCanceled;
     }
 
     private void OnDisable()
@@ -44,7 +44,7 @@ public class PlayerWeapons : MonoBehaviour
         input.Player.RangedButton.canceled -= OnShootEnd;
 
         input.Player.Meleebutton.performed -= OnSwing;
-        input.Player.Meleebutton.canceled -= OnSwingEnd;
+        input.Player.Meleebutton.canceled -= OnSwingCanceled;
         input.Disable();
     }
 
@@ -110,7 +110,7 @@ public class PlayerWeapons : MonoBehaviour
 
     void LineAtk(float timer)
     {
-        RotateToMouse(sword, out Vector3 dir);
+        DirectionToSword(sword, out Vector3 dir);
         dir.z = 0;
 
         Vector3 halfSize = new Vector3(meleeWeapon.range / 2, meleeWeapon.thickness / 2, 0);
@@ -121,6 +121,7 @@ public class PlayerWeapons : MonoBehaviour
         Image image = sword.GetComponent<Image>();
         image.sprite = meleeWeapon.lineAttackImg;
         sword.gameObject.SetActive(true);
+
         foreach (Collider hitted in colliders)
         {
             if (hitted.transform.TryGetComponent(out IHp hp))
@@ -128,22 +129,18 @@ public class PlayerWeapons : MonoBehaviour
                 hp.TakeDmg(meleeWeapon.damage);
             }
         }
+
+        SwingAttackEnd();
     }
 
-    void RotateToMouse(Transform toRotate, out Vector3 dir)
+    void DirectionToSword(Transform toRotate, out Vector3 dir)
     {
-        mousePos = mainCam.ScreenToViewportPoint(UnityEngine.Input.mousePosition);
-
-        dir = mousePos - transform.position;
-        dir = dir.normalized;
-
-        float zRot = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        toRotate.localRotation = Quaternion.Euler(Vector3.forward * zRot);
+        dir = toRotate.position - transform.position;
     }
 
     void ConeAtk(float speed)
     {
-        RotateToMouse(sword, out Vector3 dir);
+        DirectionToSword(sword, out Vector3 dir);
 
         Vector3 halfSize = new Vector3(meleeWeapon.range / 2, meleeWeapon.thickness / 2, 0);
 
@@ -178,37 +175,11 @@ public class PlayerWeapons : MonoBehaviour
             else
                 return false;
         }
-
+        SwingAttackEnd();
         //StartCoroutine(Swing(speed));
     }
 
-    //IEnumerator Swing(float duration)
-    //{
-    //    sword.gameObject.SetActive(true);
-    //    float timer = 0;
-
-    //    float angle = meleeWeapon.angleOfAttack;
-    //    if (meleeWeapon.isCircle)
-    //        angle = 360f;
-    //    mousePos = mainCam.ScreenToViewportPoint(UnityEngine.Input.mousePosition);
-
-    //    Vector3 dir = mousePos - transform.position;
-    //    dir = dir.normalized;
-
-    //    float zRot = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-    //    transform.localRotation = Quaternion.Euler(Vector3.forward * zRot);
-    //    Quaternion startRot = transform.localRotation;
-    //    Quaternion endRot = Quaternion.AngleAxis(angle, sword.forward) * sword.localRotation;
-    //    while (timer < duration)
-    //    {
-    //        transform.localRotation = Quaternion.Slerp(startRot, endRot, timer / duration);
-    //        timer += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //    transform.localRotation = endRot;
-    //    sword.gameObject.SetActive(false);
-    //    transform.localRotation = startRot;
-    //}
+    
 
     void CircleAtk(float speed)
     {
@@ -220,6 +191,7 @@ public class PlayerWeapons : MonoBehaviour
                 hp.TakeDmg(meleeWeapon.damage);
             }
         }
+        SwingAttackEnd();
     }
 
     void SwingAttackEnd()
@@ -228,7 +200,7 @@ public class PlayerWeapons : MonoBehaviour
     }
 
 
-    private void OnSwingEnd(InputAction.CallbackContext context)
+    private void OnSwingCanceled(InputAction.CallbackContext context)
     {
         //sword.gameObject.SetActive(false);
         meleeWeapon.onRecharge -= Recharge;
