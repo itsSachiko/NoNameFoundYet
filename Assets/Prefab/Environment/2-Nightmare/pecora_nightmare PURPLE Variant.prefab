@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &264859073246364554
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2304916052844739905, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a6408ebeed603e48ba9ebe9d63bf341, type: 2}
+    - target: {fileID: 2880848815336352487, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a6408ebeed603e48ba9ebe9d63bf341, type: 2}
+    - target: {fileID: 6139540394619238320, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.865
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139540394619238320, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.68478
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139540394619238320, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.425
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139540394619238320, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 9.494107e-16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139540394619238320, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 6.123234e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139540394619238320, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139540394619238320, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -6.123234e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139540394619238320, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139540394619238320, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139540394619238320, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809398489886272778, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+      propertyPath: m_Name
+      value: pecora_nightmare PURPLE Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
