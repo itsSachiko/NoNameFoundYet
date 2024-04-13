@@ -20,6 +20,7 @@ public class PlayerHp : MonoBehaviour, IHp
 
     public void TakeDmg(float damage)
     {
+        Debug.Log("i took damage " + damage);
         HP-= damage;
         if(HP <= 0)
         {
