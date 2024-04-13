@@ -9,9 +9,10 @@ public class StateManager : MonoBehaviour, IHp
     [Header("General Settings")]
     [SerializeField, Range(1, 500)] public float speed;
     [SerializeField] public float damage;
+    [SerializeField] public float hp;
 
     [Header("Player Prefab")]
-    [HideInInspector] public Transform playerPrefab;
+    [SerializeField] public Transform playerPrefab;
 
     [HideInInspector] public Vector3 dir;
     [HideInInspector] public Rigidbody rb;
@@ -35,7 +36,7 @@ public class StateManager : MonoBehaviour, IHp
     [Header("Mine")]
     [SerializeField] public float waitTimeExplosion;
 
-
+    [HideInInspector] public Animator anim;
 
 
     public float HP { get; set; }
@@ -47,7 +48,7 @@ public class StateManager : MonoBehaviour, IHp
     }
     void Start()
     {
-        playerPrefab = FindObjectOfType<PlayerHp>().transform;
+        anim = GetComponent<Animator>();
         currentState = new ChasingState();
         currentState.EnterState(this);
         rb = GetComponent<Rigidbody>();
@@ -74,11 +75,11 @@ public class StateManager : MonoBehaviour, IHp
 #endif
     public void TakeDmg(float damage)
     {
-       //HP -= damage;
-       // if (HP <= 0) 
-       // {
-       //     Death();
-       // }
+       HP -= damage;
+        if (HP <= 0) 
+        {
+            Death();
+        }
 
     }
 
@@ -87,8 +88,13 @@ public class StateManager : MonoBehaviour, IHp
         
     }
 
-    void IHp.Death()
+    public void Death()
     {
+        if (enemyPull == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
         enemyPull.pulledEnemies.Add(transform);
         enemyPull.OnEnemyDeath?.Invoke();
         gameObject.SetActive(false);
@@ -117,7 +123,7 @@ public class StateManager : MonoBehaviour, IHp
         {
             canAttackMelee = false;
             Melee melee  = (Melee)myWeapon;
-            melee.Attack(transform);
+            melee.Swing(transform);
             yield return new WaitForSeconds(seconds);
             canAttackMelee = true;
         }
@@ -125,6 +131,28 @@ public class StateManager : MonoBehaviour, IHp
         {
             yield return null;
         }
+    }
 
+    public IEnumerator MineTimer(Melee weapon)
+    {
+        yield return new WaitForSeconds(waitTimeExplosion);
+        
+        Collider[] enemiesHit = Physics.OverlapSphere(transform.position, weapon.range);
+        foreach (Collider collider in enemiesHit)
+        {
+            if (collider.TryGetComponent(out IHp hp))
+            {
+                hp.TakeDmg(damage);
+
+            }
+
+        }
+        TakeDmg(9999999);
+
+    }
+
+    private void OnEnable()
+    {
+        HP = hp;
     }
 }

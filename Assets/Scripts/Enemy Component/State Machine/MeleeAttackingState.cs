@@ -14,7 +14,7 @@ public class MeleeAttackingState : EnemyBaseState
         float distanceFromTarget;
         enemy.rb.velocity = Vector3.zero;
 
-        distanceFromTarget = Vector3.Distance(enemy.transform.position, enemy.playerPrefab.position);
+        distanceFromTarget = Vector2.Distance(enemy.transform.position, enemy.playerPrefab.position);
 
         enemy.StartCoroutine(enemy.MeleeCooldown(enemy.myWeapon.realoadTime));
 
