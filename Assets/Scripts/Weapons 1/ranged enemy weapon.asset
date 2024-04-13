@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41f457fe30463e4d962ba6535188183, type: 3}
+  m_Name: ranged enemy weapon
+  m_EditorClassIdentifier: 
+  allUsedBars: []
+  realoadTime: 1.5
+  damage: 2
+  numberOfAttacks: 1
+  weaponImg: {fileID: 0}
+  bulletPool: {fileID: 11400000, guid: f74bb1a72242c0b42bec5ff7af8b2d8f, type: 2}
+  projectileSpeed: 5
+  IsExplosive: 0
+  rangeExplosion: 0
+  damageExplosion: 0

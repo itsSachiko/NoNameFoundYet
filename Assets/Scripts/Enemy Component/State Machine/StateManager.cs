@@ -7,7 +7,7 @@ public class StateManager : MonoBehaviour, IHp
     public EnemyBaseState currentState; //reference dello stato attivo nella state machine 
 
     [Header("General Settings")]
-    [SerializeField, Range(1, 500)] public float speed;
+    [SerializeField] public float speed;
     [SerializeField] public float damage;
 
     [Header("Player Prefab")]
@@ -19,13 +19,13 @@ public class StateManager : MonoBehaviour, IHp
     [HideInInspector] public EnemyPull enemyPull;
 
     [Header("Ranged and Melee")]
-    [SerializeField, Range(1, 15)] public float AttackDistance;
+    [SerializeField] public float AttackDistance;
     [SerializeField] public Weapons myWeapon;
     bool canShoot = true;
     bool canAttackMelee = true;
 
     [Header("Charger")]
-    [SerializeField, Range(1, 500)] public float dashSpeed = 10f;
+    [SerializeField] public float dashSpeed = 10f;
     [SerializeField] public float dashDuration;
     [SerializeField] public float dashCooldown;
     [SerializeField] public float timer;
@@ -47,7 +47,8 @@ public class StateManager : MonoBehaviour, IHp
     }
     void Start()
     {
-        currentState = new ChasingState();
+        playerPrefab = FindObjectOfType<PlayerHp>().transform;
+	currentState = new ChasingState();
         currentState.EnterState(this);
         rb = GetComponent<Rigidbody>();
     }
