@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 421459279412895961}
+  - component: {fileID: 9118883200562418117}
   m_Layer: 0
   m_Name: cloudpink
   m_TagString: Untagged
@@ -33,6 +34,27 @@ Transform:
   - {fileID: 2371080392029622970}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &9118883200562418117
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743154487520754732}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 60, y: 44, z: 21}
+  m_Center: {x: 0.5, y: 0, z: 0}
 --- !u!1001 &4870491514098660551
 PrefabInstance:
   m_ObjectHideFlags: 0
