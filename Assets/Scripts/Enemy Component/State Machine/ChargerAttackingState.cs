@@ -10,6 +10,7 @@ public class ChargerAttackingState : EnemyBaseState
     Vector3 dashVelocity; 
     public override void EnterState(StateManager enemy)
     {
+
         Debug.Log("entering attacking mode");
         enemy.dir = enemy.playerPrefab.position - enemy.transform.position;
         
@@ -41,6 +42,8 @@ public class ChargerAttackingState : EnemyBaseState
 
             else
             {
+                enemy.anim.SetBool("isRunning", false);
+                enemy.anim.SetBool("isAttacking", true);
                 enemy.timer = 0;
 
                 enemy.dir = enemy.playerPrefab.position - enemy.transform.position;
@@ -67,7 +70,7 @@ public class ChargerAttackingState : EnemyBaseState
             }
         }
 
-        distanceFromTarget = Vector3.Distance(enemy.transform.position, enemy.playerPrefab.position);
+        distanceFromTarget = Vector2.Distance(enemy.transform.position, enemy.playerPrefab.position);
 
         if (distanceFromTarget > enemy.AttackDistance && enemy.isDashing == false) 
         {

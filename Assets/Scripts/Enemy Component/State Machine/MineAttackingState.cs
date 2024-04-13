@@ -17,31 +17,23 @@ public class MineAttackingState : EnemyBaseState
     public override void UpdateState(StateManager enemy)
     {
         enemy.rb.velocity = Vector3.zero;
-        distanceFromTarget = Vector3.Distance(enemy.transform.position, enemy.playerPrefab.position);
+        distanceFromTarget = Vector2.Distance(enemy.transform.position, enemy.playerPrefab.position);
 
         if (distanceFromTarget > enemy.AttackDistance)
         {
+            Debug.Log("gdioughoighdiosgh");
             OnExit(enemy);
         }
 
         if (distanceFromTarget < melee.range)
         {
+            Debug.Log("hiiii");
             //animazione e fa danno
-            Collider[] enemiesHit = Physics.OverlapSphere(enemy.transform.position, melee.range);
-
-            foreach (Collider collider in enemiesHit)
-            {
-                if (collider.TryGetComponent(out IHp hp))
-                {
-                    hp.TakeDmg(enemy.damage);
-                }
-            }
+            enemy.anim.SetBool("isRunning", false);
+            enemy.anim.SetBool("isAttacking", true);
+            enemy.StartCoroutine(enemy.MineTimer(melee));
+            
         }
-
-        else
-        {
-            //animazione per farlo andare sotto
-        } 
 
     }
 
