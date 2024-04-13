@@ -8,6 +8,8 @@ public class ChasingState : EnemyBaseState
     public override void EnterState(StateManager enemy)
     {
         Debug.Log("entering chasing mode");
+        enemy.anim.SetBool("isRunning", true);
+        enemy.anim.SetBool("isAttacking", false);
     }
 
     public override void UpdateState(StateManager enemy)
@@ -17,7 +19,7 @@ public class ChasingState : EnemyBaseState
         enemy.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         enemy.rb.velocity = (enemy.dir.normalized * enemy.speed * Time.deltaTime);
 
-        distanceFromTarget = Vector3.Distance(enemy.transform.position, enemy.playerPrefab.position);
+        distanceFromTarget = Vector2.Distance(enemy.transform.position, enemy.playerPrefab.position);
 
         if (distanceFromTarget <= enemy.AttackDistance)
         {
@@ -48,7 +50,7 @@ public class ChasingState : EnemyBaseState
         }
     }
 
-    public override void OnCollision(StateManager enemy)
+    public override void OnCollision(StateManager enemy, Collider collider)
     {
 
     }
