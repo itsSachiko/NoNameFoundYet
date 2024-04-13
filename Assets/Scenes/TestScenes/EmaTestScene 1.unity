@@ -835,7 +835,7 @@ Transform:
   m_GameObject: {fileID: 157674503}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: -50, z: -13.99}
+  m_LocalPosition: {x: 0, y: -80, z: -13.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2573,10 +2573,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 434912714}
     m_Modifications:
-    - target: {fileID: 1960524540386448066, guid: fac9d03ecf8bead4fadaadc09a050b4e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1968897150248241302, guid: fac9d03ecf8bead4fadaadc09a050b4e, type: 3}
       propertyPath: m_Name
       value: Minerale
@@ -2620,10 +2616,6 @@ PrefabInstance:
     - target: {fileID: 5127625656264014887, guid: fac9d03ecf8bead4fadaadc09a050b4e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9205654625226691383, guid: fac9d03ecf8bead4fadaadc09a050b4e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4734,7 +4726,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: -50, z: -13.99}
+  m_LocalPosition: {x: 0, y: -80, z: -13.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5843,7 +5835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 0, z: -20}
+  m_FollowOffset: {x: 0, y: -30, z: -20}
   m_XDamping: 1
   m_YDamping: 0.6
   m_ZDamping: 0.2
@@ -7876,7 +7868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1449170162
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12737,7 +12729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6833495619480453443, guid: faa3c6a201c9ca6449561d3408077a79, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6833495619480453443, guid: faa3c6a201c9ca6449561d3408077a79, type: 3}
       propertyPath: m_LocalRotation.w
