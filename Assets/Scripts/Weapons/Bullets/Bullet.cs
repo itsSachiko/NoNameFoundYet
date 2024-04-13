@@ -10,23 +10,28 @@ public class Bullet : MonoBehaviour
     [HideInInspector] public Ranged parent;
     [HideInInspector] public Transform gunPoint;
     [SerializeField] LayerMask notHitbyExplosion;
-    [SerializeField] InputComponent mouse;
+
 
     IHp hp;
 
     public Vector3 dir;
     Rigidbody rb;
 
-    private void OnEnable()
-    {
-        if (gunPoint)
-            dir = gunPoint.forward;
-    }
 
     public void GiveBullet()
     {
         parent.bulletPool.GetBullet(transform);
+    }
 
+    private void OnDisable()
+    {
+        dmg = 0;
+        speed = 0;
+        iexplode = false;
+        expRange = 0;
+        expDamage = 0;
+        parent = null;
+        gunPoint = null;
     }
 
     private void Start()
@@ -47,7 +52,7 @@ public class Bullet : MonoBehaviour
         }
         else if (iexplode)
         {
-            foreach (Collider x in Physics.OverlapSphere(transform.position, expRange, notHitbyExplosion))
+            foreach (Collider x in Physics.OverlapSphere(transform.position, expRange, ~notHitbyExplosion))
             {
                 if (x.TryGetComponent(out hp))
                 {
@@ -57,5 +62,6 @@ public class Bullet : MonoBehaviour
             }
         }
 
+        GiveBullet();
     }
 }
