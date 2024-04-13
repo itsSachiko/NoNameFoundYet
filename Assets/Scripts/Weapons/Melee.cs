@@ -20,7 +20,7 @@ public class Melee : Weapons
     [Header("Melee Line settings: ")]
     [Tooltip("if the attack is only horizontal twoards the pointer")]
     public bool IsLine;
-    [Tooltip("how long it takes to swing your sword")]
+    [Tooltip("how long it takes to swing your pointToStartAttack")]
     public float durationOfAttack = 1f;
     public float rangeOfLine = 10f;
 
@@ -62,7 +62,7 @@ public class Melee : Weapons
         Swing(point);
     }
 
-    public void Swing(Transform sword)
+    public void Swing(Transform Gun)
     {
 
         if (isCone)
