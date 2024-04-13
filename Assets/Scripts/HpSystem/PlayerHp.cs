@@ -6,7 +6,14 @@ public class PlayerHp : MonoBehaviour, IHp
     public float HP
     {
         get => HpBar.actualBar;
-        set => HP = HpBar.actualBar;
+        set => SetHp(value);
+    }
+
+    void SetHp(float value)
+    {
+        //HP = value;
+        HpBar.actualBar = value;
+        Debug.Log(HP);
     }
 
     public void HpUp(float Heal)

@@ -33,6 +33,7 @@ public class StateManager : MonoBehaviour, IHp
     }
     void Start()
     {
+        playerPrefab = FindObjectOfType<PlayerHp>().transform;
         currentState = new ChasingState();
         currentState.EnterState(this);
         rb = GetComponent<Rigidbody>();

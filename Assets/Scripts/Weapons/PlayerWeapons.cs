@@ -12,6 +12,7 @@ public class PlayerWeapons : MonoBehaviour
     public Melee meleeWeapon;
     PlayerInputs input;
     public Transform pointToStartAttack;
+    Transform attackRot;
 
     bool canShoot = true;
     bool canSwing = true;
@@ -25,10 +26,12 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] float stabAnimDur = 0.25f;
 
     IEnumerator SwingCorutine;
+    public IEnumerator ShootinCorutine;
 
     private void Awake()
     {
         input = new PlayerInputs();
+        attackRot = pointToStartAttack.parent;
         Rotator.gameObject.SetActive(true);
         trailRenderer = trailRendererObj.GetComponent<TrailRenderer>();
         Rotator.gameObject.SetActive(false);
@@ -56,9 +59,18 @@ public class PlayerWeapons : MonoBehaviour
 
     private IEnumerator RangeCoolodwn(float seconds)
     {
+
         canShoot = false;
         yield return new WaitForSeconds(seconds);
+
+        while (ShootinCorutine != null)
+        {
+            Debug.Log("aaaaaaaaaaaa");
+            yield return null;
+        }
+
         canShoot = true;
+
     }
 
     private IEnumerator MeleeCooldown(float seconds)
@@ -70,15 +82,24 @@ public class PlayerWeapons : MonoBehaviour
 
     private void OnShoot(InputAction.CallbackContext context)
     {
+        if (ShootinCorutine != null)
+            return;
         if (canShoot != true)
             return;
 
         rangeWeapon.onRecharge += Recharge;
+        rangeWeapon.onCorutine += RangedCorutine;
         rangeWeapon.Attack(transform);
+
+        
         StartCoroutine(RangeCoolodwn(rangeWeapon.realoadTime));
     }
 
-
+    void RangedCorutine(float time, Transform from)
+    {
+        ShootinCorutine = rangeWeapon.waitNextBullet(time, transform);
+        StartCoroutine(ShootinCorutine);
+    }
 
     private void OnShootEnd(InputAction.CallbackContext context)
     {
@@ -107,18 +128,22 @@ public class PlayerWeapons : MonoBehaviour
 
     void LineAtk(float timer)
     {
-        Vector3 dir = pointToStartAttack.forward;
+        trailRendererObj.rotation = pointToStartAttack.rotation;
+        Vector3 startPos = transform.position;
+        Vector3 endPos = startPos + trailRendererObj.right * meleeWeapon.range;
+        trailRendererObj.position = startPos;
+        trailRenderer.startWidth = meleeWeapon.thickness;
+
+        Vector3 dir = pointToStartAttack.right;
         dir.z = 0;
 
-        Vector3 halfSize = new Vector3(meleeWeapon.range / 2, meleeWeapon.thickness / 2, 0);
-
         pointToStartAttack.position = pointToStartAttack.position + dir.normalized * (meleeWeapon.range / 2);
-        pointToStartAttack.localScale = halfSize;
-        Collider[] colliders = Physics.OverlapBox(pointToStartAttack.position, halfSize);
-        Image image = pointToStartAttack.GetComponent<Image>();
-        image.sprite = meleeWeapon.lineAttackImg;
-        pointToStartAttack.gameObject.SetActive(true);
 
+        Collider[] colliders = Physics.OverlapCapsule(startPos, endPos, meleeWeapon.thickness / 2, enemyLayerMask);
+
+
+
+        StartCoroutine(Stab());
         foreach (Collider hitted in colliders)
         {
             if (hitted.transform.TryGetComponent(out IHp hp))
@@ -126,31 +151,31 @@ public class PlayerWeapons : MonoBehaviour
                 hp.TakeDmg(meleeWeapon.damage);
             }
         }
-        StartCoroutine(Stab());
 
         IEnumerator Stab()
         {
-            trailRendererObj.position = pointToStartAttack.position;
+            Rotator.gameObject.SetActive(true);
+
+
             float stabTimer = 0;
             trailRendererObj.parent = null;
+            Vector3 pos = new();
 
             while (stabTimer < stabAnimDur)
             {
-
+                pos = Vector2.Lerp(startPos, endPos, stabTimer / stabAnimDur);
+                trailRendererObj.position = pos;
+                stabTimer += Time.deltaTime;
                 yield return null;
             }
+
+            Rotator.gameObject.SetActive(false);
         }
     }
 
-
-
     void ConeAtk(float speed)
     {
-        Vector3 dir = pointToStartAttack.forward;
-
-        Vector3 halfSize = new Vector3(meleeWeapon.range / 2, meleeWeapon.thickness / 2, 0);
-
-        Collider[] colliders = Physics.OverlapSphere(transform.position, halfSize.x, enemyLayerMask);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, meleeWeapon.range /*/ 2*/, enemyLayerMask);
         foreach (Collider collider in colliders)
         {
             if (InsideCone(collider.transform))
@@ -167,15 +192,23 @@ public class PlayerWeapons : MonoBehaviour
             dirToEnemy.z = 0;
             dirToEnemy = dirToEnemy.normalized;
 
-            if (Vector3.Angle(transform.right, dirToEnemy) < meleeWeapon.angleOfAttack / 2)
+            Debug.Log(Vector2.Angle(attackRot.right, dirToEnemy) + " " + (meleeWeapon.angleOfAttack / 2));
+
+            if (Vector2.Angle(attackRot.right, dirToEnemy) < meleeWeapon.angleOfAttack / 2)
             {
-                float dist = Vector3.Distance(transform.position, enemy.position);
-                if (dist > meleeWeapon.range)
+                Debug.Log("hello");
+                float dist = Vector2.Distance(transform.position, enemy.position);
+                Debug.Log(dist + " " + (meleeWeapon.range * 2 /*+ enemy.lossyScale.x*/));
+                if (dist > meleeWeapon.range + 0.5f /*+ enemy.lossyScale.x*/)
                 {
+                    Debug.Log("false");
                     return false;
                 }
                 else
+                {
+                    Debug.Log("true");
                     return true;
+                }
             }
             else
                 return false;
@@ -183,8 +216,6 @@ public class PlayerWeapons : MonoBehaviour
 
         StartCoroutine(Swing());
     }
-
-
 
     void CircleAtk(float speed)
     {
@@ -223,6 +254,7 @@ public class PlayerWeapons : MonoBehaviour
         float animTimer = 0;
 
         Quaternion endRot = Quaternion.AngleAxis(angle, Vector3.forward);
+        Quaternion editedStartRot = Quaternion.Euler(startRot.eulerAngles - Vector3.forward * meleeWeapon.angleOfAttack / 2);
         #endregion
 
         #region start rotatating:
@@ -230,7 +262,7 @@ public class PlayerWeapons : MonoBehaviour
         Rotator.gameObject.SetActive(true);
         while (animTimer < SwingAnimDur)
         {
-            Rotator.rotation = Quaternion.Slerp(startRot, endRot, animTimer / SwingAnimDur);
+            Rotator.rotation = Quaternion.Slerp(editedStartRot, endRot, animTimer / SwingAnimDur);
             animTimer += Time.deltaTime;
             yield return null;
         }
@@ -290,11 +322,23 @@ public class PlayerWeapons : MonoBehaviour
         bar.recharge = null;
     }
 
+#if UNITY_EDITOR
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(trailRendererObj.position, 3);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(trailRendererObj.position, meleeWeapon.angleOfAttack);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position, trailRendererObj.right);
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, meleeWeapon.range);
+        Vector3 halfSize = new Vector3(meleeWeapon.range / 2, meleeWeapon.thickness / 2, 0);
+        Gizmos.DrawWireCube(pointToStartAttack.position, halfSize * 2);
+        Gizmos.DrawLine(transform.position, transform.position + trailRendererObj.right * meleeWeapon.range);
     }
+
+#endif
 }

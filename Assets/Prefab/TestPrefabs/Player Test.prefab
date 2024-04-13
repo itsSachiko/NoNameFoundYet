@@ -160,8 +160,8 @@ MonoBehaviour:
   Rotator: {fileID: 9089155264682794575}
   trailRendererObj: {fileID: 7768326536836757135}
   trailRenderer: {fileID: 0}
-  SwingAnimDur: 0.5
-  stabAnimDur: 0.5
+  SwingAnimDur: 0.2
+  stabAnimDur: 0.2
 --- !u!1 &5347481150808491537
 GameObject:
   m_ObjectHideFlags: 0
