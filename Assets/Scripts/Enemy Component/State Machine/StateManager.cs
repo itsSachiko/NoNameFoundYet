@@ -75,8 +75,8 @@ public class StateManager : MonoBehaviour, IHp
 #endif
     public void TakeDmg(float damage)
     {
-        HP -= damage;
-        if (HP <= 0)
+       HP -= damage;
+        if (HP <= 0) 
         {
             Death();
         }
@@ -85,7 +85,7 @@ public class StateManager : MonoBehaviour, IHp
 
     public void HpUp(float Heal)
     {
-
+        
     }
 
     public void Death()
@@ -122,7 +122,7 @@ public class StateManager : MonoBehaviour, IHp
         if (canAttackMelee)
         {
             canAttackMelee = false;
-            Melee melee = (Melee)myWeapon;
+            Melee melee  = (Melee)myWeapon;
             melee.Swing(transform);
             yield return new WaitForSeconds(seconds);
             canAttackMelee = true;
@@ -136,12 +136,10 @@ public class StateManager : MonoBehaviour, IHp
     public IEnumerator MineTimer(Melee weapon)
     {
         yield return new WaitForSeconds(waitTimeExplosion);
-
+        
         Collider[] enemiesHit = Physics.OverlapSphere(transform.position, weapon.range);
-        Debug.Log(enemiesHit.Length);
         foreach (Collider collider in enemiesHit)
         {
-            Debug.Log(collider.gameObject.name);
             if (collider.TryGetComponent(out IHp hp))
             {
                 hp.TakeDmg(damage);
