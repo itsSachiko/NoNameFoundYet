@@ -48,5 +48,10 @@ public class ChasingState : EnemyBaseState
         }
     }
 
+    public override void OnCollision(StateManager enemy)
+    {
+
+    }
+
 
 }
