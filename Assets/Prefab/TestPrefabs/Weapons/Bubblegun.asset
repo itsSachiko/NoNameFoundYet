@@ -21,7 +21,7 @@ MonoBehaviour:
     isOvertime: 0
   realoadTime: 0.3
   damage: 1
-  numberOfAttacks: 5
+  numberOfAttacks: 1
   weaponImg: {fileID: 0}
   bulletPool: {fileID: 11400000, guid: 4e9dc358603c27b4d99b773c31788450, type: 2}
   projectileSpeed: 5000

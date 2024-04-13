@@ -6,11 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<<< HEAD:Assets/Art/Concept Art/Animations/charger/chargerRun.anim
   m_Name: chargerRun
-========
-  m_Name: ChargerDreamWalk
->>>>>>>> main:Assets/Art/Concept Art/Animations/charger/Dream/ChargerDreamWalk.anim
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0

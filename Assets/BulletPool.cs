@@ -8,16 +8,16 @@ public class BulletPool : ScriptableObject
     public int howManyToSpawn;
 
     List<Transform> bullets = new();
-    public List<Transform> Bullets { get => bullets; set => bullets = value; }
+    public List<Transform> Bullets { get { return bullets; } set { bullets = value; } }
 
     private void OnDisable()
     {
-        Bullets.Clear();
+        bullets.Clear();
+        bullets = new();
     }
 
     public void GetBullet(Transform newBullet)
     {
-        newBullet.gameObject.SetActive(false);
-        Bullets.Add(newBullet);
+        bullets.Insert(0, newBullet);
     }
 }
