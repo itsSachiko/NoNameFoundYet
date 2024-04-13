@@ -9,7 +9,7 @@ public class TestMousPos : MonoBehaviour
     Vector3 pos;
     Camera main;
     float angle;
-
+    public float cameraYOffset = 30;
     Ray ray;
 
     private void Start()
@@ -43,7 +43,7 @@ public class TestMousPos : MonoBehaviour
     {
         mousePos = main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
-        mousePos.y += 18;
+        mousePos.y += cameraYOffset;
         dir = mousePos - transform.position;
         dir.z = 0;
         transform.right = dir.normalized;
