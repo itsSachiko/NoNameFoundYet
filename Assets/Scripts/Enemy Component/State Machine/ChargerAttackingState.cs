@@ -28,7 +28,7 @@ public class ChargerAttackingState : EnemyBaseState
             delayTimer += Time.deltaTime;
             enemy.dir = enemy.playerPrefab.position - enemy.transform.position;
             float angle = Mathf.Atan2(enemy.dir.y, enemy.dir.x) * Mathf.Rad2Deg;
-            enemy.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            enemy.rotatorToPlayer.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             dashVelocity = (enemy.dir.normalized * enemy.dashSpeed);
         }
 

@@ -6,6 +6,8 @@ public class AttackingState : EnemyBaseState
 {
     public override void EnterState(StateManager enemy)
     {
+        enemy.anim.SetBool("isRunning", true);
+        enemy.anim.SetBool("isAttacking", false);
         Debug.Log("entering attacking mode");
     }
 

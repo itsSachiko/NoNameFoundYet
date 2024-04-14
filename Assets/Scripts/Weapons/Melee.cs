@@ -73,6 +73,7 @@ public class Melee : Weapons
 
         if (IsLine)
         {
+            Debug.Log("I HASUGSDFSIF");
             onLineAtk(swingSpeed);
 
         }
