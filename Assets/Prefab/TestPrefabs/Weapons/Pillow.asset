@@ -23,10 +23,10 @@ MonoBehaviour:
   range: 50
   swingSpeed: 1
   thickness: 10
-  IsLine: 1
+  IsLine: 0
   durationOfAttack: 1
   rangeOfLine: 10
-  isCone: 0
+  isCone: 1
   angleOfAttack: 90
   isCircle: 0
   numberOfSpiins: 1

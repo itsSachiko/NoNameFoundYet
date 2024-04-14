@@ -23,13 +23,13 @@ public class StateManager : MonoBehaviour, IHp
     [HideInInspector] public EnemyPull enemyPull;
 
     [Header("Ranged and Melee")]
-    [SerializeField, Range(1, 15)] public float AttackDistance;
+    [SerializeField] public float AttackDistance;
     [SerializeField] public Weapons myWeapon;
     bool canShoot = true;
     [SerializeField]bool canAttackMelee = true;
 
     [Header("Charger")]
-    [SerializeField, Range(1, 500)] public float dashSpeed = 10f;
+    [SerializeField] public float dashSpeed = 10f;
     [SerializeField] public float dashDuration;
     [SerializeField] public float dashCooldown;
     [SerializeField] public float timer;
@@ -52,7 +52,7 @@ public class StateManager : MonoBehaviour, IHp
     [Header("Sprite")]
     [SerializeField] public SpriteRenderer mySpriteRenderer; 
 
-    public float HP { get; set; }
+    public float HP { get => hp; set => hp = value; }
 
     public void ChangeState(EnemyBaseState state)
     {
@@ -66,7 +66,7 @@ public class StateManager : MonoBehaviour, IHp
         currentState.EnterState(this);
         rb = GetComponent<Rigidbody>();
         trailRenderer = trailRenderObj.GetComponent<TrailRenderer>();
-        HP = hp;
+        //HP = hp;
         //mySpriteRenderer = GetComponent<SpriteRenderer>();
         playerPrefab = FindObjectOfType<PlayerHp>().transform;
 
@@ -104,6 +104,8 @@ public class StateManager : MonoBehaviour, IHp
     public void TakeDmg(float damage)
     {
         HP -= damage;
+
+        Debug.Log(hp + " " + HP);
         if (HP <= 0)
         {
             Death();

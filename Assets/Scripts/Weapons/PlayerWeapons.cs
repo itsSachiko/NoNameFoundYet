@@ -25,6 +25,8 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] float SwingAnimDur = 0.5f;
     [SerializeField] float stabAnimDur = 0.25f;
 
+    Vector3 startLocalPointOfAttack;
+
     IEnumerator SwingCorutine;
     public IEnumerator ShootinCorutine;
 
@@ -35,6 +37,7 @@ public class PlayerWeapons : MonoBehaviour
         Rotator.gameObject.SetActive(true);
         trailRenderer = trailRendererObj.GetComponent<TrailRenderer>();
         Rotator.gameObject.SetActive(false);
+        startLocalPointOfAttack = pointToStartAttack.localPosition;
     }
 
     private void OnEnable()
@@ -92,7 +95,7 @@ public class PlayerWeapons : MonoBehaviour
         rangeWeapon.onCorutine += RangedCorutine;
         rangeWeapon.Attack(transform);
 
-        
+
         StartCoroutine(RangeCoolodwn(rangeWeapon.realoadTime));
     }
 
@@ -109,7 +112,7 @@ public class PlayerWeapons : MonoBehaviour
 
     private void OnSwing(InputAction.CallbackContext context)
     {
-       
+
         if (canSwing != true)
             return;
         meleeWeapon.onRecharge += Recharge;
@@ -131,20 +134,15 @@ public class PlayerWeapons : MonoBehaviour
 
     void LineAtk(float timer)
     {
-        trailRendererObj.rotation = pointToStartAttack.rotation;
+        trailRendererObj.right = pointToStartAttack.right;
         Vector3 startPos = transform.position;
         Vector3 endPos = startPos + trailRendererObj.right * meleeWeapon.range;
         trailRendererObj.position = startPos;
         trailRenderer.startWidth = meleeWeapon.thickness;
 
-        Vector3 dir = pointToStartAttack.right;
-        dir.z = 0;
-
-        pointToStartAttack.position = pointToStartAttack.position + dir.normalized * (meleeWeapon.range / 2);
+        //pointToStartAttack.position = pointToStartAttack.position + pointToStartAttack.right * (meleeWeapon.range / 2);
 
         Collider[] colliders = Physics.OverlapCapsule(startPos, endPos, meleeWeapon.thickness / 2, enemyLayerMask);
-
-
 
         StartCoroutine(Stab());
         foreach (Collider hitted in colliders)
@@ -155,7 +153,7 @@ public class PlayerWeapons : MonoBehaviour
             }
         }
 
-        IEnumerator Stab() 
+        IEnumerator Stab()
         {
             Rotator.gameObject.SetActive(true);
 
@@ -171,14 +169,17 @@ public class PlayerWeapons : MonoBehaviour
                 stabTimer += Time.deltaTime;
                 yield return null;
             }
-
+            trailRendererObj.parent = Rotator;
+            pointToStartAttack.localPosition = startLocalPointOfAttack;
             Rotator.gameObject.SetActive(false);
+            trailRendererObj.localPosition = startLocalPointOfAttack;
         }
     }
 
     void ConeAtk(float speed)
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, meleeWeapon.range /*/ 2*/, enemyLayerMask);
+        StartCoroutine(Swing());
         foreach (Collider collider in colliders)
         {
             if (InsideCone(collider.transform))
@@ -199,10 +200,10 @@ public class PlayerWeapons : MonoBehaviour
 
             if (Vector2.Angle(attackRot.right, dirToEnemy) < meleeWeapon.angleOfAttack / 2)
             {
-                Debug.Log("hello");
+                
                 float dist = Vector2.Distance(transform.position, enemy.position);
-                Debug.Log(dist + " " + (meleeWeapon.range * 2 /*+ enemy.lossyScale.x*/));
-                if (dist > meleeWeapon.range + 0.5f /*+ enemy.lossyScale.x*/)
+                
+                if (dist > meleeWeapon.range  /*+ enemy.lossyScale.x*/)
                 {
                     Debug.Log("false");
                     return false;
@@ -217,13 +218,13 @@ public class PlayerWeapons : MonoBehaviour
                 return false;
         }
 
-        StartCoroutine(Swing());
     }
 
     void CircleAtk(float speed)
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, meleeWeapon.range / 2, enemyLayerMask);
 
+        StartCoroutine(Swing());
         foreach (Collider collider in colliders)
         {
             if (collider.transform.TryGetComponent(out IHp hp))
@@ -231,7 +232,6 @@ public class PlayerWeapons : MonoBehaviour
                 hp.TakeDmg(meleeWeapon.damage);
             }
         }
-        StartCoroutine(Swing());
     }
 
 
@@ -293,7 +293,6 @@ public class PlayerWeapons : MonoBehaviour
     {
         if (bar.recharge != null)
         {
-            Debug.Log("save me donald trump SAVE ME");
             StopRecharge(bar);
             bar.recharge = WaitForRecharge(bar);
             StartCoroutine(bar.recharge);
@@ -336,11 +335,12 @@ public class PlayerWeapons : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(transform.position, trailRendererObj.right);
 
-        Gizmos.color = Color.white;
+        Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, meleeWeapon.range);
-        Vector3 halfSize = new Vector3(meleeWeapon.range / 2, meleeWeapon.thickness / 2, 0);
-        Gizmos.DrawWireCube(pointToStartAttack.position, halfSize * 2);
+
+        Gizmos.color = Color.cyan;
         Gizmos.DrawLine(transform.position, transform.position + trailRendererObj.right * meleeWeapon.range);
+        Gizmos.DrawSphere(transform.position + trailRendererObj.right * meleeWeapon.range, 3f);
     }
 
 #endif

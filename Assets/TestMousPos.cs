@@ -28,6 +28,7 @@ public class TestMousPos : MonoBehaviour
         cursorPos.z = 0;
         cursorPos.y += posCamY;
         Vector2 direction = cursorPos - transform.position;
-        transform.right = direction;
+
+        transform.right = direction.normalized;
     }
 }
