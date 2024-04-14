@@ -1,8 +1,12 @@
+using System;
 using UnityEngine;
 
 public class PlayerHp : MonoBehaviour, IHp
 {
     public Bars HpBar;
+
+    public static Action lose;
+
     public float HP
     {
         get => HpBar.actualBar;
@@ -38,6 +42,7 @@ public class PlayerHp : MonoBehaviour, IHp
 
     public void Death()
     {
-        Destroy(gameObject);
+        //anim morte
+        lose?.Invoke();
     }
 }
