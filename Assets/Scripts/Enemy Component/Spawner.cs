@@ -26,6 +26,8 @@ public class Spawner : MonoBehaviour
 
     public static Action onLastWave;
 
+    public static Action onWin;
+
     private void Awake()
     {
         foreach (Wave wave in waves)
@@ -128,6 +130,6 @@ public class Spawner : MonoBehaviour
     public void OnWin()
     {
         StopAllCoroutines();
-        SceneManager.LoadScene(0);
+        onWin?.Invoke();
     }
 }

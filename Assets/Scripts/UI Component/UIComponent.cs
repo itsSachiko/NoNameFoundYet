@@ -12,8 +12,13 @@ public class UIComponent : MonoBehaviour
     [SerializeField] public GameObject losePanel;
 
     [SerializeField] Bars playerHP;
+    [SerializeField] int loseSceneNumber;
 
-
+    private void Start()
+    {
+        PlayerHp.lose += onGameOver;
+        Spawner.onWin += onWin;
+    }
     private void Update()
     {
         if (playerHP.actualBar <= 0)
@@ -22,9 +27,7 @@ public class UIComponent : MonoBehaviour
         }
     }
     public void onWin()
-    {
-        //if wave is last 
-
+    {  
         Time.timeScale = 0f;
         winPanel.SetActive(true);
     }
@@ -36,13 +39,13 @@ public class UIComponent : MonoBehaviour
 
     public void onGameOver()
     {
-        //if hp = 0
+       
         Time.timeScale = 0f;
         roll = Random.Range(0, 1f);
         
         if (roll < chance)
         {
-            //video
+            SceneManager.LoadScene(loseSceneNumber);
         }
 
         else
