@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,11 +15,29 @@ public class UIComponent : MonoBehaviour
     [SerializeField] Bars playerHP;
     [SerializeField] int loseSceneNumber;
 
+    [SerializeField] SpriteHolder[] starArray;
+
+    private int starCounter;
+
     private void Start()
     {
         PlayerHp.lose += onGameOver;
         Spawner.onWin += onWin;
+        Spawner.onLastWave += onStarActivated;
     }
+
+    private void onStarActivated()
+    {
+
+        if(starCounter > starArray.Length - 1)
+        {
+            return;
+        }
+
+        starArray[starCounter].spriteRenderer.sprite = starArray[starCounter].onSprite;
+        starCounter++;
+    }
+
     private void Update()
     {
         if (playerHP.actualBar <= 0)
@@ -53,4 +72,6 @@ public class UIComponent : MonoBehaviour
             losePanel.SetActive(true);
         }  
     }
+
+
 }

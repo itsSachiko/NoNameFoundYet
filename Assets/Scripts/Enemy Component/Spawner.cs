@@ -28,6 +28,8 @@ public class Spawner : MonoBehaviour
 
     public static Action onWin;
 
+    public Action onStarActivate;
+
     private void Awake()
     {
         foreach (Wave wave in waves)
