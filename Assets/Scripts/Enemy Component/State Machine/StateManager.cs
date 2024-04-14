@@ -127,7 +127,7 @@ public class StateManager : MonoBehaviour, IHp
         }
         enemyPull.pulledEnemies.Add(transform);
 
-        Instantiate(particleSystem);
+        Instantiate(particleSystem.gameObject,transform.position,Quaternion.identity);
 
         enemyPull.OnEnemyDeath?.Invoke();
         gameObject.SetActive(false);
