@@ -29,6 +29,7 @@ public class Spawner : MonoBehaviour
     public static Action onWin;
 
     public Action onStarActivate;
+    public Action onChoosedWeapon;
 
     private void Awake()
     {
@@ -42,6 +43,8 @@ public class Spawner : MonoBehaviour
         }
 
         waveCounter = 0;
+
+        onChoosedWeapon += () => isChoosingWeapon = false; 
 
     }
 
@@ -100,7 +103,8 @@ public class Spawner : MonoBehaviour
             {
                 yield return null;
             }
-
+            // truly ended
+            isChoosingWeapon = true;
             onLastWave?.Invoke();
             while (isChoosingWeapon)
             {

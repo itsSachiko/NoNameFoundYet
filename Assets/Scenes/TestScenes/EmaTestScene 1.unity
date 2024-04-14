@@ -2699,6 +2699,10 @@ PrefabInstance:
       value: EnemyBase
       objectReference: {fileID: 0}
     - target: {fileID: 4512632851470951803, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512632851470951803, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -33.6
       objectReference: {fileID: 0}
@@ -2738,6 +2742,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7500283211435977901, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1685155965, guid: bdabd4e26cf0f0e418d9113bd59e4d16, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

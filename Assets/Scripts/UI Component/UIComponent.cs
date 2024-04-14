@@ -27,17 +27,28 @@ public class UIComponent : MonoBehaviour
     {
         PlayerHp.lose += onGameOver;
         Spawner.onWin += onWin;
-        Spawner.onLastWave += onStarActivated;
+        Spawner.onLastWave += OnlastWave;
     }
 
 
-    private void Update()
+    //private void Update()
+    //{
+    //    if (playerHP.actualBar <= 0)
+    //    {
+    //        onGameOver();
+    //    }
+    //}
+    void OnlastWave() 
     {
-        if (playerHP.actualBar <= 0)
-        {
-            onGameOver();
-        }
+        onStarActivated();
+        OnChooseWeapon();
     }
+
+    private void OnChooseWeapon()
+    {
+        
+    }
+
     private void onStarActivated()
     {
 
