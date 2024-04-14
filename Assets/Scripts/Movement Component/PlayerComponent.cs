@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,16 +8,23 @@ public class PlayerComponent : MonoBehaviour
     [Header("Animation Setting:")]
     [SerializeField ,Tooltip("write the name of the jump animation")] 
 
-    string animDash = "Dash";
+    string animDash = "DASH";
     [SerializeField, Tooltip("write the name of the Walk animation")] 
-    string animWalk = "Walk";    
+    string animWalk = "WALK";    
     [SerializeField, Tooltip("write the name of the Idle animation")] 
-    string animIdle = "Idle";
+    string animIdle = "IDLE";
+    [SerializeField, Tooltip("write the name of the Shooting animation")] 
+    string animRanged = "RANGED";
+    [SerializeField, Tooltip("write the name of the Melee animation")]
+    string animMelee = "MELEE";
+    [SerializeField, Tooltip("write the name of the Melee animation")]
+    string animDeath = "DEATH";
 
     string currentAnim = "";
 
 
-    Animator anim;
+    [SerializeField] Animator anim;
+    [SerializeField] SpriteRenderer spriteRenderer;
     private PlayerInputs input = null;
 
     private Vector2 moveValue;
@@ -40,11 +48,13 @@ public class PlayerComponent : MonoBehaviour
     bool isDashing = false;
     bool canDash = true;
 
+    public static Action onShoot;
+    public static Action onSwing;
+
     private void Awake()
     {
         input = new PlayerInputs();
         rb = GetComponent<Rigidbody>();
-        TryGetComponent(out anim);
     }
 
     private void OnEnable()
@@ -53,7 +63,20 @@ public class PlayerComponent : MonoBehaviour
         input.Player.Movement.performed += OnHorizontal;
         input.Player.Movement.canceled += OnHorizontalCancelled;
         input.Player.Dash.started += OnDash;
+        onShoot = ShootAnim;
+        onSwing = SwingAnim;
     }
+
+    private void ShootAnim()
+    {
+        ChangeAnimation(animRanged);
+    }
+
+    private void SwingAnim()
+    {
+        ChangeAnimation(animMelee);
+    }
+
     private void OnDisable()
     {
         input.Player.Movement.performed -= OnHorizontal;
@@ -86,18 +109,14 @@ public class PlayerComponent : MonoBehaviour
     private void OnHorizontal(InputAction.CallbackContext value)
     {
         moveValue = value.ReadValue<Vector2>();
-        //if (moveValue.x > 0)
-        //{
-        //    Quaternion rot = transform.rotation;
-        //    rot= Quaternion.AngleAxis(180,Vector3.up);
-        //    transform.rotation = rot;
-        //}
-        //else if(moveValue.x < 0)
-        //{
-        //    Quaternion rot = transform.rotation;
-        //    rot = Quaternion.AngleAxis(180, -Vector3.up);
-        //    transform.rotation = rot;
-        //}
+        if (moveValue.x > 0)
+        {
+           spriteRenderer.flipX = true;
+        }
+        else if (moveValue.x < 0)
+        {
+            spriteRenderer.flipX = false;
+        }
 
         ChangeAnimation(animWalk);
     }
