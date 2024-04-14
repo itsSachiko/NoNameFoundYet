@@ -19,6 +19,10 @@ public class UIComponent : MonoBehaviour
 
     private int starCounter;
 
+    [SerializeField] public GameObject pausePanel;
+    [SerializeField] public GameObject optionPanel;
+    
+
     private void Start()
     {
         PlayerHp.lose += onGameOver;
@@ -26,6 +30,14 @@ public class UIComponent : MonoBehaviour
         Spawner.onLastWave += onStarActivated;
     }
 
+
+    private void Update()
+    {
+        if (playerHP.actualBar <= 0)
+        {
+            onGameOver();
+        }
+    }
     private void onStarActivated()
     {
 
@@ -38,12 +50,19 @@ public class UIComponent : MonoBehaviour
         starCounter++;
     }
 
-    private void Update()
+    public void onOption()
     {
-        if (playerHP.actualBar <= 0)
-        {
-            onGameOver();
-        }
+        //tutto il code che si fa nelle opzioni, panel on se viene schiacciato
+        //on option gestito come unity event
+    }
+
+    public void onReturnOnMainMenu()
+    {
+        SceneManager.LoadScene(0);
+
+        //da dare alla funzione onclick del bottone del return to main menù :DD
+
+        //anche questo gestito come unity event
     }
     public void onWin()
     {  
