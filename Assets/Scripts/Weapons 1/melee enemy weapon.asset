@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: melee enemy weapon
   m_EditorClassIdentifier: 
   allUsedBars: []
-  realoadTime: 2
+  realoadTime: 2.5
   damage: 5
   numberOfAttacks: 1
   weaponImg: {fileID: 0}
@@ -21,12 +21,12 @@ MonoBehaviour:
   coneAttackImg: {fileID: 0}
   circleAttackImg: {fileID: 0}
   range: 10
-  swingSpeed: 1
+  swingSpeed: 0.5
   thickness: 1
   IsLine: 0
   durationOfAttack: 1
   rangeOfLine: 10
-  isCone: 1
+  isCone: 0
   angleOfAttack: 45
   isCircle: 0
   numberOfSpiins: 1
