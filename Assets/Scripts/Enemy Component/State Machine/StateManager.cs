@@ -9,7 +9,7 @@ public class StateManager : MonoBehaviour, IHp
     public EnemyBaseState currentState; //reference dello stato attivo nella state machine 
 
     [Header("General Settings")]
-    [SerializeField, Range(1, 500)] public float speed;
+    [SerializeField] public float speed;
     [SerializeField] public float damage;
     [SerializeField] public float hp;
 
@@ -67,7 +67,7 @@ public class StateManager : MonoBehaviour, IHp
         rb = GetComponent<Rigidbody>();
         trailRenderer = trailRenderObj.GetComponent<TrailRenderer>();
         HP = hp;
-        mySpriteRenderer = GetComponent<SpriteRenderer>();
+        //mySpriteRenderer = GetComponent<SpriteRenderer>();
         playerPrefab = FindObjectOfType<PlayerHp>().transform;
 
     }
