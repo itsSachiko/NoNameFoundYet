@@ -86,7 +86,7 @@ public class Ranged : Weapons
 
     public void BulletStats(Bullet bullet, Transform from)
     {
-        Debug.LogWarning("uuuuAAAAAAAAaaaAaaAaAaAaAaAaAaAaAaAaAa");
+        //Debug.LogWarning("uuuuAAAAAAAAaaaAaaAaAaAaAaAaAaAaAaAaAa");
         bullet.parent = this;
         bullet.iexplode = IsExplosive;
         bullet.expRange = rangeExplosion;

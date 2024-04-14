@@ -86,7 +86,8 @@ public class PlayerWeapons : MonoBehaviour
             return;
         if (canShoot != true)
             return;
-
+        
+        
         PlayerComponent.onShoot?.Invoke();
         rangeWeapon.onRecharge += Recharge;
         rangeWeapon.onCorutine += RangedCorutine;

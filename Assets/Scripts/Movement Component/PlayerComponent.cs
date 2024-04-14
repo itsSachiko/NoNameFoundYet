@@ -121,10 +121,6 @@ public class PlayerComponent : MonoBehaviour
     {
         if (isDashing) return;
 
-        if (input.Player.Jump.WasPressedThisFrame())
-            canJump = true;
-        else
-            canJump = false;
 
         if (currentAnim != animWalk && currentAnim != animIdle)
         {
@@ -152,6 +148,7 @@ public class PlayerComponent : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         if (isDashing) return;
         rb.velocity = playerSpeed * Time.fixedDeltaTime * moveValue.normalized;
     }
