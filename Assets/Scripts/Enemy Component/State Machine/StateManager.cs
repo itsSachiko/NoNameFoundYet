@@ -52,7 +52,7 @@ public class StateManager : MonoBehaviour, IHp
     [Header("Sprite")]
     [SerializeField] public SpriteRenderer mySpriteRenderer; 
 
-    public float HP { get; set; }
+    public float HP { get => hp; set => hp = value; }
 
     public void ChangeState(EnemyBaseState state)
     {
@@ -66,7 +66,6 @@ public class StateManager : MonoBehaviour, IHp
         currentState.EnterState(this);
         rb = GetComponent<Rigidbody>();
         trailRenderer = trailRenderObj.GetComponent<TrailRenderer>();
-        HP = hp;
         //mySpriteRenderer = GetComponent<SpriteRenderer>();
         playerPrefab = FindObjectOfType<PlayerHp>().transform;
 
