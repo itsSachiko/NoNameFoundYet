@@ -69,7 +69,7 @@ public class StateManager : MonoBehaviour, IHp
         trailRenderer = trailRenderObj.GetComponent<TrailRenderer>();
         HP = hp;
         mySpriteRenderer = GetComponent<SpriteRenderer>();
-        playerPrefab = FindObjectOfType<PlayerWeapons>().transform;
+        playerPrefab = FindObjectOfType<PlayerHp>().transform;
 
     }
 

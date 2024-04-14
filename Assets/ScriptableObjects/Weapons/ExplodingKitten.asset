@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9327eb472754e24daa3fba5b3ed608e, type: 3}
-  m_Name: Pillow
+  m_Name: ExplodingKitten
   m_EditorClassIdentifier: 
   allUsedBars: []
   realoadTime: 1
-  damage: 1
+  damage: 10
   numberOfAttacks: 1
   weaponImg: {fileID: 0}
   lineAttackImg: {fileID: 0}
   coneAttackImg: {fileID: 0}
   circleAttackImg: {fileID: 0}
-  range: 4
+  range: 15
   swingSpeed: 1
   thickness: 1
   IsLine: 0
   durationOfAttack: 1
   rangeOfLine: 10
-  isCone: 1
+  isCone: 0
   angleOfAttack: 45
-  isCircle: 0
+  isCircle: 1
   numberOfSpiins: 1
