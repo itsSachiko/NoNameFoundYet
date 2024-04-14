@@ -87,6 +87,7 @@ public class PlayerWeapons : MonoBehaviour
         if (canShoot != true)
             return;
 
+        PlayerComponent.onShoot?.Invoke();
         rangeWeapon.onRecharge += Recharge;
         rangeWeapon.onCorutine += RangedCorutine;
         rangeWeapon.Attack(transform);
@@ -108,6 +109,7 @@ public class PlayerWeapons : MonoBehaviour
 
     private void OnSwing(InputAction.CallbackContext context)
     {
+       
         if (canSwing != true)
             return;
         meleeWeapon.onRecharge += Recharge;
@@ -120,6 +122,7 @@ public class PlayerWeapons : MonoBehaviour
 
         if (meleeWeapon.onCircleAtk == null)
             meleeWeapon.onCircleAtk += CircleAtk;
+        PlayerComponent.onSwing?.Invoke();
 
         //pointToStartAttack.gameObject.SetActive(true);
         meleeWeapon.Attack(pointToStartAttack);

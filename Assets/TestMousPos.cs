@@ -7,7 +7,7 @@ public class TestMousPos : MonoBehaviour
     Vector3 mousePos;
     Vector2 dir;
     Vector3 pos;
-    [SerializeField] float speed;
+    [SerializeField] float posCamY;
     Camera main;
     float angle;
 
@@ -19,13 +19,15 @@ public class TestMousPos : MonoBehaviour
 
     private void Update()
     {
-        pos = transform.position;
-        mousePos = main.ScreenToWorldPoint(Input.mousePosition);
-        dir = mousePos - pos;
-        dir = dir.normalized;
-        angle = Mathf.Atan2(dir.y, dir.x)*Mathf.Rad2Deg;
+        AimMouse();
+    }
 
-        transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
-
+    private void AimMouse()
+    {
+        Vector3 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        cursorPos.z = 0;
+        cursorPos.y += posCamY;
+        Vector2 direction = cursorPos - transform.position;
+        transform.right = direction;
     }
 }

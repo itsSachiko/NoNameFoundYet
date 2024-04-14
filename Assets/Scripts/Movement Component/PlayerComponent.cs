@@ -6,14 +6,14 @@ using UnityEngine.InputSystem;
 public class PlayerComponent : MonoBehaviour
 {
     [Header("Animation Setting:")]
-    [SerializeField ,Tooltip("write the name of the jump animation")] 
+    [SerializeField, Tooltip("write the name of the jump animation")]
 
     string animDash = "DASH";
-    [SerializeField, Tooltip("write the name of the Walk animation")] 
-    string animWalk = "WALK";    
-    [SerializeField, Tooltip("write the name of the Idle animation")] 
+    [SerializeField, Tooltip("write the name of the Walk animation")]
+    string animWalk = "WALK";
+    [SerializeField, Tooltip("write the name of the Idle animation")]
     string animIdle = "IDLE";
-    [SerializeField, Tooltip("write the name of the Shooting animation")] 
+    [SerializeField, Tooltip("write the name of the Shooting animation")]
     string animRanged = "RANGED";
     [SerializeField, Tooltip("write the name of the Melee animation")]
     string animMelee = "MELEE";
@@ -23,6 +23,8 @@ public class PlayerComponent : MonoBehaviour
     string currentAnim = "";
 
 
+
+    [SerializeField] float camPosY = 18;
     [SerializeField] Animator anim;
     [SerializeField] SpriteRenderer spriteRenderer;
     private PlayerInputs input = null;
@@ -50,11 +52,13 @@ public class PlayerComponent : MonoBehaviour
 
     public static Action onShoot;
     public static Action onSwing;
+    public static Action onAnimEnd;
 
     private void Awake()
     {
         input = new PlayerInputs();
         rb = GetComponent<Rigidbody>();
+
     }
 
     private void OnEnable()
@@ -63,26 +67,54 @@ public class PlayerComponent : MonoBehaviour
         input.Player.Movement.performed += OnHorizontal;
         input.Player.Movement.canceled += OnHorizontalCancelled;
         input.Player.Dash.started += OnDash;
-        onShoot = ShootAnim;
-        onSwing = SwingAnim;
-    }
-
-    private void ShootAnim()
-    {
-        ChangeAnimation(animRanged);
-    }
-
-    private void SwingAnim()
-    {
-        ChangeAnimation(animMelee);
+        onShoot += ShootAnim;
+        onSwing += SwingAnim;
+        onAnimEnd += OnAnimEnd;
     }
 
     private void OnDisable()
     {
         input.Player.Movement.performed -= OnHorizontal;
-        input.Player.Movement.canceled -= OnHorizontalCancelled; 
+        input.Player.Movement.canceled -= OnHorizontalCancelled;
         input.Player.Dash.started -= OnDash;
         input.Disable();
+
+        onShoot -= ShootAnim;
+        onSwing -= SwingAnim;
+        onAnimEnd -= OnAnimEnd;
+    }
+
+    private void ShootAnim()
+    {
+        CheckMousePos();
+        ChangeAnimation(animRanged);
+    }
+
+    private void SwingAnim()
+    {
+        CheckMousePos();
+        ChangeAnimation(animMelee);
+    }
+
+    void CheckMousePos()
+    {
+        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pos.y += camPosY;
+
+        if (transform.position.x < pos.x)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
+        }
+    }
+
+    void OnAnimEnd()
+    {
+        Debug.Log(currentAnim);
+        ChangeAnimation(animIdle);
     }
 
     private void Update()
@@ -94,9 +126,27 @@ public class PlayerComponent : MonoBehaviour
         else
             canJump = false;
 
-        if(moveValue == Vector2.zero)
+        if (currentAnim != animWalk && currentAnim != animIdle)
+        {
+            CheckMousePos();
+            return;
+        }
+
+        if (moveValue == Vector2.zero)
         {
             ChangeAnimation(animIdle);
+        }
+        else
+        {
+            if (moveValue.x > 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if (moveValue.x < 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+            ChangeAnimation(animWalk);
         }
     }
 
@@ -111,11 +161,11 @@ public class PlayerComponent : MonoBehaviour
         moveValue = value.ReadValue<Vector2>();
         if (moveValue.x > 0)
         {
-           spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
         else if (moveValue.x < 0)
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }
 
         ChangeAnimation(animWalk);
@@ -126,7 +176,7 @@ public class PlayerComponent : MonoBehaviour
         moveValue = Vector2.zero;
     }
 
-    
+
     //private void OnCollisionEnter(Collision collision)
     //{
     //}
@@ -163,10 +213,10 @@ public class PlayerComponent : MonoBehaviour
         if (!anim)
             return;
 
-        if (currentAnim != animation)
+        if (currentAnim != animation /*|| animation == animIdle*/)
         {
+            anim.CrossFade(animation, 0f);
             currentAnim = animation;
-            anim.CrossFade(animation,0.2f);
         }
     }
 }

@@ -136,6 +136,7 @@ MonoBehaviour:
   animRanged: RANGED
   animMelee: MELEE
   animDeath: DEATH
+  camPosY: 18
   anim: {fileID: 6592822340555643458}
   spriteRenderer: {fileID: 2262061429839953111}
   isGrounded: 1
@@ -407,6 +408,7 @@ GameObject:
   - component: {fileID: 6833495619480453443}
   - component: {fileID: 2262061429839953111}
   - component: {fileID: 6592822340555643458}
+  - component: {fileID: 2829374939937053072}
   m_Layer: 6
   m_Name: player sprite
   m_TagString: Untagged
@@ -502,6 +504,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2829374939937053072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7989815260678711728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edee9c2db57a1064ab57075ae6e2cc3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8026356391454075514
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,4 +561,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72296bfe2ef45aa4c88d62f6a36d06e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  posCamY: 18
