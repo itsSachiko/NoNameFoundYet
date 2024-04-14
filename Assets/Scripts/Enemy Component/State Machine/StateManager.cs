@@ -39,7 +39,7 @@ public class StateManager : MonoBehaviour, IHp
     [Header("Mine")]
     [SerializeField] public float waitTimeExplosion;
 
-    [HideInInspector] public Animator anim;
+    public Animator anim;
 
     [Header("AttackIndicators")]
     [SerializeField] private Transform rotator;
@@ -61,7 +61,7 @@ public class StateManager : MonoBehaviour, IHp
     }
     void Start()
     {
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         currentState = new ChasingState();
         currentState.EnterState(this);
         rb = GetComponent<Rigidbody>();
