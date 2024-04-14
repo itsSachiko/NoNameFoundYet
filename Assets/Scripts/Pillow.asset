@@ -20,13 +20,13 @@ MonoBehaviour:
   lineAttackImg: {fileID: 0}
   coneAttackImg: {fileID: 0}
   circleAttackImg: {fileID: 0}
-  range: 2
+  range: 4
   swingSpeed: 1
   thickness: 1
-  IsLine: 1
+  IsLine: 0
   durationOfAttack: 1
   rangeOfLine: 10
-  isCone: 0
+  isCone: 1
   angleOfAttack: 45
   isCircle: 0
   numberOfSpiins: 1
