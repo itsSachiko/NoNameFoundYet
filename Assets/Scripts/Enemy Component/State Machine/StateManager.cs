@@ -50,7 +50,10 @@ public class StateManager : MonoBehaviour, IHp
     [SerializeField] public Transform rotatorToPlayer;
 
     [Header("Sprite")]
-    [SerializeField] public SpriteRenderer mySpriteRenderer; 
+    [SerializeField] public SpriteRenderer mySpriteRenderer;
+
+    [Header("Death")]
+    [SerializeField] Transform particleSystem;
 
     public float HP { get => hp; set => hp = value; }
 
@@ -123,6 +126,9 @@ public class StateManager : MonoBehaviour, IHp
             return;
         }
         enemyPull.pulledEnemies.Add(transform);
+
+        Instantiate(particleSystem);
+
         enemyPull.OnEnemyDeath?.Invoke();
         gameObject.SetActive(false);
     }
