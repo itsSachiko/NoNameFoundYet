@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 507529225305554799}
   - component: {fileID: 9178602013972218842}
   - component: {fileID: 2193871951610952268}
-  - component: {fileID: 9205083436601074610}
+  - component: {fileID: 8780141507386570607}
   m_Layer: 6
   m_Name: Player Test
   m_TagString: Untagged
@@ -169,7 +169,7 @@ MonoBehaviour:
   trailRenderer: {fileID: 0}
   SwingAnimDur: 0.2
   stabAnimDur: 0.2
---- !u!114 &9205083436601074610
+--- !u!114 &8780141507386570607
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
