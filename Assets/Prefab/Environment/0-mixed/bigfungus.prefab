@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6175793537700191773
 Transform:
@@ -41,6 +41,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6175793537700191773}
     m_Modifications:
+    - target: {fileID: 700178574364354080, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 932339009371482129, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198296272494234903, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1220811484840719107, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
       propertyPath: m_LocalScale.x
       value: 100
@@ -97,6 +109,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1549793900428569222, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1998157046751799737, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
       propertyPath: m_Name
       value: fungone_nightmare
@@ -104,6 +120,34 @@ PrefabInstance:
     - target: {fileID: 1998157046751799737, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1998157046751799737, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2786043247507746673, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909487465274386751, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5071195716505463618, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814526531203862437, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8659543526842062584, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843369823080135244, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -123,9 +167,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6175793537700191773}
     m_Modifications:
+    - target: {fileID: 268741884055005326, guid: 59f9385486fe77d45b9711527740cbf5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076230143623982506, guid: 59f9385486fe77d45b9711527740cbf5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774706936572620140, guid: 59f9385486fe77d45b9711527740cbf5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3457197442342546514, guid: 59f9385486fe77d45b9711527740cbf5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676725625199180151, guid: 59f9385486fe77d45b9711527740cbf5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3686976577470761233, guid: 59f9385486fe77d45b9711527740cbf5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4634536485382147582, guid: 59f9385486fe77d45b9711527740cbf5, type: 3}
       propertyPath: m_Name
       value: fungone_dream
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634536485382147582, guid: 59f9385486fe77d45b9711527740cbf5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5411918056370345796, guid: 59f9385486fe77d45b9711527740cbf5, type: 3}
       propertyPath: m_LocalScale.x
@@ -182,6 +254,18 @@ PrefabInstance:
     - target: {fileID: 5411918056370345796, guid: 59f9385486fe77d45b9711527740cbf5, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265769828457862452, guid: 59f9385486fe77d45b9711527740cbf5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9013634384632426179, guid: 59f9385486fe77d45b9711527740cbf5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127158722309479288, guid: 59f9385486fe77d45b9711527740cbf5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

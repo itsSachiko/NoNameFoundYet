@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1175274890436080592
 Transform:
@@ -41,6 +41,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1175274890436080592}
     m_Modifications:
+    - target: {fileID: 299013924567886631, guid: a12cc66ca74eca84994cabeb5fbe14b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1484791287410576588, guid: a12cc66ca74eca84994cabeb5fbe14b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640940195033740433, guid: a12cc66ca74eca84994cabeb5fbe14b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3889959638710743304, guid: a12cc66ca74eca84994cabeb5fbe14b6, type: 3}
       propertyPath: m_Name
       value: Plant 1 nightmare
@@ -48,6 +60,22 @@ PrefabInstance:
     - target: {fileID: 3889959638710743304, guid: a12cc66ca74eca84994cabeb5fbe14b6, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3889959638710743304, guid: a12cc66ca74eca84994cabeb5fbe14b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6872729793717407744, guid: a12cc66ca74eca84994cabeb5fbe14b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527081268884542177, guid: a12cc66ca74eca84994cabeb5fbe14b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863957469252726533, guid: a12cc66ca74eca84994cabeb5fbe14b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7888744900084952773, guid: a12cc66ca74eca84994cabeb5fbe14b6, type: 3}
       propertyPath: m_LocalScale.x
@@ -105,6 +133,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8632861551317433521, guid: a12cc66ca74eca84994cabeb5fbe14b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -123,6 +155,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1175274890436080592}
     m_Modifications:
+    - target: {fileID: 251765859688070644, guid: 0f812660aa86b954aa67cf6bc014924b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 843684716222375840, guid: 0f812660aa86b954aa67cf6bc014924b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5588620937540496309, guid: 0f812660aa86b954aa67cf6bc014924b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738579883975941936, guid: 0f812660aa86b954aa67cf6bc014924b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7018364828740934656, guid: 0f812660aa86b954aa67cf6bc014924b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.05
@@ -182,6 +230,10 @@ PrefabInstance:
     - target: {fileID: 7651031981584713402, guid: 0f812660aa86b954aa67cf6bc014924b, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651031981584713402, guid: 0f812660aa86b954aa67cf6bc014924b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &683110363162732822
 Transform:
@@ -41,6 +41,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 683110363162732822}
     m_Modifications:
+    - target: {fileID: 99564706494584650, guid: 3990c27aad2cf5040a7be0f65380b0fe, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551201805238286905, guid: 3990c27aad2cf5040a7be0f65380b0fe, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925911967586901044, guid: 3990c27aad2cf5040a7be0f65380b0fe, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4558409441416851390, guid: 3990c27aad2cf5040a7be0f65380b0fe, type: 3}
       propertyPath: m_Name
       value: flowernightmare
@@ -48,6 +60,14 @@ PrefabInstance:
     - target: {fileID: 4558409441416851390, guid: 3990c27aad2cf5040a7be0f65380b0fe, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558409441416851390, guid: 3990c27aad2cf5040a7be0f65380b0fe, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755369698065827323, guid: 3990c27aad2cf5040a7be0f65380b0fe, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6518439783278199255, guid: 3990c27aad2cf5040a7be0f65380b0fe, type: 3}
       propertyPath: m_LocalScale.x
@@ -104,6 +124,14 @@ PrefabInstance:
     - target: {fileID: 6518439783278199255, guid: 3990c27aad2cf5040a7be0f65380b0fe, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8075999157376321288, guid: 3990c27aad2cf5040a7be0f65380b0fe, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517318653286765719, guid: 3990c27aad2cf5040a7be0f65380b0fe, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8814416966049333168, guid: 3990c27aad2cf5040a7be0f65380b0fe, type: 3}
       propertyPath: m_LocalScale.y
@@ -139,6 +167,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 683110363162732822}
     m_Modifications:
+    - target: {fileID: 1730544802092599657, guid: 653f2390bc7e3784ead9f263af94f1ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071144175470741986, guid: 653f2390bc7e3784ead9f263af94f1ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3083617377014929391, guid: 653f2390bc7e3784ead9f263af94f1ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617981874418619358, guid: 653f2390bc7e3784ead9f263af94f1ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4328512581912989183, guid: 653f2390bc7e3784ead9f263af94f1ad, type: 3}
       propertyPath: m_LocalScale.x
       value: 1000.00006
@@ -195,6 +239,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5432554059411903320, guid: 653f2390bc7e3784ead9f263af94f1ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6007627024187467924, guid: 653f2390bc7e3784ead9f263af94f1ad, type: 3}
       propertyPath: m_Name
       value: flowerdream
@@ -202,6 +250,18 @@ PrefabInstance:
     - target: {fileID: 6007627024187467924, guid: 653f2390bc7e3784ead9f263af94f1ad, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007627024187467924, guid: 653f2390bc7e3784ead9f263af94f1ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373545327452996506, guid: 653f2390bc7e3784ead9f263af94f1ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211029315838963546, guid: 653f2390bc7e3784ead9f263af94f1ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
