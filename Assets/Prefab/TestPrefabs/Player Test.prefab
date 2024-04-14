@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 507529225305554799}
   - component: {fileID: 9178602013972218842}
   - component: {fileID: 2193871951610952268}
+  - component: {fileID: 9205083436601074610}
   m_Layer: 6
   m_Name: Player Test
   m_TagString: Untagged
@@ -168,6 +169,19 @@ MonoBehaviour:
   trailRenderer: {fileID: 0}
   SwingAnimDur: 0.2
   stabAnimDur: 0.2
+--- !u!114 &9205083436601074610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2522323757115384699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7da15f81c76eea4ea1961910bd93102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HpBar: {fileID: 11400000, guid: f4d818fa0915a7749b064e3998a73b7a, type: 2}
 --- !u!1 &5347481150808491537
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,9 +550,9 @@ Transform:
   m_GameObject: {fileID: 8190641082960791670}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: -4.7, z: -8.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: -5, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6833495619480453443}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

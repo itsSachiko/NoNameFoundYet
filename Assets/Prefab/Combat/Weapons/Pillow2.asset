@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9327eb472754e24daa3fba5b3ed608e, type: 3}
-  m_Name: Pillow
+  m_Name: Pillow2
   m_EditorClassIdentifier: 
   allUsedBars: []
   realoadTime: 1

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 266162815679492039}
+  - component: {fileID: 91187111398261262}
   m_Layer: 0
   m_Name: sheepblue
   m_TagString: Untagged
@@ -33,6 +34,29 @@ Transform:
   - {fileID: 6428219261379326040}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &91187111398261262
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5955379575531789961}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Height: 26.58
+  m_Direction: 2
+  m_Center: {x: 0, y: -0.5, z: -6}
 --- !u!1001 &777299088739199513
 PrefabInstance:
   m_ObjectHideFlags: 0

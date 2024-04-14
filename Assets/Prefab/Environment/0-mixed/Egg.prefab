@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 634148116150884127}
+  - component: {fileID: 5006682300684403783}
   m_Layer: 0
   m_Name: Egg
   m_TagString: Untagged
@@ -33,6 +34,29 @@ Transform:
   - {fileID: 3417935228379886192}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5006682300684403783
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5243343180643064706}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 6
+  m_Height: 40
+  m_Direction: 2
+  m_Center: {x: 1, y: 0, z: -2}
 --- !u!1001 &1837501843824847557
 PrefabInstance:
   m_ObjectHideFlags: 0
