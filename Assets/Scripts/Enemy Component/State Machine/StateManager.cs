@@ -26,7 +26,8 @@ public class StateManager : MonoBehaviour, IHp
     [SerializeField] public float AttackDistance;
     [SerializeField] public Weapons myWeapon;
     bool canShoot = true;
-    [SerializeField]bool canAttackMelee = true;
+    [SerializeField] bool canAttackMelee = true;
+
 
     [Header("Charger")]
     [SerializeField] public float dashSpeed = 10f;
@@ -50,7 +51,7 @@ public class StateManager : MonoBehaviour, IHp
     [SerializeField] public Transform rotatorToPlayer;
 
     [Header("Sprite")]
-    [SerializeField] public SpriteRenderer mySpriteRenderer; 
+    [SerializeField] public SpriteRenderer mySpriteRenderer;
 
     public float HP { get => hp; set => hp = value; }
 
@@ -76,7 +77,7 @@ public class StateManager : MonoBehaviour, IHp
     {
         currentState.UpdateState(this);
 
-        if(transform.position.x < playerPrefab.position.x)
+        if (transform.position.x < playerPrefab.position.x)
         {
             mySpriteRenderer.flipX = true;
         }
@@ -183,7 +184,7 @@ public class StateManager : MonoBehaviour, IHp
         }
     }
 
-    private void LineAttack(float obj)
+    private void LineAttack()
     {
         Debug.Log("gogogoogogo");
         trailRenderObj.rotation = rotatorToPlayer.rotation;
@@ -229,7 +230,7 @@ public class StateManager : MonoBehaviour, IHp
         }
     }
 
-    private void ConeAttack(float obj)
+    private void ConeAttack()
     {
 
         Melee meleeCasting = (Melee)myWeapon;
@@ -248,7 +249,7 @@ public class StateManager : MonoBehaviour, IHp
 
         }
 
-        bool InsideCone(Transform enemy)
+        bool InsideCone(Transform player)
         {
             Vector3 dirToPlayer = playerPrefab.position - transform.position;
             dirToPlayer.z = 0f;
@@ -276,7 +277,7 @@ public class StateManager : MonoBehaviour, IHp
         }
     }
 
-    private void CircleAttack(float obj)
+    private void CircleAttack()
     {
         Melee meleeCasting = (Melee)myWeapon;
         Collider[] colliders = Physics.OverlapSphere(transform.position, meleeCasting.range, playerLayer);
@@ -291,22 +292,15 @@ public class StateManager : MonoBehaviour, IHp
         }
     }
 
+    public void MineAttack(Melee weapon)
+    {
+        StartCoroutine(MineTimer(weapon));
+    }
+
     public IEnumerator MineTimer(Melee weapon)
     {
         yield return new WaitForSeconds(waitTimeExplosion);
-
-        Collider[] enemiesHit = Physics.OverlapSphere(transform.position, weapon.range);
-        foreach (Collider collider in enemiesHit)
-        {
-            if (collider.TryGetComponent(out IHp hp))
-            {
-                hp.TakeDmg(damage);
-
-            }
-
-        }
-        TakeDmg(9999999);
-
+        CircleAttack();
     }
 
     IEnumerator SwingAnimation(float angle, Melee meleeCasting)

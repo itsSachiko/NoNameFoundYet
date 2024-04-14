@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MineAttackingState : EnemyBaseState
 {
-        float distanceFromTarget;
-        
-        Melee melee;
+    float distanceFromTarget;
+
+    Melee melee;
     public override void EnterState(StateManager enemy)
     {
         Debug.Log("entering attacking mode");
@@ -31,8 +31,9 @@ public class MineAttackingState : EnemyBaseState
             //animazione e fa danno
             enemy.anim.SetBool("isRunning", false);
             enemy.anim.SetBool("isAttacking", true);
-            enemy.StartCoroutine(enemy.MineTimer(melee));
-            
+            //enemy.StartCoroutine(enemy.MineTimer(melee));
+            enemy.StartMeleeAttack();
+
         }
 
     }

@@ -38,9 +38,9 @@ public class Melee : Weapons
     public event Recharge onRecharge;
 
     public delegate void ActivateAttack(float speed);
-    public Action<float> onLineAtk;
-    public Action<float> onConeAtk;
-    public Action<float> onCircleAtk;
+    public Action onLineAtk;
+    public Action onConeAtk;
+    public Action onCircleAtk;
 
 
 
@@ -67,20 +67,20 @@ public class Melee : Weapons
 
         if (isCone)
         {
-            onConeAtk(swingSpeed);
+            onConeAtk();
 
         }
 
         if (IsLine)
         {
             Debug.Log("I HASUGSDFSIF");
-            onLineAtk(swingSpeed);
+            onLineAtk();
 
         }
 
         if (isCircle)
         {
-            onCircleAtk(swingSpeed);
+            onCircleAtk();
         }
     }
 }

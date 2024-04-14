@@ -7,10 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class UIComponent : MonoBehaviour
 {
-    [SerializeField] public GameObject winPanel;
-    [SerializeField, Range(0,1)] float chance;
+    
+    [SerializeField, Range(0, 1)] float chance;
     float roll;
-    [SerializeField] public GameObject losePanel;
+    
 
     [SerializeField] Bars playerHP;
     [SerializeField] int loseSceneNumber;
@@ -19,11 +19,14 @@ public class UIComponent : MonoBehaviour
 
     private int starCounter;
 
+    [Header("Pannels:")]
     [SerializeField] public GameObject pausePanel;
     [SerializeField] public GameObject optionPanel;
-    
+    [SerializeField] public GameObject losePanel;
+    [SerializeField] public GameObject winPanel;
+    [SerializeField] public GameObject ChooseWeaponCanvas;
 
-    private void Start()
+    private void OnEnable()
     {
         PlayerHp.lose += onGameOver;
         Spawner.onWin += onWin;
@@ -52,13 +55,24 @@ public class UIComponent : MonoBehaviour
     private void onStarActivated()
     {
 
-        if(starCounter > starArray.Length - 1)
+        if (starCounter > starArray.Length - 1)
         {
             return;
         }
 
         starArray[starCounter].spriteRenderer.sprite = starArray[starCounter].onSprite;
         starCounter++;
+    }
+
+    void OnLastWave()
+    {
+        OnStarActivated();
+        OnChooseWeapon();
+    }
+
+    void OnChooseWeapon()
+    {
+
     }
 
     public void onOption()
@@ -71,12 +85,12 @@ public class UIComponent : MonoBehaviour
     {
         SceneManager.LoadScene(0);
 
-        //da dare alla funzione onclick del bottone del return to main menù :DD
+        //da dare alla funzione onclick del bottone del return to main menï¿½ :DD
 
         //anche questo gestito come unity event
     }
     public void onWin()
-    {  
+    {
         Time.timeScale = 0f;
         winPanel.SetActive(true);
     }
@@ -88,10 +102,10 @@ public class UIComponent : MonoBehaviour
 
     public void onGameOver()
     {
-       
+
         Time.timeScale = 0f;
         roll = Random.Range(0, 1f);
-        
+
         if (roll < chance)
         {
             SceneManager.LoadScene(loseSceneNumber);
@@ -100,7 +114,7 @@ public class UIComponent : MonoBehaviour
         else
         {
             losePanel.SetActive(true);
-        }  
+        }
     }
 
 
