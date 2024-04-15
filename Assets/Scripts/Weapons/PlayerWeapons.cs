@@ -92,10 +92,16 @@ public class PlayerWeapons : MonoBehaviour
         rangeWeapon.CorutineNull += () => ShootinCorutine = null;
         rangeWeapon.onRecharge += Recharge;
         rangeWeapon.onCorutine += RangedCorutine;
+        rangeWeapon.getBulletDir += GiveBulletDir;
         rangeWeapon.Attack(transform);
 
         
         StartCoroutine(RangeCoolodwn(rangeWeapon.realoadTime));
+    }
+
+    private Vector3 GiveBulletDir()
+    {
+        return pointToStartAttack.right;
     }
 
     void RangedCorutine(float time, Transform from)

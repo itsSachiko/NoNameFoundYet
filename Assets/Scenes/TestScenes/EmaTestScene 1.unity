@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0041223783, g: 0.00023010219, b: 0.00000009864268, a: 1}
+  m_IndirectSpecularColor: {r: 0.0041223783, g: 0.00023010217, b: 0.00000009864268, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -987,6 +987,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 218258034693851232, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 233565368342315746, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 842130319581687727, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 842130319581687727, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -995,6 +1007,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 6ac7ee6c4db29ec488ac1a8e1c4ff5d4, type: 2}
+    - target: {fileID: 1430972949100631040, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443502313756752233, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1443502313756752233, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1002,6 +1022,10 @@ PrefabInstance:
     - target: {fileID: 4444385375649859463, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
       propertyPath: m_Name
       value: Ranged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444385375649859463, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4444385375649859463, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
       propertyPath: m_IsActive
@@ -1062,6 +1086,14 @@ PrefabInstance:
     - target: {fileID: 5730689613708332961, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
       propertyPath: AttackDistance
       value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614019173551712972, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7375192000413636055, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7500283211435977901, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
       propertyPath: m_Sprite
