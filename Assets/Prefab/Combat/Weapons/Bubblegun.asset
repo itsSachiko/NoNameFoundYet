@@ -22,7 +22,8 @@ MonoBehaviour:
   realoadTime: 0.3
   damage: 1
   numberOfAttacks: 5
-  weaponImg: {fileID: 0}
+  weaponImg: {fileID: 1858744326, guid: 57198e0ff83098d46957ad402a17f73d, type: 3}
+  description: sucaTruca
   bulletPool: {fileID: 11400000, guid: 4e9dc358603c27b4d99b773c31788450, type: 2}
   projectileSpeed: 5000
   IsExplosive: 0
