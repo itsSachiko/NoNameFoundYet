@@ -16,7 +16,10 @@ MonoBehaviour:
   realoadTime: 1
   damage: 1
   numberOfAttacks: 1
-  weaponImg: {fileID: 0}
+  weaponImg: {fileID: 21300000, guid: 04c2e8cc0bbf3de47a0ecbfba9d2cc81, type: 3}
+  description: 'buble
+
+    s'
   lineAttackImg: {fileID: 0}
   coneAttackImg: {fileID: 0}
   circleAttackImg: {fileID: 0}

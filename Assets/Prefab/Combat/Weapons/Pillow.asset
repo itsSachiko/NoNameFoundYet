@@ -16,7 +16,8 @@ MonoBehaviour:
   realoadTime: 1
   damage: 1
   numberOfAttacks: 1
-  weaponImg: {fileID: 0}
+  weaponImg: {fileID: 21300000, guid: ff9ef952ddb748247aeaf80a2f2dd7c3, type: 3}
+  description: stella :3
   lineAttackImg: {fileID: 21300000, guid: f4739a5106180ce4ea59c927edd5351a, type: 3}
   coneAttackImg: {fileID: 21300000, guid: 67ea3e3b2cd83194381f1f67bda2fd07, type: 3}
   circleAttackImg: {fileID: 21300000, guid: 924f0180da1d80c4ba3b740a18625add, type: 3}

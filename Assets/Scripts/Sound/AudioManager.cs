@@ -47,7 +47,7 @@ public class AudioManager : MonoBehaviour
         if (s == null)
         {
             Debug.Log("sig, designer hai dimenticato di aggiungere il file della musica in inspector");
-
+            return;
         }
 
         else
@@ -64,9 +64,8 @@ public class AudioManager : MonoBehaviour
         if (s == null)
         {
             Debug.Log("sig, designer hai dimenticato di aggiungere il file della musica in inspector");
-
+            return;
         }
-
         else
         {
             Debug.Log("MOOOOOSECA");
