@@ -57,6 +57,13 @@ public class MenùComponents : MonoBehaviour
         InputComponent.onOff -= OnOption;
     }
 
+    public void OnReturnToMainMenu()
+    {
+        optionPanel.SetActive(false);
+        creditsPanel.SetActive(false);
+
+    }
+
     private void OnEnable()
     {
         InputComponent.onOff += OnOption;

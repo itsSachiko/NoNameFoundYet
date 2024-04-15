@@ -19,11 +19,18 @@ public class SoundPanelController : MonoBehaviour
 
     public void MusicVolume()
     {
+       
         AudioManager.Instance.MusicVolume(musicSlider.value);
     }
 
     public void SFXVolume()
     {
         AudioManager.Instance.SFXVolume(sfxSlider.value);
+    }
+
+    private void OnEnable()
+    {
+        musicSlider.value = PlayerPrefs.GetFloat("music volume");
+        sfxSlider.value = PlayerPrefs.GetFloat("sfx volume");
     }
 }
