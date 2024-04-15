@@ -2280,11 +2280,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4444385375649859463, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4444385375649859463, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
       propertyPath: m_TagString
-      value: Ranged
+      value: Charger
       objectReference: {fileID: 0}
     - target: {fileID: 4512632851470951803, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
       propertyPath: m_LocalScale.z
@@ -2338,6 +2338,10 @@ PrefabInstance:
       propertyPath: myWeapon
       value: 
       objectReference: {fileID: 11400000, guid: 136f5fde69506aa47b5209e7d7907804, type: 2}
+    - target: {fileID: 5730689613708332961, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
+      propertyPath: dashSpeed
+      value: 194
+      objectReference: {fileID: 0}
     - target: {fileID: 5730689613708332961, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
       propertyPath: playerPrefab
       value: 
