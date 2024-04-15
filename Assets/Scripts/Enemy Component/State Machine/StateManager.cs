@@ -29,7 +29,7 @@ public class StateManager : MonoBehaviour, IHp
     [SerializeField] bool canAttackMelee = true;
 
     [Header("Charger")]
-    [SerializeField, Range(1, 500)] public float dashSpeed = 10f;
+    [SerializeField, Range(1, 2000)] public float dashSpeed = 10f;
     [SerializeField] public float dashDuration;
     [SerializeField] public float dashCooldown;
     [SerializeField] public float timer;
@@ -55,6 +55,8 @@ public class StateManager : MonoBehaviour, IHp
     [Header("Death")]
     [SerializeField] Transform particleSystem;
 
+    IEnumerator shootCorutine;
+
     public float HP { get => hp; set => hp = value; }
 
     public void ChangeState(EnemyBaseState state)
@@ -62,6 +64,42 @@ public class StateManager : MonoBehaviour, IHp
         currentState = state;
         state.EnterState(this);
     }
+    private void OnEnable()
+    {
+
+        Ranged range = myWeapon as Ranged;
+        if (range != null)
+        {
+            range.onCorutine += StartShootCorutine;
+            range.CorutineNull += () => shootCorutine = null;
+            range.getBulletDir += GiveBulletDir;
+        }
+    }
+
+    private Vector3 GiveBulletDir()
+    {
+        return (playerPrefab.position - transform.position).normalized;
+    }
+
+    private void OnDisable()
+    {
+        Ranged range = myWeapon as Ranged;
+        if (range != null)
+        {
+            range.onCorutine -= StartShootCorutine;
+            range.CorutineNull = null;
+            range.getBulletDir -= GiveBulletDir;
+        }
+    }
+
+    private void StartShootCorutine(float seconds, Transform from)
+    {
+        Ranged rangedCast = myWeapon as Ranged;
+        shootCorutine = rangedCast.waitNextBullet(seconds, from);
+        StartCoroutine(shootCorutine);
+    }
+
+
     void Start()
     {
         //anim = GetComponent<Animator>();
@@ -71,8 +109,9 @@ public class StateManager : MonoBehaviour, IHp
         trailRenderer = trailRenderObj.GetComponent<TrailRenderer>();
         //mySpriteRenderer = GetComponent<SpriteRenderer>();
         playerPrefab = FindObjectOfType<PlayerHp>().transform;
-
     }
+
+
 
     void Update()
     {
@@ -98,7 +137,9 @@ public class StateManager : MonoBehaviour, IHp
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, AttackDistance);
 
-        Melee myMelee = (Melee)myWeapon;
+        Melee myMelee = myWeapon as Melee;
+        if (myMelee == null)
+            return;
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, myMelee.range);
     }
@@ -127,7 +168,7 @@ public class StateManager : MonoBehaviour, IHp
         }
         enemyPull.pulledEnemies.Add(transform);
 
-        Instantiate(particleSystem.gameObject,transform.position,Quaternion.identity);
+        Instantiate(particleSystem.gameObject, transform.position, Quaternion.identity);
 
         enemyPull.OnEnemyDeath?.Invoke();
         gameObject.SetActive(false);
@@ -139,7 +180,7 @@ public class StateManager : MonoBehaviour, IHp
         {
             AudioManager.Instance.PlaySFX("attack ranged");
             canShoot = false;
-            Ranged gun = (Ranged)myWeapon;
+            Ranged gun = myWeapon as Ranged;
             //aggiungi gun.oncoroutine += shootingCoroutine
             gun.Shoot(transform);
             yield return new WaitForSeconds(seconds);
@@ -163,7 +204,10 @@ public class StateManager : MonoBehaviour, IHp
         {
             AudioManager.Instance.PlaySFX("attack melee");
             canAttackMelee = false;
-            Melee melee = (Melee)myWeapon;
+            Melee melee = myWeapon as Melee;
+            if (melee == null)
+                StopCoroutine(nameof(MeleeCooldown));
+
             if (melee.isCircle)
             {
                 melee.onCircleAtk += CircleAttack;
@@ -191,10 +235,10 @@ public class StateManager : MonoBehaviour, IHp
 
     private void LineAttack(float obj)
     {
-        Debug.Log("gogogoogogo");
+
         trailRenderObj.rotation = rotatorToPlayer.rotation;
 
-        Melee meleeCasting = (Melee)myWeapon;
+        Melee meleeCasting = myWeapon as Melee;
         Vector3 startPos = transform.position;
         Vector3 endPos = startPos + rotatorToPlayer.right * meleeCasting.range;
         trailRenderObj.position = startPos;
@@ -238,7 +282,7 @@ public class StateManager : MonoBehaviour, IHp
     private void ConeAttack(float obj)
     {
 
-        Melee meleeCasting = (Melee)myWeapon;
+        Melee meleeCasting = myWeapon as Melee;
         Collider[] colliders = Physics.OverlapSphere(transform.position, meleeCasting.range, playerLayer);
 
         StartCoroutine(SwingAnimation(meleeCasting.angleOfAttack, meleeCasting));
@@ -284,7 +328,7 @@ public class StateManager : MonoBehaviour, IHp
 
     private void CircleAttack(float obj)
     {
-        Melee meleeCasting = (Melee)myWeapon;
+        Melee meleeCasting = myWeapon as Melee;
         Collider[] colliders = Physics.OverlapSphere(transform.position, meleeCasting.range, playerLayer);
         StartCoroutine(SwingAnimation(360, meleeCasting));
         foreach (Collider collider in colliders)
@@ -318,30 +362,34 @@ public class StateManager : MonoBehaviour, IHp
 
     IEnumerator SwingAnimation(float angle, Melee meleeCasting)
     {
-        trailRenderObj.rotation = rotatorToPlayer.rotation;
+        Transform Star = transform.GetChild(transform.childCount - 1);
+        //trailRenderObj.rotation = rotatorToPlayer.rotation;
         trailRenderObj.position = transform.position + rotatorToPlayer.right * meleeCasting.range;
         trailRenderer.startWidth = meleeCasting.range;
         rotator.parent = null;
         Quaternion startRot = rotator.rotation;
         float animTimer = 0;
-        Quaternion endRot = Quaternion.AngleAxis(angle, Vector3.forward);
-        Quaternion editedStartRot = Quaternion.Euler(startRot.eulerAngles - Vector3.forward * angle / 2);
+        Quaternion endRot = rotator.rotation * Quaternion.AngleAxis(-angle/2, Vector3.forward);
+        Quaternion editedStartRot = rotator.rotation * Quaternion.AngleAxis(angle/2, Vector3.forward);
+        //Debug.DrawRay(transform.position,, Color.magenta,3);
+        //Debug.DrawRay(transform.position, , Color.magenta,3);
         rotator.gameObject.SetActive(true);
+        Debug.DrawRay(transform.position, rotatorToPlayer.right*10,Color.blue,3);
+        trailRenderer.emitting = true;
         while (animTimer < swingAnimDuration)
         {
             rotator.rotation = Quaternion.Slerp(editedStartRot, endRot, animTimer / swingAnimDuration);
+            Star.rotation = Quaternion.Slerp(editedStartRot, endRot, animTimer / swingAnimDuration);
             animTimer += Time.deltaTime;
             yield return null;
         }
 
+        trailRenderer.emitting = false;
         rotator.gameObject.SetActive(false);
-        rotator.rotation = startRot;
+        rotator.rotation = Quaternion.Euler(Vector3.zero); // startRot
+        Star.rotation = Quaternion.Euler(Vector3.zero);
         rotator.parent = transform;
         rotator.localPosition = Vector3.zero;
     }
 
-    private void OnEnable()
-    {
-        HP = hp;
-    }
 }

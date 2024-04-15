@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 
 
@@ -25,6 +24,8 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] float SwingAnimDur = 0.5f;
     [SerializeField] float stabAnimDur = 0.25f;
 
+    bool canUseAnything = true;
+
     IEnumerator SwingCorutine;
     public IEnumerator ShootinCorutine;
 
@@ -35,6 +36,8 @@ public class PlayerWeapons : MonoBehaviour
         Rotator.gameObject.SetActive(true);
         trailRenderer = trailRendererObj.GetComponent<TrailRenderer>();
         Rotator.gameObject.SetActive(false);
+        MeleeEvents(true);
+        RangedEvents(true);
     }
 
     private void OnEnable()
@@ -45,6 +48,15 @@ public class PlayerWeapons : MonoBehaviour
 
         input.Player.Meleebutton.performed += OnSwing;
         input.Player.Meleebutton.canceled += OnSwingCanceled;
+
+        Spawner.onLastWave += OnLastWave;
+    }
+
+    private void OnLastWave()
+    {
+        canUseAnything = false;
+
+        transform.GetComponent<PlayerComponent>().enabled = false;
     }
 
     private void OnDisable()
@@ -55,6 +67,8 @@ public class PlayerWeapons : MonoBehaviour
         input.Player.Meleebutton.performed -= OnSwing;
         input.Player.Meleebutton.canceled -= OnSwingCanceled;
         input.Disable();
+
+        Spawner.onLastWave -= OnLastWave;
     }
 
     private IEnumerator RangeCoolodwn(float seconds)
@@ -82,6 +96,8 @@ public class PlayerWeapons : MonoBehaviour
 
     private void OnShoot(InputAction.CallbackContext context)
     {
+        if (canUseAnything == false)
+            return;
         if (ShootinCorutine != null)
             return;
         if (canShoot != true)
@@ -89,12 +105,16 @@ public class PlayerWeapons : MonoBehaviour
 
         AudioManager.Instance.PlaySFX("bubble shoot");
         PlayerComponent.onShoot?.Invoke();
-        rangeWeapon.onRecharge += Recharge;
-        rangeWeapon.onCorutine += RangedCorutine;
+
         rangeWeapon.Attack(transform);
 
-        
+
         StartCoroutine(RangeCoolodwn(rangeWeapon.realoadTime));
+    }
+
+    private Vector3 GiveBulletDir()
+    {
+        return pointToStartAttack.right;
     }
 
     void RangedCorutine(float time, Transform from)
@@ -105,24 +125,14 @@ public class PlayerWeapons : MonoBehaviour
 
     private void OnShootEnd(InputAction.CallbackContext context)
     {
-        rangeWeapon.onRecharge -= Recharge;
     }
 
     private void OnSwing(InputAction.CallbackContext context)
     {
-       
-        if (canSwing != true)
+
+        if (canSwing != true || canUseAnything == false)
             return;
-        meleeWeapon.onRecharge += Recharge;
 
-        if (meleeWeapon.onLineAtk == null)
-            meleeWeapon.onLineAtk += LineAtk;
-
-        if (meleeWeapon.onConeAtk == null)
-            meleeWeapon.onConeAtk += ConeAtk;
-
-        if (meleeWeapon.onCircleAtk == null)
-            meleeWeapon.onCircleAtk += CircleAtk;
 
         AudioManager.Instance.PlaySFX("pillow hit");
         PlayerComponent.onSwing?.Invoke();
@@ -158,7 +168,7 @@ public class PlayerWeapons : MonoBehaviour
             }
         }
 
-        IEnumerator Stab() 
+        IEnumerator Stab()
         {
             Rotator.gameObject.SetActive(true);
 
@@ -289,7 +299,7 @@ public class PlayerWeapons : MonoBehaviour
     private void OnSwingCanceled(InputAction.CallbackContext context)
     {
         //pointToStartAttack.gameObject.SetActive(false);
-        meleeWeapon.onRecharge -= Recharge;
+
     }
 
     void Recharge(Bars bar)
@@ -345,6 +355,73 @@ public class PlayerWeapons : MonoBehaviour
         Gizmos.DrawWireCube(pointToStartAttack.position, halfSize * 2);
         Gizmos.DrawLine(transform.position, transform.position + trailRendererObj.right * meleeWeapon.range);
     }
-
 #endif
+
+    internal void GetMeleeWeapon(Melee GivenMelee)
+    {
+        transform.GetComponent<PlayerComponent>().enabled = true;
+        MeleeEvents(false);
+        meleeWeapon = GivenMelee;
+        MeleeEvents(true);
+        canUseAnything = true;
+    }
+
+    internal void GetRangedWeapon(Ranged ranged)
+    {
+        transform.GetComponent<PlayerComponent>().enabled = true;
+        RangedEvents(false);
+        rangeWeapon = ranged;
+        RangedEvents(true);
+        canUseAnything = true;
+    }
+
+
+    void RangedEvents(bool x)
+    {
+        if (x)
+        {
+            rangeWeapon.CorutineNull += () => ShootinCorutine = null;
+            rangeWeapon.onRecharge += Recharge;
+            rangeWeapon.onCorutine += RangedCorutine;
+            rangeWeapon.getBulletDir += GiveBulletDir;
+        }
+        else
+        {
+            rangeWeapon.onRecharge -= Recharge;
+            rangeWeapon.onCorutine -= RangedCorutine;
+            rangeWeapon.CorutineNull = null;
+            rangeWeapon.getBulletDir -= GiveBulletDir;
+        }
+    }
+
+    void MeleeEvents(bool x)
+    {
+        if (x)
+        {
+            meleeWeapon.onRecharge += Recharge;
+
+            if (meleeWeapon.onLineAtk == null)
+                meleeWeapon.onLineAtk += LineAtk;
+
+            else if (meleeWeapon.onConeAtk == null)
+                meleeWeapon.onConeAtk += ConeAtk;
+
+            else if (meleeWeapon.onCircleAtk == null)
+                meleeWeapon.onCircleAtk += CircleAtk;
+        }
+        else
+        {
+            meleeWeapon.onRecharge -= Recharge;
+
+            if (meleeWeapon.onLineAtk == null)
+                meleeWeapon.onLineAtk -= LineAtk;
+
+            else if (meleeWeapon.onConeAtk == null)
+                meleeWeapon.onConeAtk -= ConeAtk;
+
+            else if (meleeWeapon.onCircleAtk == null)
+                meleeWeapon.onCircleAtk -= CircleAtk;
+        }
+    }
+
 }

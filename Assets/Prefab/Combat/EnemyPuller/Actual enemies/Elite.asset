@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9f4793511ff18e498ca68906fa24b1e, type: 3}
-  m_Name: EnemyPull 2
+  m_Name: Elite
   m_EditorClassIdentifier: 
   enemyID: 0
   pulledEnemies: []
-  enemyPrefab: {fileID: 6878494225926942973, guid: d45f4d76f3a07c64e83b4197c45d3a9f, type: 3}
+  enemyPrefab: {fileID: 186001548571042706, guid: 30af2857f33cf2a47892cb00d86832c6, type: 3}

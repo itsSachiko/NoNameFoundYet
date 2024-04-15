@@ -22,6 +22,7 @@ public class MenùComponents : MonoBehaviour
     {
         InputComponent.onOff -= OnOption;
         InputComponent.onOff -= OnCredits;
+        AudioManager.Instance.musicSource.Stop();
         SceneManager.LoadScene(1);
     }
 
@@ -54,6 +55,13 @@ public class MenùComponents : MonoBehaviour
 
         InputComponent.onOff += OnCredits;
         InputComponent.onOff -= OnOption;
+    }
+
+    public void OnReturnToMainMenu()
+    {
+        optionPanel.SetActive(false);
+        creditsPanel.SetActive(false);
+
     }
 
     private void OnEnable()
