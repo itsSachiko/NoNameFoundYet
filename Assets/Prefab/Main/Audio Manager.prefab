@@ -322,7 +322,5 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8702dc6c03da35a43a935d49e18ef3eb, type: 3}
   - name: attack charger
     clip: {fileID: 8300000, guid: 8702dc6c03da35a43a935d49e18ef3eb, type: 3}
-  - name: spawn enemy
-    clip: {fileID: 8300000, guid: 8702dc6c03da35a43a935d49e18ef3eb, type: 3}
   musicSource: {fileID: 6225458992913088747}
   sfxSource: {fileID: 7903896896544804939}
