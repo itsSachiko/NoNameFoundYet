@@ -29,7 +29,7 @@ public class Spawner : MonoBehaviour
     public static Action onWin;
 
     public Action onStarActivate;
-    public Action onChoosedWeapon;
+   
 
     private void Awake()
     {
@@ -44,8 +44,16 @@ public class Spawner : MonoBehaviour
 
         waveCounter = 0;
 
-        onChoosedWeapon += () => isChoosingWeapon = false; 
+        
 
+    }
+    private void OnEnable()
+    {
+        UIComponent.onClickedWeapon += () => isChoosingWeapon = false;
+    }
+    private void OnDisable()
+    {
+        UIComponent.onClickedWeapon = null;
     }
 
     private void Start()

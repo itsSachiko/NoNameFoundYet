@@ -1,44 +1,71 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class UIComponent : MonoBehaviour
 {
-    [SerializeField] public GameObject winPanel;
-    [SerializeField, Range(0,1)] float chance;
+    [SerializeField, Range(0, 1)] float chance;
     float roll;
-    [SerializeField] public GameObject losePanel;
 
     [SerializeField] Bars playerHP;
     [SerializeField] int loseSceneNumber;
+
+    [SerializeField] Image HpBar;
+    [SerializeField] Image waveBar;
 
     [SerializeField] SpriteHolder[] starArray;
 
     private int starCounter;
 
+    [Header("Panels")]
+    [SerializeField] public GameObject winPanel;
+    [SerializeField] public GameObject losePanel;
     [SerializeField] public GameObject pausePanel;
     [SerializeField] public GameObject optionPanel;
-    
+    [SerializeField] public GameObject chooseWeaponPanel;
 
-    private void Start()
+    public static Action onClickedWeapon;
+    public static Action<Wave> onNewWave;
+    public static Action<Bars> onBarUse;
+
+    private void OnEnable()
     {
         PlayerHp.lose += onGameOver;
         Spawner.onWin += onWin;
         Spawner.onLastWave += OnlastWave;
+        onBarUse += UpdateBar;
+        onNewWave += OnNewWave;
+    }
+
+    private void OnNewWave(Wave currentWave)
+    {
+        float duration = currentWave.waitNextSpawn * currentWave.enemies.Length;
+        StartCoroutine(WaveBarUpdate(duration));
+    }
+
+    IEnumerator WaveBarUpdate(float duration)
+    {
+        float currentTime = 0.1f;
+        float lerpedValue;
+        while (currentTime < duration)
+        {
+            lerpedValue = Mathf.MoveTowards(0, 1, currentTime / duration);
+            waveBar.fillAmount = 1 - lerpedValue;
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private void UpdateBar(Bars bar)
+    {
+        bar.barToFill.fillAmount = playerHP.actualBar / playerHP.fullBar;
     }
 
 
-    //private void Update()
-    //{
-    //    if (playerHP.actualBar <= 0)
-    //    {
-    //        onGameOver();
-    //    }
-    //}
-    void OnlastWave() 
+    void OnlastWave()
     {
         onStarActivated();
         OnChooseWeapon();
@@ -46,13 +73,13 @@ public class UIComponent : MonoBehaviour
 
     private void OnChooseWeapon()
     {
-        
+        chooseWeaponPanel.SetActive(true);
     }
 
     private void onStarActivated()
     {
 
-        if(starCounter > starArray.Length - 1)
+        if (starCounter > starArray.Length - 1)
         {
             return;
         }
@@ -67,6 +94,13 @@ public class UIComponent : MonoBehaviour
         //on option gestito come unity event
     }
 
+    public void ClickedWeapon()
+    {
+        // put a script in the () and then get the weapon :)
+        onClickedWeapon?.Invoke();
+    }
+
+
     public void onReturnOnMainMenu()
     {
         SceneManager.LoadScene(0);
@@ -76,7 +110,7 @@ public class UIComponent : MonoBehaviour
         //anche questo gestito come unity event
     }
     public void onWin()
-    {  
+    {
         Time.timeScale = 0f;
         winPanel.SetActive(true);
     }
@@ -88,10 +122,10 @@ public class UIComponent : MonoBehaviour
 
     public void onGameOver()
     {
-       
+
         Time.timeScale = 0f;
         roll = Random.Range(0, 1f);
-        
+
         if (roll < chance)
         {
             SceneManager.LoadScene(loseSceneNumber);
@@ -100,7 +134,7 @@ public class UIComponent : MonoBehaviour
         else
         {
             losePanel.SetActive(true);
-        }  
+        }
     }
 
 

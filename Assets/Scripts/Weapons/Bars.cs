@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Bar", menuName = "Weapons/Bars")]
 public class Bars : ScriptableObject
@@ -8,6 +9,8 @@ public class Bars : ScriptableObject
     public float rateRechargePerSeconds = 1;
     [Tooltip("the secods to wait after you use the bar")]
     public float waitAfterUse = 1;
+    [Tooltip("the imagie that indicates how full is the bar")]
+    public Image barToFill;
     [HideInInspector] public float actualBar;
     [HideInInspector] public bool canRecharge = true;
     [HideInInspector] public IEnumerator recharge;
