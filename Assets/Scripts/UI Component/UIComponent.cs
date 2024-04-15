@@ -76,18 +76,20 @@ public class UIComponent : MonoBehaviour
     }
     public void onWin()
     {
+        AudioManager.Instance.musicSource.Stop();
         Time.timeScale = 0f;
         winPanel.SetActive(true);
     }
 
     public void tryAgain()
     {
+        AudioManager.Instance.musicSource.Stop();
         SceneManager.LoadScene(0);
     }
 
     public void onGameOver()
     {
-
+        AudioManager.Instance.musicSource.Stop();
         Time.timeScale = 0f;
         roll = Random.Range(0, 1f);
 
