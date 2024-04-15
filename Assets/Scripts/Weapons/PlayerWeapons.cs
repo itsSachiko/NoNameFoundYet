@@ -129,7 +129,7 @@ public class PlayerWeapons : MonoBehaviour
         StartCoroutine(MeleeCooldown(meleeWeapon.realoadTime));
     }
 
-    void LineAtk(float timer)
+    void LineAtk()
     {
         trailRendererObj.rotation = pointToStartAttack.rotation;
         Vector3 startPos = transform.position;
@@ -176,7 +176,7 @@ public class PlayerWeapons : MonoBehaviour
         }
     }
 
-    void ConeAtk(float speed)
+    void ConeAtk()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, meleeWeapon.range /*/ 2*/, enemyLayerMask);
         foreach (Collider collider in colliders)
@@ -220,7 +220,7 @@ public class PlayerWeapons : MonoBehaviour
         StartCoroutine(Swing());
     }
 
-    void CircleAtk(float speed)
+    void CircleAtk()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, meleeWeapon.range / 2, enemyLayerMask);
 
