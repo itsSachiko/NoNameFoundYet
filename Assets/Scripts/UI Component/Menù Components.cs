@@ -22,6 +22,7 @@ public class MenùComponents : MonoBehaviour
     {
         InputComponent.onOff -= OnOption;
         InputComponent.onOff -= OnCredits;
+        AudioManager.Instance.musicSource.Stop();
         SceneManager.LoadScene(1);
     }
 
