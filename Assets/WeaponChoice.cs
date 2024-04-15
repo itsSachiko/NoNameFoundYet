@@ -54,10 +54,12 @@ public class WeaponChoice : MonoBehaviour
         if (range)
         {
             ChooseRanged?.Invoke(range);
+            ChangeWeaponArt.RangedCallBack?.Invoke(range.weaponImg);
         }
         else if (melee)
         {
             ChooseMelee?.Invoke(melee);
+            ChangeWeaponArt.MeleeCallBack?.Invoke(melee.weaponImg);
         }
     }
 }

@@ -125,6 +125,7 @@ public class PlayerWeapons : MonoBehaviour
 
     private void OnShootEnd(InputAction.CallbackContext context)
     {
+
     }
 
     private void OnSwing(InputAction.CallbackContext context)

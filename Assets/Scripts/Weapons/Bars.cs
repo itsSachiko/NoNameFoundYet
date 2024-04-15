@@ -6,7 +6,7 @@ public class Bars : ScriptableObject
 {
     public float fullBar = 100;
     public float rateRechargePerSeconds = 1;
-    [Tooltip("the secods to wait after you use the bar")]
+    [Tooltip("the secods to wait after you use the myBar")]
     public float waitAfterUse = 1;
     [HideInInspector] public float actualBar;
     [HideInInspector] public bool canRecharge = true;

@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class UIComponent : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class UIComponent : MonoBehaviour
     [SerializeField] public GameObject winPanel;
     [SerializeField] public GameObject ChooseWeaponCanvas;
 
+    
+
     private void OnEnable()
     {
         PlayerHp.lose += onGameOver;
@@ -29,6 +33,8 @@ public class UIComponent : MonoBehaviour
         //Spawner.onLastWave += OnStarActivated;
         Spawner.onLastWave += OnLastWave;
     }
+
+
 
     private void OnDisable()
     {
@@ -57,7 +63,7 @@ public class UIComponent : MonoBehaviour
 
     void OnChooseWeapon()
     {
-
+        ChooseWeaponCanvas.SetActive(true);
     }
 
     public void onOption()

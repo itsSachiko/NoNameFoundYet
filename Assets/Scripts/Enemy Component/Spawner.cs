@@ -47,20 +47,28 @@ public class Spawner : MonoBehaviour
         StartCoroutine(Wave(waves[waveCounter]));
     }
 
-    void SpawnEnemy(Enemy enemy)
+    void SpawnEnemy(Enemy enemy, bool NeedsToActivate = false)
     {
-
         for (int i = 0; i <= enemy.numberToSpawn; i++)
         {
             ran = Random.Range(0, spawner.Length);
-            
+
             latestEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity, spawner[ran]);
-            enemy.enemyPull.pulledEnemies.Add(latestEnemy);
-            
+
             EnemyVariableSet(latestEnemy, enemy);
             enemy.enemyPull.OnEnemyDeath += EnemyDied;
-            latestEnemy.gameObject.SetActive(false);
-            
+
+            if (NeedsToActivate)
+                latestEnemy.gameObject.SetActive(true);
+            else
+            {
+
+                enemy.enemyPull.pulledEnemies.Add(latestEnemy);
+
+                latestEnemy.gameObject.SetActive(false);
+            }
+
+
             //Transform spawnedEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity);
         }
     }
@@ -73,11 +81,10 @@ public class Spawner : MonoBehaviour
     void GetEnemy(EnemyPull enemyPull, Enemy enemy)
     {
         //AudioManager.Instance.PlaySFX("spawn enemy");
-        if(enemyPull.pulledEnemies.Count <= 0)
+        if (enemyPull.pulledEnemies.Count <= 0)
         {
-            SpawnEnemy(enemy);
+            SpawnEnemy(enemy, true);
         }
-
 
         ran = Random.Range(0, spawner.Length);
         enemyPull.pulledEnemies[0].position = spawner[ran].position;
@@ -116,6 +123,7 @@ public class Spawner : MonoBehaviour
 
         if (waveCounter < waves.Length)
         {
+            WaveBar.CalculateWaveTime(waves[waveCounter]);
             StartCoroutine(Wave(waves[waveCounter]));
         }
 
