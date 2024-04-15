@@ -142,7 +142,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2262061429839953111}
   isGrounded: 1
   canJump: 1
-  playerSpeed: 2000
+  playerSpeed: 1800
   dashSpeed: 120
   dashDuration: 0.25
   dashCooldown: 1
