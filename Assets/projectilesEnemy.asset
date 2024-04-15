@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930f5895e826aed49bfaca177410bcaf, type: 3}
+  m_Name: projectilesEnemy
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 8897966881179262346, guid: 569f2b65db9823347b504299a02e3a57, type: 3}
+  howManyToSpawn: 30
