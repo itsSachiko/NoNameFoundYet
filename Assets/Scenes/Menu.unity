@@ -2918,7 +2918,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1045736606}
-  - component: {fileID: 1045736605}
+  - component: {fileID: 1045736607}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -2926,26 +2926,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1045736605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045736604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5b89378ef378cc4dbb6f0dd015095be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicSounds:
-  - name: theme
-    clip: {fileID: 8300000, guid: 8af5bb314d4033c4dab0a23f3f69e3d4, type: 3}
-  sfxSounds: []
-  musicSource: {fileID: 401469435}
-  sfxSource: {fileID: 1945642167}
-  muteIMG: {fileID: 1245493058}
-  notMuteIMG: {fileID: 0}
 --- !u!4 &1045736606
 Transform:
   m_ObjectHideFlags: 0
@@ -2963,6 +2943,42 @@ Transform:
   - {fileID: 1945642168}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1045736607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045736604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b89378ef378cc4dbb6f0dd015095be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSounds:
+  - name: menu
+    clip: {fileID: 8300000, guid: 8af5bb314d4033c4dab0a23f3f69e3d4, type: 3}
+  - name: theme
+    clip: {fileID: 8300000, guid: 4b26603fb2455444192ca421df5c2bde, type: 3}
+  sfxSounds:
+  - name: bubble shoot
+    clip: {fileID: 8300000, guid: 7e73784cf17eabd46801a25ef1ac529c, type: 3}
+  - name: pillow hit
+    clip: {fileID: 8300000, guid: 9a9215b93da27d7478197792d47f3913, type: 3}
+  - name: charge hit
+    clip: {fileID: 8300000, guid: 4b26603fb2455444192ca421df5c2bde, type: 3}
+  - name: mine explosion
+    clip: {fileID: 8300000, guid: 89a8e428a3adcf34387c7c2187908f98, type: 3}
+  - name: attack melee
+    clip: {fileID: 8300000, guid: 8702dc6c03da35a43a935d49e18ef3eb, type: 3}
+  - name: attack ranged
+    clip: {fileID: 8300000, guid: 8702dc6c03da35a43a935d49e18ef3eb, type: 3}
+  - name: attack charger
+    clip: {fileID: 8300000, guid: 8702dc6c03da35a43a935d49e18ef3eb, type: 3}
+  - name: spawn enemy
+    clip: {fileID: 8300000, guid: 8702dc6c03da35a43a935d49e18ef3eb, type: 3}
+  musicSource: {fileID: 401469435}
+  sfxSource: {fileID: 1945642167}
 --- !u!1 &1095022614
 GameObject:
   m_ObjectHideFlags: 0
