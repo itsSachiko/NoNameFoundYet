@@ -113,7 +113,7 @@ public class StateManager : MonoBehaviour, IHp
 
 
 
-    void Update()
+    void FixedUpdate()
     {
         currentState.UpdateState(this);
 
