@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6138050853378252660}
   - component: {fileID: -2798546082639587609}
   - component: {fileID: 2014423528883466185}
-  m_Layer: 28
+  m_Layer: 29
   m_Name: BulletEnemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,10 +147,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 3319
+    m_Bits: 2295
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 268435712
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
