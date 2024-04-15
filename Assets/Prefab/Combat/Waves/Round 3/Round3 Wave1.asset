@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 349d760b7d087e346b48ab7d04844f4c, type: 3}
   m_Name: Round3 Wave1
   m_EditorClassIdentifier: 
-  waitNextSpawn: 0.2
-  waitNextWave: 1
+  waitNextSpawn: 1
+  waitNextWave: 20
   isLast: 0
   enemies:
   - enemyPrefab: {fileID: 4512632851470951803, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
