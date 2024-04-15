@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da74675b6a39859438fa7ed67808227d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5000
+  speed: 1400
   damage: 10
   hp: 20
   playerPrefab: {fileID: 0}
@@ -206,7 +206,7 @@ MonoBehaviour:
   dir: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
   enemyPull: {fileID: 0}
-  AttackDistance: 35
+  AttackDistance: 40
   myWeapon: {fileID: 11400000, guid: b898d145abe6e1646b58db2f02d29d65, type: 2}
   canAttackMelee: 1
   dashSpeed: 100
@@ -659,14 +659,6 @@ PrefabInstance:
     - target: {fileID: 3005641517867271485, guid: 09f04cec1477347459aca08016fec9ba, type: 3}
       propertyPath: m_Name
       value: Particle System
-      objectReference: {fileID: 0}
-    - target: {fileID: 3005641517867271485, guid: 09f04cec1477347459aca08016fec9ba, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3005641517867271485, guid: 09f04cec1477347459aca08016fec9ba, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5222930962812803930, guid: 09f04cec1477347459aca08016fec9ba, type: 3}
       propertyPath: m_LocalPosition.x

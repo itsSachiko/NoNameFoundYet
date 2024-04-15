@@ -12,17 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41f457fe30463e4d962ba6535188183, type: 3}
   m_Name: BubblegunEnemy
   m_EditorClassIdentifier: 
-  allUsedBars:
-  - bar: {fileID: 11400000, guid: e5a246323456c4441bb566b33acc4be5, type: 2}
-    usagePerShot: 1
-    isOvertime: 0
-  - bar: {fileID: 11400000, guid: 3c34e3142a70f144b9022d04f873d43b, type: 2}
-    usagePerShot: 2
-    isOvertime: 0
+  allUsedBars: []
   realoadTime: 0.8
   damage: 2
   numberOfAttacks: 1
   weaponImg: {fileID: 0}
+  description: Write description here
   bulletPool: {fileID: 11400000, guid: 7ab9a36316efb1b40adabf06571d3f78, type: 2}
   projectileSpeed: 1500
   IsExplosive: 0
