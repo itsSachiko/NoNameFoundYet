@@ -11,8 +11,6 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource, sfxSource;
 
 
-
-
     private void Awake()
     {
         if (Instance == null)

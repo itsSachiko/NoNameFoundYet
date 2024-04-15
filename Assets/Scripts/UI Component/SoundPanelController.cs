@@ -19,7 +19,7 @@ public class SoundPanelController : MonoBehaviour
 
     public void MusicVolume()
     {
-        Debug.Log("qwq");
+       
         AudioManager.Instance.MusicVolume(musicSlider.value);
     }
 
