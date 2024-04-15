@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da74675b6a39859438fa7ed67808227d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4700
+  speed: 1300
   damage: 2
   hp: 10
   playerPrefab: {fileID: 0}
@@ -90,7 +90,7 @@ MonoBehaviour:
   dir: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
   enemyPull: {fileID: 0}
-  AttackDistance: 40
+  AttackDistance: 50
   myWeapon: {fileID: 11400000, guid: 63cc69f0aa9fa794e89c5a595602b058, type: 2}
   canAttackMelee: 1
   dashSpeed: 1
