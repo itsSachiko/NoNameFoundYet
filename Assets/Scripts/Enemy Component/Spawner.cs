@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour
     [HideInInspector] public int waveCounter;
 
     [SerializeField] public Wave[] waves;
+    [SerializeField] Enemy[] enemiesToSpawnAtStart;
 
     [HideInInspector] public bool isChoosingWeapon;
 
@@ -32,13 +33,9 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        foreach (Wave wave in waves)
+        foreach (Enemy enemy in enemiesToSpawnAtStart)
         {
-            foreach (Enemy enemy in wave.enemies)
-            {
-
-                SpawnEnemy(enemy);
-            }
+            SpawnEnemy(enemy);
         }
 
         waveCounter = 0;
@@ -55,15 +52,15 @@ public class Spawner : MonoBehaviour
 
         for (int i = 0; i <= enemy.numberToSpawn; i++)
         {
-            AudioManager.Instance.PlaySFX("spawn enemy");
             ran = Random.Range(0, spawner.Length);
             
             latestEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity, spawner[ran]);
             enemy.enemyPull.pulledEnemies.Add(latestEnemy);
-            Debug.Log(latestEnemy.name);
+            
             EnemyVariableSet(latestEnemy, enemy);
             enemy.enemyPull.OnEnemyDeath += EnemyDied;
             latestEnemy.gameObject.SetActive(false);
+            
             //Transform spawnedEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity);
         }
     }
@@ -73,8 +70,14 @@ public class Spawner : MonoBehaviour
         numberOfEnemiesActive--;
     }
 
-    void GetEnemy(EnemyPull enemyPull)
+    void GetEnemy(EnemyPull enemyPull, Enemy enemy)
     {
+        //AudioManager.Instance.PlaySFX("spawn enemy");
+        if(enemyPull.pulledEnemies.Count <= 0)
+        {
+            SpawnEnemy(enemy);
+        }
+
 
         ran = Random.Range(0, spawner.Length);
         enemyPull.pulledEnemies[0].position = spawner[ran].position;
@@ -90,7 +93,7 @@ public class Spawner : MonoBehaviour
         {
             for (int i = 0; i <= enemy.numberToSpawn; i++)
             {
-                GetEnemy(enemy.enemyPull);
+                GetEnemy(enemy.enemyPull, enemy);
                 yield return new WaitForSeconds(currentWave.waitNextSpawn);
 
             }

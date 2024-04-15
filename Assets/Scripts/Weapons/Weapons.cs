@@ -14,10 +14,12 @@ public class Weapons : ScriptableObject
     public float numberOfAttacks = 1f;
     
     [Header("Aesthetic")]
-    public Image weaponImg;
+    public Sprite weaponImg;
+
+    [Multiline]
+    public string description = "Write description here";
 
     public delegate void Recharge(Bars bar);
-
 
     public virtual void Attack(Transform point)
     {

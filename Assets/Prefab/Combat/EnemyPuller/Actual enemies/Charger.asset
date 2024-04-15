@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9f4793511ff18e498ca68906fa24b1e, type: 3}
-  m_Name: EnemyPull 1
+  m_Name: Charger
   m_EditorClassIdentifier: 
   enemyID: 0
   pulledEnemies: []
-  enemyPrefab: {fileID: 4567676349108581418, guid: baeb1ed14fcffd84b8bded5e0704ac26, type: 3}
+  enemyPrefab: {fileID: 0}
