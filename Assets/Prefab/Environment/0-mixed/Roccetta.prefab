@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6219910741603265080}
   - component: {fileID: 6761140573465066212}
+  - component: {fileID: 7733551559895110931}
   m_Layer: 0
   m_Name: Roccetta
   m_TagString: Untagged
@@ -35,6 +36,29 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6761140573465066212
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325428190893655654}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.6
+  m_Height: 7
+  m_Direction: 2
+  m_Center: {x: -0.1, y: 0.2, z: -2}
+--- !u!136 &7733551559895110931
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
