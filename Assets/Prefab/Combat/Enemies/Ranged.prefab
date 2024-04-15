@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1060794131750678328}
   - component: {fileID: -3439208136378816596}
   m_Layer: 0
-  m_Name: RangedOld
+  m_Name: Ranged
   m_TagString: Ranged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
