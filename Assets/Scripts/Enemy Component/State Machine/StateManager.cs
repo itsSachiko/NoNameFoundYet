@@ -29,7 +29,7 @@ public class StateManager : MonoBehaviour, IHp
     [SerializeField] bool canAttackMelee = true;
 
     [Header("Charger")]
-    [SerializeField, Range(1, 500)] public float dashSpeed = 10f;
+    [SerializeField, Range(1, 2000)] public float dashSpeed = 10f;
     [SerializeField] public float dashDuration;
     [SerializeField] public float dashCooldown;
     [SerializeField] public float timer;
