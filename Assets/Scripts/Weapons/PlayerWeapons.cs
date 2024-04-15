@@ -86,8 +86,8 @@ public class PlayerWeapons : MonoBehaviour
             return;
         if (canShoot != true)
             return;
-        
-        
+
+        AudioManager.Instance.PlaySFX("bubble shoot");
         PlayerComponent.onShoot?.Invoke();
         rangeWeapon.onRecharge += Recharge;
         rangeWeapon.onCorutine += RangedCorutine;
@@ -123,6 +123,8 @@ public class PlayerWeapons : MonoBehaviour
 
         if (meleeWeapon.onCircleAtk == null)
             meleeWeapon.onCircleAtk += CircleAtk;
+
+        AudioManager.Instance.PlaySFX("pillow hit");
         PlayerComponent.onSwing?.Invoke();
 
         //pointToStartAttack.gameObject.SetActive(true);
