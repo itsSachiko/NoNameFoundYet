@@ -23,7 +23,7 @@ public class StateManager : MonoBehaviour, IHp
     [HideInInspector] public EnemyPull enemyPull;
 
     [Header("Ranged and Melee")]
-    [SerializeField, Range(1, 15)] public float AttackDistance;
+    [SerializeField, Range(1, 30)] public float AttackDistance;
     [SerializeField] public Weapons myWeapon;
     bool canShoot = true;
     [SerializeField] bool canAttackMelee = true;
@@ -140,6 +140,7 @@ public class StateManager : MonoBehaviour, IHp
             AudioManager.Instance.PlaySFX("attack ranged");
             canShoot = false;
             Ranged gun = (Ranged)myWeapon;
+            //aggiungi gun.oncoroutine += shootingCoroutine
             gun.Shoot(transform);
             yield return new WaitForSeconds(seconds);
             canShoot = true;

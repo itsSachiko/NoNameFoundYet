@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0041223783, g: 0.00023010217, b: 0.00000009864268, a: 1}
+  m_IndirectSpecularColor: {r: 0.0041223783, g: 0.00023010219, b: 0.00000009864268, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1007,6 +1007,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4444385375649859463, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
+      propertyPath: m_TagString
+      value: Ranged
+      objectReference: {fileID: 0}
     - target: {fileID: 4512632851470951803, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.77
@@ -1055,6 +1059,10 @@ PrefabInstance:
       propertyPath: myWeapon
       value: 
       objectReference: {fileID: 11400000, guid: 63cc69f0aa9fa794e89c5a595602b058, type: 2}
+    - target: {fileID: 5730689613708332961, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
+      propertyPath: AttackDistance
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 7500283211435977901, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -13566,6 +13574,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 12456513}
+  - {fileID: 308112047}
   - {fileID: 963194228}
   - {fileID: 157674505}
   - {fileID: 705507995}
@@ -13574,4 +13583,3 @@ SceneRoots:
   - {fileID: 1796400933}
   - {fileID: 543364034}
   - {fileID: 194802363}
-  - {fileID: 308112047}

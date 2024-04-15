@@ -23,7 +23,7 @@ MonoBehaviour:
   damage: 8
   numberOfAttacks: 1
   weaponImg: {fileID: 0}
-  bulletPool: {fileID: 11400000, guid: 4e9dc358603c27b4d99b773c31788450, type: 2}
+  bulletPool: {fileID: 11400000, guid: 7ab9a36316efb1b40adabf06571d3f78, type: 2}
   projectileSpeed: 5000
   IsExplosive: 0
   rangeExplosion: 0
