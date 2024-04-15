@@ -37,14 +37,15 @@ public class Spawner : MonoBehaviour
         {
             SpawnEnemy(enemy);
         }
-
+        WaveBar.CalculateWaveTime?.Invoke(waves[waveCounter]);
+        StartCoroutine(Wave(waves[waveCounter]));
         waveCounter = 0;
 
     }
 
     private void Start()
     {
-        StartCoroutine(Wave(waves[waveCounter]));
+        
     }
 
     void SpawnEnemy(Enemy enemy, bool NeedsToActivate = false)
