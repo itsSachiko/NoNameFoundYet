@@ -89,6 +89,7 @@ public class PlayerWeapons : MonoBehaviour
 
         AudioManager.Instance.PlaySFX("bubble shoot");
         PlayerComponent.onShoot?.Invoke();
+        rangeWeapon.CorutineNull += () => ShootinCorutine = null;
         rangeWeapon.onRecharge += Recharge;
         rangeWeapon.onCorutine += RangedCorutine;
         rangeWeapon.Attack(transform);
@@ -106,6 +107,9 @@ public class PlayerWeapons : MonoBehaviour
     private void OnShootEnd(InputAction.CallbackContext context)
     {
         rangeWeapon.onRecharge -= Recharge;
+        rangeWeapon.onCorutine -= RangedCorutine;
+        rangeWeapon.CorutineNull = null;
+
     }
 
     private void OnSwing(InputAction.CallbackContext context)

@@ -23,6 +23,8 @@ public class Ranged : Weapons
     public delegate void startWNB(float seconds, Transform from);
     public event startWNB onCorutine;
 
+    public Action CorutineNull;
+
     private void OnEnable()
     {
         playerWeapon = null;
@@ -78,10 +80,7 @@ public class Ranged : Weapons
 
             yield return new WaitForSeconds(seconds);
         }
-        if (playerWeapon)
-        {
-            playerWeapon.ShootinCorutine = null;
-        }
+        CorutineNull?.Invoke();
     }
 
     public void BulletStats(Bullet bullet, Transform from)
