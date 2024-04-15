@@ -55,6 +55,7 @@ public class Spawner : MonoBehaviour
 
         for (int i = 0; i <= enemy.numberToSpawn; i++)
         {
+            AudioManager.Instance.PlaySFX("spawn enemy");
             ran = Random.Range(0, spawner.Length);
             
             latestEnemy = Instantiate(enemy.enemyPrefab, spawner[ran].position, Quaternion.identity, spawner[ran]);

@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackingState : EnemyBaseState
 {
     public override void EnterState(StateManager enemy)
     {
-        enemy.anim.SetBool("isRunning", true);
-        enemy.anim.SetBool("isAttacking", false);
+        enemy.anim.SetBool("isRunning", false);
+        enemy.anim.SetBool("isAttacking", true);
         Debug.Log("entering attacking mode");
     }
 

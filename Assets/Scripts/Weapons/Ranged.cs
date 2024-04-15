@@ -23,6 +23,11 @@ public class Ranged : Weapons
     public delegate void startWNB(float seconds, Transform from);
     public event startWNB onCorutine;
 
+    public delegate Vector3 GetDir();
+    public event GetDir getBulletDir;
+
+    public Action CorutineNull;
+
     private void OnEnable()
     {
         playerWeapon = null;
@@ -47,7 +52,7 @@ public class Ranged : Weapons
 
     public void Shoot(Transform from)
     {
-        onCorutine?.Invoke(0.2f,from);
+        onCorutine?.Invoke(0.2f, from);
     }
     void GetBullet(Transform from, out Transform choosenBullet)
     {
@@ -78,15 +83,12 @@ public class Ranged : Weapons
 
             yield return new WaitForSeconds(seconds);
         }
-        if (playerWeapon)
-        {
-            playerWeapon.ShootinCorutine = null;
-        }
+        CorutineNull?.Invoke();
     }
 
     public void BulletStats(Bullet bullet, Transform from)
     {
-        Debug.LogWarning("uuuuAAAAAAAAaaaAaaAaAaAaAaAaAaAaAaAaAa");
+        //Debug.LogWarning("uuuuAAAAAAAAaaaAaaAaAaAaAaAaAaAaAaAaAa");
         bullet.parent = this;
         bullet.iexplode = IsExplosive;
         bullet.expRange = rangeExplosion;
@@ -94,7 +96,9 @@ public class Ranged : Weapons
         bullet.dmg = damage;
         bullet.speed = projectileSpeed;
         bullet.gunPoint = from;
-        bullet.dir = playerWeapon.pointToStartAttack.right;
+
+        if (getBulletDir != null)
+            bullet.dir = getBulletDir.Invoke();
         //bullet.dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - bullet.transform.position;
     }
 

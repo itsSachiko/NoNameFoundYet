@@ -52,12 +52,14 @@ public class UIComponent : MonoBehaviour
 
     public void onOption()
     {
+
         //tutto il code che si fa nelle opzioni, panel on se viene schiacciato
         //on option gestito come unity event
     }
 
     public void onReturnOnMainMenu()
     {
+        AudioManager.Instance.musicSource.Stop();
         SceneManager.LoadScene(0);
 
         //da dare alla funzione onclick del bottone del return to main menù :DD
@@ -65,7 +67,8 @@ public class UIComponent : MonoBehaviour
         //anche questo gestito come unity event
     }
     public void onWin()
-    {  
+    {
+        AudioManager.Instance.musicSource.Stop();
         Time.timeScale = 0f;
         winPanel.SetActive(true);
     }
@@ -77,7 +80,7 @@ public class UIComponent : MonoBehaviour
 
     public void onGameOver()
     {
-       
+        AudioManager.Instance.musicSource.Stop();
         Time.timeScale = 0f;
         roll = Random.Range(0, 1f);
         

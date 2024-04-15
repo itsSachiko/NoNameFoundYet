@@ -87,13 +87,21 @@ public class PlayerWeapons : MonoBehaviour
         if (canShoot != true)
             return;
 
+        AudioManager.Instance.PlaySFX("bubble shoot");
         PlayerComponent.onShoot?.Invoke();
+        rangeWeapon.CorutineNull += () => ShootinCorutine = null;
         rangeWeapon.onRecharge += Recharge;
         rangeWeapon.onCorutine += RangedCorutine;
+        rangeWeapon.getBulletDir += GiveBulletDir;
         rangeWeapon.Attack(transform);
 
         
         StartCoroutine(RangeCoolodwn(rangeWeapon.realoadTime));
+    }
+
+    private Vector3 GiveBulletDir()
+    {
+        return pointToStartAttack.right;
     }
 
     void RangedCorutine(float time, Transform from)
@@ -105,6 +113,9 @@ public class PlayerWeapons : MonoBehaviour
     private void OnShootEnd(InputAction.CallbackContext context)
     {
         rangeWeapon.onRecharge -= Recharge;
+        rangeWeapon.onCorutine -= RangedCorutine;
+        rangeWeapon.CorutineNull = null;
+
     }
 
     private void OnSwing(InputAction.CallbackContext context)
@@ -122,6 +133,8 @@ public class PlayerWeapons : MonoBehaviour
 
         if (meleeWeapon.onCircleAtk == null)
             meleeWeapon.onCircleAtk += CircleAtk;
+
+        AudioManager.Instance.PlaySFX("pillow hit");
         PlayerComponent.onSwing?.Invoke();
 
         //pointToStartAttack.gameObject.SetActive(true);
