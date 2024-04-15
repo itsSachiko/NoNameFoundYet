@@ -313,14 +313,14 @@ MonoBehaviour:
   - name: pillow hit
     clip: {fileID: 8300000, guid: 9a9215b93da27d7478197792d47f3913, type: 3}
   - name: charge hit
-    clip: {fileID: 8300000, guid: 4b26603fb2455444192ca421df5c2bde, type: 3}
+    clip: {fileID: 8300000, guid: 83fe0fe3950c3ce4caef4f23a2994a25, type: 3}
   - name: mine explosion
-    clip: {fileID: 8300000, guid: 89a8e428a3adcf34387c7c2187908f98, type: 3}
+    clip: {fileID: 8300000, guid: 4b26603fb2455444192ca421df5c2bde, type: 3}
   - name: attack melee
     clip: {fileID: 8300000, guid: 8702dc6c03da35a43a935d49e18ef3eb, type: 3}
   - name: attack ranged
-    clip: {fileID: 8300000, guid: 8702dc6c03da35a43a935d49e18ef3eb, type: 3}
+    clip: {fileID: 8300000, guid: 7e73784cf17eabd46801a25ef1ac529c, type: 3}
   - name: attack charger
-    clip: {fileID: 8300000, guid: 8702dc6c03da35a43a935d49e18ef3eb, type: 3}
+    clip: {fileID: 8300000, guid: 9a9215b93da27d7478197792d47f3913, type: 3}
   musicSource: {fileID: 6225458992913088747}
   sfxSource: {fileID: 7903896896544804939}
