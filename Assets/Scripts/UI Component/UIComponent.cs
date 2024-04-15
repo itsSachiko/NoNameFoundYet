@@ -5,16 +5,16 @@ using Random = UnityEngine.Random;
 
 public class UIComponent : MonoBehaviour
 {
-    
+
     [SerializeField, Range(0, 1)] float chance;
     float roll;
-    
+
 
     [SerializeField] Bars playerHP;
     [SerializeField] int loseSceneNumber;
 
     [SerializeField] SpriteHolder[] starArray;
-    
+
     private int starCounter;
 
     [Header("Pannels:")]
@@ -24,7 +24,7 @@ public class UIComponent : MonoBehaviour
     [SerializeField] public GameObject winPanel;
     [SerializeField] public GameObject ChooseWeaponCanvas;
 
-    
+
 
     private void OnEnable()
     {
@@ -66,17 +66,31 @@ public class UIComponent : MonoBehaviour
         ChooseWeaponCanvas.SetActive(true);
     }
 
-    public void onOption()
+    public void OnPause()
     {
-        //tutto il code che si fa nelle opzioni, panel on se viene schiacciato
-        //on option gestito come unity event
+        Time.timeScale = 0;
+        pausePanel.SetActive(true);
+    }
 
+    public void OnOptions()
+    {
         optionPanel.SetActive(true);
     }
 
+    public void OnOptionsGoback()
+    {
+        optionPanel.SetActive(false);
+    }
+
+    public void OnGoBack(GameObject ToMakeInactive)
+    {
+        ToMakeInactive.SetActive(false);
+        Time.timeScale = 1;
+    }
 
     public void onReturnOnMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
 
         //da dare alla funzione onclick del bottone del return to main menù :DD
