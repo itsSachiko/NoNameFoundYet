@@ -27,12 +27,10 @@ public class MineAttackingState : EnemyBaseState
 
         if (distanceFromTarget < melee.range)
         {
-            Debug.Log("hiiii");
-            //animazione e fa danno
+            AudioManager.Instance.PlaySFX("mine explosion");
             enemy.anim.SetBool("isRunning", false);
             enemy.anim.SetBool("isAttacking", true);
-            enemy.StartCoroutine(enemy.MineTimer(melee));
-            
+            enemy.StartCoroutine(enemy.MineTimer(melee)); 
         }
 
     }

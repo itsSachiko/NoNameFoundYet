@@ -26,7 +26,7 @@ public class StateManager : MonoBehaviour, IHp
     [SerializeField, Range(1, 15)] public float AttackDistance;
     [SerializeField] public Weapons myWeapon;
     bool canShoot = true;
-    [SerializeField]bool canAttackMelee = true;
+    [SerializeField] bool canAttackMelee = true;
 
     [Header("Charger")]
     [SerializeField, Range(1, 500)] public float dashSpeed = 10f;
@@ -78,7 +78,7 @@ public class StateManager : MonoBehaviour, IHp
     {
         currentState.UpdateState(this);
 
-        if(transform.position.x < playerPrefab.position.x)
+        if (transform.position.x < playerPrefab.position.x)
         {
             mySpriteRenderer.flipX = true;
         }
@@ -137,6 +137,7 @@ public class StateManager : MonoBehaviour, IHp
     {
         if (canShoot)
         {
+            AudioManager.Instance.PlaySFX("attack ranged");
             canShoot = false;
             Ranged gun = (Ranged)myWeapon;
             gun.Shoot(transform);
@@ -159,6 +160,7 @@ public class StateManager : MonoBehaviour, IHp
         Debug.Log("IM CRYING");
         if (canAttackMelee)
         {
+            AudioManager.Instance.PlaySFX("attack melee");
             canAttackMelee = false;
             Melee melee = (Melee)myWeapon;
             if (melee.isCircle)
@@ -297,6 +299,7 @@ public class StateManager : MonoBehaviour, IHp
     public IEnumerator MineTimer(Melee weapon)
     {
         yield return new WaitForSeconds(waitTimeExplosion);
+
 
         Collider[] enemiesHit = Physics.OverlapSphere(transform.position, weapon.range);
         foreach (Collider collider in enemiesHit)

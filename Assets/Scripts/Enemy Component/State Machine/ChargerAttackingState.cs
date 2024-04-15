@@ -7,13 +7,13 @@ public class ChargerAttackingState : EnemyBaseState
     float distanceFromTarget;
     float dashTimer;
     float delayTimer;
-    Vector3 dashVelocity; 
+    Vector3 dashVelocity;
     public override void EnterState(StateManager enemy)
     {
-
+       
         Debug.Log("entering attacking mode");
         enemy.dir = enemy.playerPrefab.position - enemy.transform.position;
-        
+
         float angle = Mathf.Atan2(enemy.dir.y, enemy.dir.x) * Mathf.Rad2Deg;
         enemy.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         dashVelocity = Vector3.zero;
@@ -24,7 +24,9 @@ public class ChargerAttackingState : EnemyBaseState
     {
         if (enemy.dashDelay > delayTimer)
         {
-            enemy.rb.velocity = Vector3.zero;   
+            AudioManager.Instance.PlaySFX("charge hit");
+            
+            enemy.rb.velocity = Vector3.zero;
             delayTimer += Time.deltaTime;
             enemy.dir = enemy.playerPrefab.position - enemy.transform.position;
             float angle = Mathf.Atan2(enemy.dir.y, enemy.dir.x) * Mathf.Rad2Deg;
@@ -34,7 +36,7 @@ public class ChargerAttackingState : EnemyBaseState
 
         else if (enemy.isDashing == false)
         {
-            
+
             if (enemy.timer < enemy.dashCooldown)
             {
                 enemy.timer += Time.deltaTime;
@@ -42,6 +44,7 @@ public class ChargerAttackingState : EnemyBaseState
 
             else
             {
+                AudioManager.Instance.PlaySFX("attack charger");
                 enemy.anim.SetBool("isRunning", false);
                 enemy.anim.SetBool("isAttacking", true);
                 enemy.timer = 0;
@@ -72,7 +75,7 @@ public class ChargerAttackingState : EnemyBaseState
 
         distanceFromTarget = Vector2.Distance(enemy.transform.position, enemy.playerPrefab.position);
 
-        if (distanceFromTarget > enemy.AttackDistance && enemy.isDashing == false) 
+        if (distanceFromTarget > enemy.AttackDistance && enemy.isDashing == false)
         {
             OnExit(enemy);
         }
@@ -86,9 +89,11 @@ public class ChargerAttackingState : EnemyBaseState
 
     public override void OnCollision(StateManager enemy, Collider collider)
     {
+
         if (collider.TryGetComponent(out IHp hp))
         {
             hp.TakeDmg(enemy.damage);
         }
+           
     }
 }
