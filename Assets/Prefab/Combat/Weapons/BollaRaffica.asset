@@ -10,21 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a41f457fe30463e4d962ba6535188183, type: 3}
-  m_Name: BubblegunEnemy
+  m_Name: BollaRaffica
   m_EditorClassIdentifier: 
   allUsedBars:
-  - bar: {fileID: 11400000, guid: e5a246323456c4441bb566b33acc4be5, type: 2}
-    usagePerShot: 1
-    isOvertime: 0
   - bar: {fileID: 11400000, guid: 3c34e3142a70f144b9022d04f873d43b, type: 2}
-    usagePerShot: 2
+    usagePerShot: 5
     isOvertime: 0
-  realoadTime: 0.8
-  damage: 2
-  numberOfAttacks: 1
+  realoadTime: 0.3
+  damage: 1
+  numberOfAttacks: 5
   weaponImg: {fileID: 0}
-  bulletPool: {fileID: 11400000, guid: 7ab9a36316efb1b40adabf06571d3f78, type: 2}
-  projectileSpeed: 1500
+  bulletPool: {fileID: 11400000, guid: 4e9dc358603c27b4d99b773c31788450, type: 2}
+  projectileSpeed: 2000
   IsExplosive: 0
   rangeExplosion: 0
   damageExplosion: 0
