@@ -22,7 +22,7 @@ public class SoundPanelController : MonoBehaviour
         AudioManager.Instance.MusicVolume(musicSlider.value);
     }
 
-    public void Start()
+    public void SFXVolume()
     {
         AudioManager.Instance.SFXVolume(sfxSlider.value);
     }
