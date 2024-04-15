@@ -23,7 +23,7 @@ public class StateManager : MonoBehaviour, IHp
     [HideInInspector] public EnemyPull enemyPull;
 
     [Header("Ranged and Melee")]
-    [SerializeField, Range(1, 30)] public float AttackDistance;
+    [SerializeField] public float AttackDistance;
     [SerializeField] public Weapons myWeapon;
     bool canShoot = true;
     [SerializeField] bool canAttackMelee = true;
@@ -114,7 +114,7 @@ public class StateManager : MonoBehaviour, IHp
 
 
 
-    void Update()
+    void FixedUpdate()
     {
         currentState.UpdateState(this);
 

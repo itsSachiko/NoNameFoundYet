@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2125369322142931614}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: rotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8318630837295945661}
   - component: {fileID: 2774881965844902969}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Palla_per_Picoco
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 5907503322823193018}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.52636594, z: 1.4516919}
+  m_LocalPosition: {x: 0.31, y: -0.52636594, z: 1.4516919}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -129,9 +129,9 @@ GameObject:
   - component: {fileID: 8037118456338650266}
   - component: {fileID: 5116111630807793177}
   - component: {fileID: 2451504263198394173}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Charger
-  m_TagString: Melee
+  m_TagString: Charger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,9 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da74675b6a39859438fa7ed67808227d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1000
-  damage: 5
-  hp: 10
+  speed: 1400
+  damage: 10
+  hp: 20
   playerPrefab: {fileID: 0}
   playerLayer:
     serializedVersion: 2
@@ -206,11 +206,11 @@ MonoBehaviour:
   dir: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
   enemyPull: {fileID: 0}
-  AttackDistance: 15
+  AttackDistance: 40
   myWeapon: {fileID: 11400000, guid: b898d145abe6e1646b58db2f02d29d65, type: 2}
   canAttackMelee: 1
-  dashSpeed: 1
-  dashDuration: 0.25
+  dashSpeed: 100
+  dashDuration: 0.75
   dashCooldown: 2
   timer: 0
   isDashing: 1
@@ -237,7 +237,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -269,7 +269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2596080096674714400}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RotateToPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 1847380669555135390}
   - component: {fileID: 1879756155782056413}
   - component: {fileID: 2966198983256733146}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NightmareSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 81487366613410755}
   - component: {fileID: 8393697287663774637}
   - component: {fileID: 1366256666037121044}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DreamSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,9 +424,9 @@ Transform:
   m_GameObject: {fileID: 8250669304462843610}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 0, z: -0.6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: -0.14}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3286912937753170357}
   m_LocalEulerAnglesHint: {x: -60, y: 0, z: 0}
@@ -471,7 +471,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1587183375, guid: bdabd4e26cf0f0e418d9113bd59e4d16, type: 3}
+  m_Sprite: {fileID: -1697003786, guid: 6abac281f9bdf07449f56ed390c33211, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -492,7 +492,7 @@ Animator:
   m_GameObject: {fileID: 8250669304462843610}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a9723181b622fc34ebf76bebe8ee63a1, type: 2}
+  m_Controller: {fileID: 9100000, guid: cd9d2f180f8f0b3478b0ec40070c953f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -513,7 +513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1826380145739559375}
   - component: {fileID: 3017551984227984770}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: trailRendererObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,10 +659,6 @@ PrefabInstance:
     - target: {fileID: 3005641517867271485, guid: 09f04cec1477347459aca08016fec9ba, type: 3}
       propertyPath: m_Name
       value: Particle System
-      objectReference: {fileID: 0}
-    - target: {fileID: 3005641517867271485, guid: 09f04cec1477347459aca08016fec9ba, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5222930962812803930, guid: 09f04cec1477347459aca08016fec9ba, type: 3}
       propertyPath: m_LocalPosition.x
