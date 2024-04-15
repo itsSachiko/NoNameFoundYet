@@ -15,8 +15,7 @@ public class ChasingState : EnemyBaseState
     public override void UpdateState(StateManager enemy)
     {
         enemy.dir = enemy.playerPrefab.position - enemy.transform.position;
-        float angle = Mathf.Atan2(enemy.dir.y, enemy.dir.x) * Mathf.Rad2Deg;
-        enemy.rotatorToPlayer.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        enemy.rotatorToPlayer.right = enemy.dir;
         enemy.rb.velocity = (enemy.dir.normalized * enemy.speed * Time.deltaTime);
 
         distanceFromTarget = Vector2.Distance(enemy.transform.position, enemy.playerPrefab.position);

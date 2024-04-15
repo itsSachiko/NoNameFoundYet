@@ -78,7 +78,7 @@ public class StateManager : MonoBehaviour, IHp
 
     private Vector3 GiveBulletDir()
     {
-        return (playerPrefab.position-transform.position).normalized;
+        return (playerPrefab.position - transform.position).normalized;
     }
 
     private void OnDisable()
@@ -235,7 +235,7 @@ public class StateManager : MonoBehaviour, IHp
 
     private void LineAttack(float obj)
     {
-        Debug.Log("gogogoogogo");
+
         trailRenderObj.rotation = rotatorToPlayer.rotation;
 
         Melee meleeCasting = myWeapon as Melee;
@@ -362,24 +362,32 @@ public class StateManager : MonoBehaviour, IHp
 
     IEnumerator SwingAnimation(float angle, Melee meleeCasting)
     {
-        trailRenderObj.rotation = rotatorToPlayer.rotation;
+        Transform Star = transform.GetChild(transform.childCount - 1);
+        //trailRenderObj.rotation = rotatorToPlayer.rotation;
         trailRenderObj.position = transform.position + rotatorToPlayer.right * meleeCasting.range;
         trailRenderer.startWidth = meleeCasting.range;
         rotator.parent = null;
         Quaternion startRot = rotator.rotation;
         float animTimer = 0;
-        Quaternion endRot = Quaternion.AngleAxis(angle, Vector3.forward);
-        Quaternion editedStartRot = Quaternion.Euler(startRot.eulerAngles - Vector3.forward * angle / 2);
+        Quaternion endRot = rotator.rotation * Quaternion.AngleAxis(-angle/2, Vector3.forward);
+        Quaternion editedStartRot = rotator.rotation * Quaternion.AngleAxis(angle/2, Vector3.forward);
+        //Debug.DrawRay(transform.position,, Color.magenta,3);
+        //Debug.DrawRay(transform.position, , Color.magenta,3);
         rotator.gameObject.SetActive(true);
+        Debug.DrawRay(transform.position, rotatorToPlayer.right*10,Color.blue,3);
+        trailRenderer.emitting = true;
         while (animTimer < swingAnimDuration)
         {
             rotator.rotation = Quaternion.Slerp(editedStartRot, endRot, animTimer / swingAnimDuration);
+            Star.rotation = Quaternion.Slerp(editedStartRot, endRot, animTimer / swingAnimDuration);
             animTimer += Time.deltaTime;
             yield return null;
         }
 
+        trailRenderer.emitting = false;
         rotator.gameObject.SetActive(false);
-        rotator.rotation = startRot;
+        rotator.rotation = Quaternion.Euler(Vector3.zero); // startRot
+        Star.rotation = Quaternion.Euler(Vector3.zero);
         rotator.parent = transform;
         rotator.localPosition = Vector3.zero;
     }
