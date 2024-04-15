@@ -64,7 +64,10 @@ public class UIComponent : MonoBehaviour
     {
         //tutto il code che si fa nelle opzioni, panel on se viene schiacciato
         //on option gestito come unity event
+
+        optionPanel.SetActive(true);
     }
+
 
     public void onReturnOnMainMenu()
     {
