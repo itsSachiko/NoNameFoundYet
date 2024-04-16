@@ -90,6 +90,7 @@ public class StateManager : MonoBehaviour, IHp
             range.CorutineNull = null;
             range.getBulletDir -= GiveBulletDir;
         }
+        StopAllCoroutines();
     }
 
     private void StartShootCorutine(float seconds, Transform from)
