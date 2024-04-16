@@ -113,7 +113,7 @@ public class Spawner : MonoBehaviour
                 yield return null;
             }
 
-            onLastWave?.Invoke();
+            //onLastWave?.Invoke();
             while (isChoosingWeapon)
             {
                 yield return null;
