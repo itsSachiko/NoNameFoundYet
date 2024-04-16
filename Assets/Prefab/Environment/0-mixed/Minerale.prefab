@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5127625656264014887}
   - component: {fileID: 3392947778730939042}
   - component: {fileID: 6694244811010747362}
+  - component: {fileID: 6325042104593121302}
   m_Layer: 0
   m_Name: Minerale
   m_TagString: Untagged
@@ -81,6 +82,20 @@ CapsuleCollider:
   m_Height: 40
   m_Direction: 2
   m_Center: {x: -0.7, y: -1.4, z: -2}
+--- !u!114 &6325042104593121302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968897150248241302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808855905050eb442961e56411cf86a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightMare: {fileID: 1960524540386448066}
+  dream: {fileID: 0}
 --- !u!1001 &255312710217824377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -198,6 +213,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bc76f68f4de4cb4eb5034253ac4f886, type: 3}
+--- !u!1 &1960524540386448066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1782901122898815675, guid: 3bc76f68f4de4cb4eb5034253ac4f886, type: 3}
+  m_PrefabInstance: {fileID: 255312710217824377}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8953914879281169653 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9208101650933185676, guid: 3bc76f68f4de4cb4eb5034253ac4f886, type: 3}

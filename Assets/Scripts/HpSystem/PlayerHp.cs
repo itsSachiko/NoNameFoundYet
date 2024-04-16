@@ -11,6 +11,10 @@ public class PlayerHp : MonoBehaviour, IHp
     [SerializeField] SpriteRenderer Estriperenderer;
     [SerializeField] float hitFlashSeconds = 0.3f;
 
+    [SerializeField] float AtWhatHP = 50;
+
+    public static Action Nightmare;
+
     public float HP
     {
         get => HpBar.actualBar;
@@ -20,9 +24,9 @@ public class PlayerHp : MonoBehaviour, IHp
     void SetHp(float value)
     {
         StartCoroutine(HitFlash(hitFlashSeconds));
-        //HP = value;
+        
         HpBar.actualBar = value;
-        Debug.Log(HP);
+        
     }
 
     IEnumerator HitFlash(float wait)
@@ -44,12 +48,16 @@ public class PlayerHp : MonoBehaviour, IHp
 
     public void TakeDmg(float damage)
     {
-        Debug.Log("i'm hurting");
+       
 
         HP-= damage;
         if(HP <= 0)
         {
             Death();
+        }
+        else if(HP < AtWhatHP)
+        {
+            Nightmare?.Invoke();
         }
     }
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 636674829168233237}
   - component: {fileID: 2508759990367988142}
   - component: {fileID: 140268185941007817}
+  - component: {fileID: -3524182956662095839}
   m_Layer: 0
   m_Name: Arch
   m_TagString: Untagged
@@ -81,6 +82,20 @@ CapsuleCollider:
   m_Height: 30
   m_Direction: 2
   m_Center: {x: 18, y: 0, z: 8}
+--- !u!114 &-3524182956662095839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106459066392518955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808855905050eb442961e56411cf86a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightMare: {fileID: 4469445958072065042}
+  dream: {fileID: 0}
 --- !u!1001 &1208282896791572261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -469,6 +484,11 @@ PrefabInstance:
 --- !u!4 &1381895498306767635 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 281989852125742134, guid: b4e49d5bdf5e69642a82aea5f2502b45, type: 3}
+  m_PrefabInstance: {fileID: 1208282896791572261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4469445958072065042 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3369263784718881591, guid: b4e49d5bdf5e69642a82aea5f2502b45, type: 3}
   m_PrefabInstance: {fileID: 1208282896791572261}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7195464804653173275

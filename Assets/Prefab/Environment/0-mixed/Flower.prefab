@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 683110363162732822}
   - component: {fileID: 8196991166071224589}
   - component: {fileID: 4049153688640335620}
+  - component: {fileID: 6643813916720295095}
   m_Layer: 0
   m_Name: Flower
   m_TagString: Untagged
@@ -81,6 +82,20 @@ CapsuleCollider:
   m_Height: 40
   m_Direction: 2
   m_Center: {x: -0.5, y: 0, z: -2}
+--- !u!114 &6643813916720295095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530117775825391970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808855905050eb442961e56411cf86a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightMare: {fileID: 8111525157240468831}
+  dream: {fileID: 0}
 --- !u!1001 &5752033624417786593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -205,6 +220,11 @@ PrefabInstance:
 --- !u!4 &1559778642518874934 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6518439783278199255, guid: 3990c27aad2cf5040a7be0f65380b0fe, type: 3}
+  m_PrefabInstance: {fileID: 5752033624417786593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8111525157240468831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4558409441416851390, guid: 3990c27aad2cf5040a7be0f65380b0fe, type: 3}
   m_PrefabInstance: {fileID: 5752033624417786593}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6229939179026856606

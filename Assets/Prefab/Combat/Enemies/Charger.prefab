@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 8037118456338650266}
   - component: {fileID: 5116111630807793177}
   - component: {fileID: 2451504263198394173}
+  - component: {fileID: -3763605029110575027}
   m_Layer: 8
   m_Name: Charger
   m_TagString: Charger
@@ -260,6 +261,18 @@ MonoBehaviour:
   onSprite: {fileID: 0}
   offSprite: {fileID: 0}
   spriteRenderer: {fileID: 0}
+--- !u!114 &-3763605029110575027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5963261176269581713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91335942f8cc75248a12262a42ada4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7093918646777480036
 GameObject:
   m_ObjectHideFlags: 0

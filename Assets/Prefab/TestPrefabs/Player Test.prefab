@@ -182,6 +182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HpBar: {fileID: 11400000, guid: f4d818fa0915a7749b064e3998a73b7a, type: 2}
+  Estriperenderer: {fileID: 0}
+  hitFlashSeconds: 0.3
+  AtWhatHP: 0
 --- !u!1 &5347481150808491537
 GameObject:
   m_ObjectHideFlags: 0
