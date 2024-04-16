@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerHp : MonoBehaviour, IHp
@@ -6,6 +7,9 @@ public class PlayerHp : MonoBehaviour, IHp
     public Bars HpBar;
 
     public static Action lose;
+
+    [SerializeField] SpriteRenderer Estriperenderer;
+    [SerializeField] float hitFlashSeconds = 0.3f;
 
     public float HP
     {
@@ -15,9 +19,18 @@ public class PlayerHp : MonoBehaviour, IHp
 
     void SetHp(float value)
     {
+        StartCoroutine(HitFlash(hitFlashSeconds));
         //HP = value;
         HpBar.actualBar = value;
         Debug.Log(HP);
+    }
+
+    IEnumerator HitFlash(float wait)
+    {
+        Color Startcolor = Estriperenderer.color;
+        Estriperenderer.color = Color.red;
+        yield return new WaitForSeconds(wait);
+        Estriperenderer.color = Startcolor;
     }
 
     public void HpUp(float Heal)

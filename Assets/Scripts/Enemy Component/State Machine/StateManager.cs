@@ -147,12 +147,22 @@ public class StateManager : MonoBehaviour, IHp
 #endif
     public void TakeDmg(float damage)
     {
+        StartCoroutine(FlashRed());
         HP -= damage;
         if (HP <= 0)
         {
             Death();
         }
 
+    }
+
+    IEnumerator FlashRed()
+    {
+        SpriteRenderer x = GetComponentInChildren<SpriteRenderer>();
+        Color startColor = x.color;
+        x.color = Color.red;
+        yield return new WaitForSeconds(0.3f);
+        x.color = startColor;
     }
 
     public void HpUp(float Heal)
