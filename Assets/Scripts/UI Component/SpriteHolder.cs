@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpriteHolder : MonoBehaviour
 {
     public Sprite onSprite;
     public Sprite offSprite;
 
-    [HideInInspector]public SpriteRenderer spriteRenderer;
+    [HideInInspector]public Image spriteRenderer;
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<Image>();
     }
 }

@@ -637,6 +637,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7585605971868154565, guid: baec29e07ae1cd0459e40f83bf74badd, type: 3}
+      propertyPath: chance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7585605971868154565, guid: baec29e07ae1cd0459e40f83bf74badd, type: 3}
       propertyPath: winPanel
       value: 
       objectReference: {fileID: 1999939072}
@@ -644,6 +648,10 @@ PrefabInstance:
       propertyPath: losePanel
       value: 
       objectReference: {fileID: 2049238495}
+    - target: {fileID: 7585605971868154565, guid: baec29e07ae1cd0459e40f83bf74badd, type: 3}
+      propertyPath: loseSceneNumber
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7371074480349147590, guid: baec29e07ae1cd0459e40f83bf74badd, type: 3}
