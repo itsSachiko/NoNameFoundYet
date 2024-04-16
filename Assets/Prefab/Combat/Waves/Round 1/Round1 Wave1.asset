@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Round1 Wave1
   m_EditorClassIdentifier: 
   waitNextSpawn: 1
-  waitNextWave: 20
+  waitNextWave: 50
   isLast: 0
   enemies:
   - enemyPrefab: {fileID: 4512632851470951803, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
