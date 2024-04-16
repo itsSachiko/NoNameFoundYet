@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 955908ecb7c047d409e773c55b351c96
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/MainSceneDream.unity
     guid: 9c622ef797e0a6a4dbbd583634b5f51c
   - enabled: 1
     path: Assets/Scenes/VideoLose.unity
