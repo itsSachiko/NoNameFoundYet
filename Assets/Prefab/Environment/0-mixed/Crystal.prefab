@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5093735589755901637}
   - component: {fileID: 598558035921653476}
   - component: {fileID: 2473963867866324518}
+  - component: {fileID: 2333381689530361086}
   m_Layer: 0
   m_Name: Crystal
   m_TagString: Untagged
@@ -81,6 +82,20 @@ CapsuleCollider:
   m_Height: 40
   m_Direction: 2
   m_Center: {x: 0.5, y: 2, z: -2}
+--- !u!114 &2333381689530361086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9046345641862505179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808855905050eb442961e56411cf86a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightMare: {fileID: 7060395664841009499}
+  dream: {fileID: 0}
 --- !u!1001 &895984887864045467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -403,5 +418,10 @@ PrefabInstance:
 --- !u!4 &6153082273123861403 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2453869677318285416, guid: 1a8cca448bf6c9848a2b8c4d0b17be27, type: 3}
+  m_PrefabInstance: {fileID: 8604627101521652723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7060395664841009499 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1626457735428817576, guid: 1a8cca448bf6c9848a2b8c4d0b17be27, type: 3}
   m_PrefabInstance: {fileID: 8604627101521652723}
   m_PrefabAsset: {fileID: 0}

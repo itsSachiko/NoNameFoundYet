@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 266162815679492039}
   - component: {fileID: 91187111398261262}
+  - component: {fileID: 3248688382271330848}
   m_Layer: 0
   m_Name: sheepblue
   m_TagString: Untagged
@@ -57,6 +58,20 @@ CapsuleCollider:
   m_Height: 26.58
   m_Direction: 2
   m_Center: {x: 0, y: -0.5, z: -6}
+--- !u!114 &3248688382271330848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5955379575531789961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808855905050eb442961e56411cf86a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightMare: {fileID: 5944276453446576866}
+  dream: {fileID: 0}
 --- !u!1001 &777299088739199513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -312,6 +327,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b7fd4a888284924b9786d13aa6b390e, type: 3}
+--- !u!1 &5944276453446576866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6760782881035071104, guid: 8b7fd4a888284924b9786d13aa6b390e, type: 3}
+  m_PrefabInstance: {fileID: 1129681975549215842}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6428219261379326040 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6240001825002714170, guid: 8b7fd4a888284924b9786d13aa6b390e, type: 3}

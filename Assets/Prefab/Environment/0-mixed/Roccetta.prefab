@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6219910741603265080}
   - component: {fileID: 6761140573465066212}
   - component: {fileID: 7733551559895110931}
+  - component: {fileID: -796676130255609399}
   m_Layer: 0
   m_Name: Roccetta
   m_TagString: Untagged
@@ -81,6 +82,20 @@ CapsuleCollider:
   m_Height: 7
   m_Direction: 2
   m_Center: {x: -0.1, y: 0.2, z: -2}
+--- !u!114 &-796676130255609399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325428190893655654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808855905050eb442961e56411cf86a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightMare: {fileID: 7434854601040565666}
+  dream: {fileID: 0}
 --- !u!1001 &3039753552605092975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -288,6 +303,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 529e61bafe5b09147862b2482efdce45, type: 3}
+--- !u!1 &7434854601040565666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4414038039751452195, guid: 529e61bafe5b09147862b2482efdce45, type: 3}
+  m_PrefabInstance: {fileID: 6515645346419438465}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7486957701413828910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4434705016680647343, guid: 529e61bafe5b09147862b2482efdce45, type: 3}

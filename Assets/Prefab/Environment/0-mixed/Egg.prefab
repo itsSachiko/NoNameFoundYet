@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 634148116150884127}
   - component: {fileID: 5006682300684403783}
   - component: {fileID: 6216608812500960718}
+  - component: {fileID: -7186127281445246856}
   m_Layer: 0
   m_Name: Egg
   m_TagString: Untagged
@@ -81,6 +82,20 @@ CapsuleCollider:
   m_Height: 40
   m_Direction: 2
   m_Center: {x: 1, y: 0, z: -2}
+--- !u!114 &-7186127281445246856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5243343180643064706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808855905050eb442961e56411cf86a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightMare: {fileID: 5959763602654387278}
+  dream: {fileID: 0}
 --- !u!1001 &1837501843824847557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229,6 +244,11 @@ PrefabInstance:
 --- !u!4 &3417935228379886192 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3958364774234740917, guid: ece34fd7f5d4d22488a25e9e4dfa8719, type: 3}
+  m_PrefabInstance: {fileID: 1837501843824847557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5959763602654387278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5419320579260577419, guid: ece34fd7f5d4d22488a25e9e4dfa8719, type: 3}
   m_PrefabInstance: {fileID: 1837501843824847557}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8857309393189225054

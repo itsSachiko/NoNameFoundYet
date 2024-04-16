@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2897131110868462070}
   - component: {fileID: 4373710496879404573}
+  - component: {fileID: -3893970127124649509}
   m_Layer: 0
   m_Name: sheepyellow
   m_TagString: Untagged
@@ -57,6 +58,20 @@ CapsuleCollider:
   m_Height: 26.58
   m_Direction: 2
   m_Center: {x: 0, y: -0.5, z: -6}
+--- !u!114 &-3893970127124649509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7028133441594302265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808855905050eb442961e56411cf86a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightMare: {fileID: 1450767632507478779}
+  dream: {fileID: 0}
 --- !u!1001 &5358719098563760113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -174,6 +189,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+--- !u!1 &1450767632507478779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6809398489886272778, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}
+  m_PrefabInstance: {fileID: 5358719098563760113}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2263614981785155649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6139540394619238320, guid: c4bf578f16f58194595560eb00bbdddc, type: 3}

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2702472712009257815}
   - component: {fileID: 3091673372822616604}
+  - component: {fileID: 1634056351649750190}
   m_Layer: 0
   m_Name: Rocciona
   m_TagString: Untagged
@@ -57,6 +58,20 @@ CapsuleCollider:
   m_Height: 7
   m_Direction: 2
   m_Center: {x: -0.07, y: 0, z: -2}
+--- !u!114 &1634056351649750190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143417513177152512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808855905050eb442961e56411cf86a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightMare: {fileID: 6541933840716157530}
+  dream: {fileID: 0}
 --- !u!1001 &550285670694745969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -150,6 +165,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f46deefec2a7d544b9187584fe892b58, type: 3}
+--- !u!1 &6541933840716157530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6731368292541343019, guid: f46deefec2a7d544b9187584fe892b58, type: 3}
+  m_PrefabInstance: {fileID: 550285670694745969}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8551001273085704371 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8144834403694071746, guid: f46deefec2a7d544b9187584fe892b58, type: 3}

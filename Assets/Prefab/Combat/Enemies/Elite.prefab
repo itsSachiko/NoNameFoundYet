@@ -454,6 +454,7 @@ GameObject:
   - component: {fileID: 5730689613708332961}
   - component: {fileID: 3694405936166840451}
   - component: {fileID: 4246422474510501440}
+  - component: {fileID: 8760862814704290311}
   m_Layer: 8
   m_Name: Elite
   m_TagString: Melee
@@ -585,6 +586,18 @@ MonoBehaviour:
   onSprite: {fileID: 0}
   offSprite: {fileID: 0}
   spriteRenderer: {fileID: 0}
+--- !u!114 &8760862814704290311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4444385375649859463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91335942f8cc75248a12262a42ada4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6614019173551712972
 GameObject:
   m_ObjectHideFlags: 0

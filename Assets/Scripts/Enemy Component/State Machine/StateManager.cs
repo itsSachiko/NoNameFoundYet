@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class StateManager : MonoBehaviour, IHp
 {
@@ -153,7 +151,6 @@ public class StateManager : MonoBehaviour, IHp
         {
             Death();
         }
-
     }
 
     IEnumerator FlashRed()

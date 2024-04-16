@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6175793537700191773}
   - component: {fileID: 4847392454430166035}
+  - component: {fileID: -7697044480475391805}
   m_Layer: 0
   m_Name: bigfungus
   m_TagString: Untagged
@@ -57,6 +58,20 @@ CapsuleCollider:
   m_Height: 20.87
   m_Direction: 2
   m_Center: {x: 0.25, y: 0, z: -6}
+--- !u!114 &-7697044480475391805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3829567629565012891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808855905050eb442961e56411cf86a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightMare: {fileID: 3978315053481285472}
+  dream: {fileID: 0}
 --- !u!1001 &3210839252669759193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178,6 +193,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
+--- !u!1 &3978315053481285472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1998157046751799737, guid: 97602aed413849245bf83d46dfc734dc, type: 3}
+  m_PrefabInstance: {fileID: 3210839252669759193}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4358922426011553242 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1220811484840719107, guid: 97602aed413849245bf83d46dfc734dc, type: 3}

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6390216008417001737}
   - component: {fileID: 1831537524824934194}
+  - component: {fileID: 49998810135719037}
   m_Layer: 0
   m_Name: Plant2
   m_TagString: Untagged
@@ -57,6 +58,20 @@ CapsuleCollider:
   m_Height: 18.81
   m_Direction: 2
   m_Center: {x: 0.18, y: 0.12, z: -6}
+--- !u!114 &49998810135719037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390436580395373541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808855905050eb442961e56411cf86a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightMare: {fileID: 5184044044879251141}
+  dream: {fileID: 0}
 --- !u!1001 &5897475943068002192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -299,5 +314,10 @@ PrefabInstance:
 --- !u!4 &4654033372205970227 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3465802426888072417, guid: 7f789aff25bb67946bd5895d071376fd, type: 3}
+  m_PrefabInstance: {fileID: 8110827075125895122}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5184044044879251141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3998667431214979351, guid: 7f789aff25bb67946bd5895d071376fd, type: 3}
   m_PrefabInstance: {fileID: 8110827075125895122}
   m_PrefabAsset: {fileID: 0}
