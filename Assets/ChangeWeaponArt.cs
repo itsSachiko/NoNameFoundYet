@@ -7,18 +7,18 @@ public class ChangeWeaponArt : MonoBehaviour
     [SerializeField, Tooltip("True = ranged \n"+"False = Melee")] bool Ranged_Melee;
     [SerializeField] Image myImage;
 
-    public static Action<Sprite> RangedCallBack;
-    public static Action<Sprite> MeleeCallBack;
+    //public static Action<Sprite> RangedCallBack;
+    //public static Action<Sprite> MeleeCallBack;
 
     private void OnEnable()
     {
         if (Ranged_Melee)
         {
-            RangedCallBack += ChangeImage;
+            //RangedCallBack += ChangeImage;
         }
         else
         {
-            MeleeCallBack += ChangeImage;
+            //MeleeCallBack += ChangeImage;
         }
     }
 
@@ -26,11 +26,11 @@ public class ChangeWeaponArt : MonoBehaviour
     {
         if (Ranged_Melee)
         {
-            RangedCallBack -= ChangeImage;
+            //RangedCallBack -= ChangeImage;
         }
         else
         {
-            MeleeCallBack -= ChangeImage;
+            //MeleeCallBack -= ChangeImage;
         }
     }
 

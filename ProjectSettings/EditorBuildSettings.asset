@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VideoLose.unity
     guid: 88996e7fb5b10b7498f2105581831ba6
+  - enabled: 1
+    path: Assets/Scenes/MainSceneNightmare.unity
+    guid: 37a2dfbee0ca6574f9d0c0fabc5b68d6
   m_configObjects: {}

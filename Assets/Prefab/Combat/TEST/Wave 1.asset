@@ -10,18 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 349d760b7d087e346b48ab7d04844f4c, type: 3}
-  m_Name: Round3 Wave1
+  m_Name: Wave 1
   m_EditorClassIdentifier: 
-  waitNextSpawn: 1
-  waitNextWave: 20
-  isLast: 0
+  waitNextSpawn: 0.2
+  waitNextWave: 1
+  isLast: 1
   enemies:
   - enemyPrefab: {fileID: 4512632851470951803, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
-    numberToSpawn: 3
+    numberToSpawn: 2
     enemyPull: {fileID: 11400000, guid: ced0d0d7dcb2659449841749081b0bcd, type: 2}
-  - enemyPrefab: {fileID: 186001548571042706, guid: 30af2857f33cf2a47892cb00d86832c6, type: 3}
-    numberToSpawn: 3
-    enemyPull: {fileID: 11400000, guid: f9f248bd06372464b9ba3c813cdfca32, type: 2}
-  - enemyPrefab: {fileID: 3286912937753170357, guid: 33ed80ef7575af145b8d3651eaed3d22, type: 3}
-    numberToSpawn: 1
-    enemyPull: {fileID: 11400000, guid: 3a6c0ecb5005c804f9e04fe7f43718f0, type: 2}

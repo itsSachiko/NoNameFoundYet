@@ -54,9 +54,9 @@ public class PlayerWeapons : MonoBehaviour
 
     private void OnLastWave()
     {
-        canUseAnything = false;
+        //canUseAnything = false;
 
-        transform.GetComponent<PlayerComponent>().enabled = false;
+        //transform.GetComponent<PlayerComponent>().enabled = false;
     }
 
     private void OnDisable()

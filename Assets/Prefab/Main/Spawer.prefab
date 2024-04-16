@@ -410,26 +410,28 @@ MonoBehaviour:
   waveCounter: 0
   waves:
   - {fileID: 11400000, guid: 39c085697aba75747a743f70c49a32e6, type: 2}
-  - {fileID: 11400000, guid: 13acb5c953e158147a7cfdfef02cf57a, type: 2}
-  - {fileID: 11400000, guid: aee14f9afe13b6343958704c2d9ae0aa, type: 2}
   - {fileID: 11400000, guid: 00a966818c99e2a4db06e2e40ed04aef, type: 2}
   - {fileID: 11400000, guid: fef79dd8c6311d245a514a3e30f70e30, type: 2}
-  - {fileID: 11400000, guid: e91e409e6f3628c42945bfe23dbfb9f9, type: 2}
-  - {fileID: 11400000, guid: aab5a0020e438db4eb6ecc08b98196c3, type: 2}
   - {fileID: 11400000, guid: 1e7d42b8e061ab64da0f8625ed5399d6, type: 2}
   - {fileID: 11400000, guid: 97ad9947f6e662d40b9e1b1f867a90ad, type: 2}
-  - {fileID: 11400000, guid: a3e034180677bbe438d1745c08db63c5, type: 2}
-  - {fileID: 11400000, guid: 5dd96f20bd471284eb086880e28ebef2, type: 2}
   - {fileID: 11400000, guid: 1ac2934886095b247a42d60123ea3f83, type: 2}
   - {fileID: 11400000, guid: 5c236bcbd1b388e45a95e3e993898c93, type: 2}
-  - {fileID: 11400000, guid: 7176d4b0dee0a1444b413d6c8a548679, type: 2}
-  - {fileID: 11400000, guid: fbfc87559b826fb438cfdb03c676f913, type: 2}
   - {fileID: 11400000, guid: 22d00af9035260f4eaaaf85cdf2958ef, type: 2}
   - {fileID: 11400000, guid: bf4624876d3346446913ba6f294108bc, type: 2}
-  - {fileID: 11400000, guid: 6829688948f06714b8f6eb936a671e2c, type: 2}
-  - {fileID: 11400000, guid: ff4d4d9796b881d46930d01493b4a1c3, type: 2}
   - {fileID: 11400000, guid: acefc662a1fa5ad4c8be2086dc994d65, type: 2}
-  enemiesToSpawnAtStart: []
+  enemiesToSpawnAtStart:
+  - enemyPrefab: {fileID: 186001548571042706, guid: 30af2857f33cf2a47892cb00d86832c6, type: 3}
+    numberToSpawn: 50
+    enemyPull: {fileID: 11400000, guid: f9f248bd06372464b9ba3c813cdfca32, type: 2}
+  - enemyPrefab: {fileID: 3286912937753170357, guid: 33ed80ef7575af145b8d3651eaed3d22, type: 3}
+    numberToSpawn: 50
+    enemyPull: {fileID: 11400000, guid: 3a6c0ecb5005c804f9e04fe7f43718f0, type: 2}
+  - enemyPrefab: {fileID: 2647695096804075043, guid: 776cf0367657cc1499e65b9c3ffe8ec4, type: 3}
+    numberToSpawn: 50
+    enemyPull: {fileID: 11400000, guid: 447687effbdfa9d408af9fb4eb385949, type: 2}
+  - enemyPrefab: {fileID: 4512632851470951803, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
+    numberToSpawn: 50
+    enemyPull: {fileID: 11400000, guid: ced0d0d7dcb2659449841749081b0bcd, type: 2}
   isChoosingWeapon: 0
   player: {fileID: 0}
 --- !u!1 &3791030464002522817
@@ -618,7 +620,7 @@ Transform:
   m_GameObject: {fileID: 5145496132059708169}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 77.7, y: 137.9, z: -5}
+  m_LocalPosition: {x: 77.7, y: 122.9, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

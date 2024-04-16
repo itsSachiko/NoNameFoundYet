@@ -11,26 +11,26 @@ public class WeaponChoice : MonoBehaviour
 
     int random;
 
-    public Action<Ranged> ChooseRanged;
-    public Action<Melee> ChooseMelee;
+    //public Action<Ranged> ChooseRanged;
+    //public Action<Melee> ChooseMelee;
     [HideInInspector] public Ranged range;
     [HideInInspector] public Melee melee;
     PlayerWeapons playerWeapons;
 
     private void Awake()
     {
-        Spawner.onLastWave += LastWave;
+        //Spawner.onLastWave += LastWave;
     }
     private void OnEnable()
     {
 
-        ChooseMelee += playerWeapons.GetMeleeWeapon;
-        ChooseRanged += playerWeapons.GetRangedWeapon;
+        //ChooseMelee += playerWeapons.GetMeleeWeapon;
+        //ChooseRanged += playerWeapons.GetRangedWeapon;
     }
     private void OnDisable()
     {
-        ChooseMelee -= playerWeapons.GetMeleeWeapon;
-        ChooseRanged -= playerWeapons.GetRangedWeapon;
+        //ChooseMelee -= playerWeapons.GetMeleeWeapon;
+        //ChooseRanged -= playerWeapons.GetRangedWeapon;
     }
     private void LastWave()
     {
@@ -53,13 +53,13 @@ public class WeaponChoice : MonoBehaviour
     {
         if (range)
         {
-            ChooseRanged?.Invoke(range);
-            ChangeWeaponArt.RangedCallBack?.Invoke(range.weaponImg);
+            //ChooseRanged?.Invoke(range);
+            //ChangeWeaponArt.RangedCallBack?.Invoke(range.weaponImg);
         }
         else if (melee)
         {
-            ChooseMelee?.Invoke(melee);
-            ChangeWeaponArt.MeleeCallBack?.Invoke(melee.weaponImg);
+            //ChooseMelee?.Invoke(melee);
+            //ChangeWeaponArt.MeleeCallBack?.Invoke(melee.weaponImg);
         }
     }
 }

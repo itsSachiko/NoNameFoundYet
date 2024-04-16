@@ -33,6 +33,7 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
+        numberOfEnemiesActive = 0;
         foreach (Enemy enemy in enemiesToSpawnAtStart)
         {
             SpawnEnemy(enemy);
@@ -76,6 +77,7 @@ public class Spawner : MonoBehaviour
 
     private void EnemyDied()
     {
+        //Debug.Log(numberOfEnemiesActive);
         numberOfEnemiesActive--;
     }
 
@@ -91,6 +93,7 @@ public class Spawner : MonoBehaviour
         enemyPull.pulledEnemies[0].position = spawner[ran].position;
         enemyPull.pulledEnemies[0].gameObject.SetActive(true);
         numberOfEnemiesActive++;
+        Debug.Log(numberOfEnemiesActive);
         enemyPull.pulledEnemies.RemoveAt(0);
     }
 
@@ -113,7 +116,7 @@ public class Spawner : MonoBehaviour
                 yield return null;
             }
 
-            //onLastWave?.Invoke();
+            onLastWave?.Invoke();
             while (isChoosingWeapon)
             {
                 yield return null;

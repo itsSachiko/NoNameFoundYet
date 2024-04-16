@@ -10,6 +10,7 @@ public class StateManager : MonoBehaviour, IHp
     [SerializeField] public float speed;
     [SerializeField] public float damage;
     [SerializeField] public float hp;
+    bool fistTime = true;
 
     [Header("Player Prefab")]
     [SerializeField] public Transform playerPrefab;
@@ -169,6 +170,11 @@ public class StateManager : MonoBehaviour, IHp
 
     public void Death()
     {
+        if (fistTime)
+        {
+            fistTime = false;
+            return;
+        }
         if (enemyPull == null)
         {
             gameObject.SetActive(false);
@@ -293,7 +299,7 @@ public class StateManager : MonoBehaviour, IHp
         Melee meleeCasting = myWeapon as Melee;
         Collider[] colliders = Physics.OverlapSphere(transform.position, meleeCasting.range, playerLayer);
 
-        StartCoroutine(SwingAnimation(meleeCasting.angleOfAttack, meleeCasting));
+        //StartCoroutine(SwingAnimation(meleeCasting.angleOfAttack, meleeCasting));
         foreach (Collider collider in colliders)
         {
             if (collider.TryGetComponent(out IHp hp))

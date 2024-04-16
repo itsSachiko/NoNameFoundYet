@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allUsedBars:
   - bar: {fileID: 11400000, guid: e5a246323456c4441bb566b33acc4be5, type: 2}
-    usagePerShot: 10
+    usagePerShot: 5
     isOvertime: 0
   realoadTime: 0.8
   damage: 100

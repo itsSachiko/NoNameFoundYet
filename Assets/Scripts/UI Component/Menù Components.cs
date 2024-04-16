@@ -25,6 +25,10 @@ public class MenùComponents : MonoBehaviour
         AudioManager.Instance.musicSource.Stop();
         SceneManager.LoadScene(1);
     }
+    public void Nightmare()
+    {
+        SceneManager.LoadScene(3);
+}
 
     public void OnOption()
     {

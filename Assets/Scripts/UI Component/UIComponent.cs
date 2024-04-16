@@ -50,7 +50,7 @@ public class UIComponent : MonoBehaviour
         {
             return;
         }
-
+        
         starArray[starCounter].spriteRenderer.sprite = starArray[starCounter].onSprite;
         starCounter++;
     }
@@ -58,7 +58,7 @@ public class UIComponent : MonoBehaviour
     void OnLastWave()
     {
         OnStarActivated();
-        OnChooseWeapon();
+        //OnChooseWeapon();
     }
 
     void OnChooseWeapon()

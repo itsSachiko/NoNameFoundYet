@@ -17,8 +17,8 @@ MonoBehaviour:
   isLast: 0
   enemies:
   - enemyPrefab: {fileID: 186001548571042706, guid: 30af2857f33cf2a47892cb00d86832c6, type: 3}
-    numberToSpawn: 5
+    numberToSpawn: 2
     enemyPull: {fileID: 11400000, guid: f9f248bd06372464b9ba3c813cdfca32, type: 2}
   - enemyPrefab: {fileID: 4512632851470951803, guid: 6811a928baab5b442b5a249a1c5753c0, type: 3}
-    numberToSpawn: 5
+    numberToSpawn: 2
     enemyPull: {fileID: 11400000, guid: ced0d0d7dcb2659449841749081b0bcd, type: 2}

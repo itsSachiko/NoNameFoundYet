@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: projectilesEnemy
   m_EditorClassIdentifier: 
   bullet: {fileID: 8897966881179262346, guid: 569f2b65db9823347b504299a02e3a57, type: 3}
-  howManyToSpawn: 30
+  howManyToSpawn: 300

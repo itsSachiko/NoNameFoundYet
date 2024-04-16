@@ -23,7 +23,7 @@ public class PlayerHp : MonoBehaviour, IHp
 
     void SetHp(float value)
     {
-        StartCoroutine(HitFlash(hitFlashSeconds));
+        //StartCoroutine(HitFlash(hitFlashSeconds));
         
         HpBar.actualBar = value;
         
